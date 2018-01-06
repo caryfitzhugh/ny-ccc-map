@@ -1,0 +1,16 @@
+{
+  "name": "NY-CCC Map",
+  "version": "0.0.1",
+  "license": "Copyright 2018",
+  "description": "Map viewing component for use in NY website",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^7.0.0-beta.36",
+    "grunt": "^1.0.1",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-copy": "1.0.0"
+  }
+}

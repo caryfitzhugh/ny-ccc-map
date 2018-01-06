@@ -1,0 +1,1297 @@
+/* #428bca primary blue
+// #f6892e orange body
+// #f57b16 orange border
+// #414c54 dark blue
+// rgb(238, 241, 242) grey-bg
+*/
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700');
+
+html, body, #container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+  padding-top: 0px;
+}
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+}
+
+
+#map {
+  width: auto;
+  position: absolute;
+  top: 00px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-left: 0;
+  cursor: crosshair;
+}
+#map.tray-open {
+  width: auto;
+  margin-left: 400px;
+}
+
+.layer-controls {
+  position: fixed;
+  z-index: 1001;
+  top: 00px;
+  left: 0;
+  /*background: white;*/
+  width: 400px;
+}
+
+.layer-controls .header {
+  padding: 10px;
+  text-align: center;
+  background: white;
+}
+
+.layer-controls .tabs {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  padding-top: 0px; /*5px;*/
+}
+
+.layer-controls .tabs a .notice-me-banner {
+  position: absolute;
+  z-index: 10000;
+  background: white;
+  padding: 10px;
+  font-size: 12px;
+  top: 120px;
+  right: 8px;
+  left: 8px;
+  color: black;
+  font-weight: normal;
+  white-space: normal;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+}
+.arrow_box {
+    position: relative;
+    background: #fff;
+    border: 4px solid #414c54;
+}
+.arrow_box:after, .arrow_box:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.arrow_box:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+.arrow_box:before {
+    border-color: rgba(0, 102, 51, 0);
+    border-bottom-color: #414c54;
+    border-width: 16px;
+    margin-left: -16px;
+}
+.layer-controls .tabs a {
+  color: white;
+  padding: 8px;
+  white-space: nowrap;
+  background: #414c54;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  border-top: 2px solid #414c54;
+  border-left: 1px solid white;
+
+  width: 22.5%;
+}
+.layer-controls .tabs a.layers-tab {
+  width: 20%;
+}
+.layer-controls .tabs a.legend-map-controls-tab {
+  width: 48%;
+}
+.layer-controls .tabs a.locations-tab {
+  width: 32%;
+}
+
+.layer-controls .tabs a.active {
+  color: #414c54;
+  background: white;
+  border-top: 1px solid #414c54;
+  border-left: 1px solid #414c54;
+}
+
+.layer-controls .tray.show {
+  bottom: 0;
+  max-height: 5000px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid #aaa;
+}
+.layer-controls .tray {
+  background: white;
+  position: fixed;
+  top: 38px; /*111px;*/
+  left: 0;
+  width: 400px;
+  overflow:hidden;
+  max-height: 0;
+  border-right: 1px solid #aaa;
+}
+
+.layer-controls .tray .contents {
+  /*white-space: nowrap;*/
+  padding: 10px;
+}
+.layer-controls .tray .search-header {
+  margin: 0;
+  opacity: 1.0;
+  background: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  border-top: 1px solid #414c54;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
+  border-bottom: 1px solid #414c54;
+}
+.layer-controls .tray .search-header > .row {
+  border-bottom: 1px solid #414c54;
+}
+
+.layer-controls .search-header .sector-select {
+  display: block;
+  height: 35px;
+  color: #414c54;
+  background: white;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  font-size: 16px;
+  line-height: 35px;
+  padding: 5px 20px 5px 80px;
+  position: relative;
+}
+
+.layer-controls .search-header .sector-select label {
+  display: inline-block;
+  border: 0;
+  font-weight: bold;
+  position: absolute;
+  left: 5px;
+  line-height: 24px;
+}
+
+.layer-controls .search-header .sector-select label:hover {
+  cursor: default;
+  color: #414c54;
+}
+
+
+.layer-controls .search-header .sector-select .selected-text-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 24px;
+  text-align: right;
+}
+.layer-controls .search-header .sector-select .fa-caret-down {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+.layer-controls .search-header .sector-select .selected {
+  font-size: 80%;
+}
+
+.layer-controls .search-header .sector-select .sector-selection-dropdown .btn-primary {
+  background: #414c54;
+  color: white;
+  border-radius: 0;
+  border: 1px solid #414c54;
+}
+.layer-controls .search-header .sector-select .sector-selection-dropdown {
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  left: 10px;
+  background: white;
+  border: 1px solid black;
+  padding:1em;
+}
+.layer-controls .tray .search-header input {
+  border: 0;
+  width: 100%;
+  font-size: 20px;
+  padding: 5px;
+  padding-right: 30px;
+}
+.layer-controls .tray .search-header .fa-times-circle-o {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.layer-controls .tray .search-results {
+  position:absolute;
+  top: 68px;
+  left: 0;
+  right:0;
+  bottom:0;
+  overflow-y: auto;
+  position: relative;
+}
+.layer-controls .tray .search-results .result {
+  padding: 5px;
+  border-bottom: 1px solid #999;
+  font-size: 16px;
+}
+
+.layer-controls .tray .search-results-empty {
+  text-align: center;
+}
+
+.layer-controls .tray .search-results-empty .fa-search {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 40px;
+  line-height: 80px;
+  background: #f6892e;
+  border-radius: 40px;
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+}
+
+.layer-controls .tray .active-layers-empty {
+  text-align: center;
+}
+
+.layer-controls .tray .active-layers-empty .fa-globe {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 40px;
+  line-height: 80px;
+  background: #f6892e;
+  border-radius: 40px;
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+}
+
+#control_panel_root .active-layer  {
+  position: relative;
+}
+
+#control_panel_root .active-layer .disable-active-layer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+}
+
+#control_panel_root .active-layer .disable-active-layer-overlay {
+  padding-top: 40px;
+  text-align: center;
+}
+#control_panel_root .active-layer .disable-active-layer-overlay > label {
+  display: inline;
+  background: white;
+  box-shadow: 0 0 5px black;
+  padding: 10px 20px;
+}
+.layer-controls .layer-group:first-child {
+  padding: 5px;
+}
+.layer-controls .layer-group {
+  list-style-type: none;
+  padding-left: 10px;
+}
+.layer-controls .layer-group .info {
+  padding: 0px 5px;
+}
+.active-layer .info.warning,
+.layer-controls .layer-group .info.warning {
+  color: #333;
+  background: #ffc756; /*#f6892e;*/
+}
+.active-layer .name .info {
+  padding: 0px 5px;
+}
+.modal-wrapper .response .error {
+  padding: 5px 10px;
+}
+
+.modal-wrapper .response a {
+  cursor: pointer;
+}
+
+.modal-wrapper .response .error,
+.active-layer .info.danger,
+.layer-controls .layer-group .info.danger {
+  color: #FFF;
+  background: #D40A0A;
+}
+
+.layer-import-modal .input-upload {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.layer-import-modal .drop-target {
+  border: 2px dashed #aaa;
+  width: 100%;
+  line-height: 200px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.layer-controls .bulk {
+  text-align: right;
+  border-top: 1px solid #414c54;
+  border-bottom: 1px solid #414c54;
+  background: white;
+  padding: 5px;
+}
+.layer-controls .bulk a {
+  padding: 0px 5px;
+}
+
+.layer-controls .tray .active-layers-empty {
+  text-align: center;
+}
+
+.layer-controls .tray .active-layers-empty .fa-globe {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 40px;
+  line-height: 80px;
+  background: #f6892e;
+  border-radius: 40px;
+  height: 80px;
+  width: 80px;
+  display:inline-block;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: 5000;
+}
+.modal-wrapper .wizard-modal .fa-arrow-right,
+.modal-wrapper .wizard-modal .fa-arrow-left {
+  display: none;
+}
+.modal-wrapper.open {
+  height: 100%;
+}
+.modal-wrapper.open .wizard-modal .fa-arrow-right,
+.modal-wrapper.open .wizard-modal .fa-arrow-left {
+  display: inline-block;
+}
+
+.modal-wrapper .modal-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background: rgba(0,0,0,0.5);
+  z-index: 900;
+}
+
+.modal-wrapper .modal-content {
+  position: absolute;
+  border-radius: 0 0 10px 10px;
+  top: 0;
+  left: 20%;
+  width: 60%;
+  height: auto;
+  background: white;
+  z-index: 1000;
+  overflow-y: auto;
+  max-height: 90%;
+  padding-bottom: 20px;
+}
+
+.modal-wrapper .fa-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: white;
+  background: #428bca;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 20px;
+  z-index: 1001;
+}
+
+.layer-info-modal .legend-img {
+  max-width: 60%;
+}
+
+.feature-info-modal td {
+  padding: 2px 4px;
+}
+.feature-info-modal .line-chart {
+  white-space: nowrap;
+  height: 100px;
+  background: white;
+  border: 1px solid black;
+  display: inline-block;
+  padding-bottom: 30px;
+  margin: 5px;
+  position: relative;
+}
+
+.feature-info-modal .line-chart .bar {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  width: 20px;
+}
+
+.feature-info-modal .line-chart .bar .color {
+  background: black;
+  width: 80%;
+  margin: 0 10%;
+
+  position: absolute;
+  bottom: 0;
+}
+.feature-info-modal .line-chart .bar.current .color {
+  background: red;
+}
+
+.feature-info-modal .line-chart .bar .label {
+  opacity: 0;
+  transition: 0.5s all;
+  position: absolute;
+  line-height: 20px;
+  font-size: 14px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 5px black;
+  bottom: 0px;
+  padding: 3px 5px;
+  color: black;
+  text-align: center;
+  z-index: 10;
+  background: white;
+}
+.feature-info-modal .line-chart .bar:hover {
+  box-shadow: 0px 0px 5px #efefef;
+}
+.feature-info-modal .line-chart .bar:hover .label {
+  opacity: 1;
+  transition: 0.5s all;
+}
+.feature-info-modal .line-chart label {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.feature-info-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin-bottom: 15px;
+}
+
+.layer-controls .active-layer {
+  border-bottom: 1px solid #414c54;
+  padding: 1px 5px;
+}
+.layer-controls .active-layer {
+  border-bottom: 0;
+}
+
+.layer-controls .active-layer label {
+  margin-bottom: 0;
+}
+.layer-controls .active-layer .control-bar {
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+.layer-controls .active-layer .active-details {
+  margin-bottom: 15px;
+}
+.active-layer .detail-block.carbon .options {
+  display: inline-block;
+  width:70%;
+}
+.active-layer .detail-block.carbon .options div {
+  display: block;
+}
+.active-layer .detail-block {
+  line-height: 25px;
+}
+.active-layer .detail-block.baseline-label  {
+  text-align: center;
+  margin-top: -16px;
+}
+.active-layer .detail-block .labelled-range {
+  position: relative;
+  padding-bottom: 15px;
+}
+.active-layer .detail-block .labelled-range span {
+  position: absolute;
+  top: 15px;
+}
+.active-layer .detail-block .labelled-range span:first-child {
+  left: 5px;
+}
+.active-layer .detail-block .labelled-range span:last-child {
+  right: 5px;
+}
+
+.active-layer .detail-block .labelled-range input {
+}
+
+.active-layer .detail-block.power_stations img {
+  width: 30px;
+}
+.active-layer .detail-block .legend-label {
+  font-weight: bold;
+}
+.active-layer .detail-block.esri-legend {
+  text-align: left;
+}
+.active-layer .detail-block.esri-legend .legend-block {
+  display: block;
+}
+.active-layer .detail-block.esri-legend .legend-block img {
+  display: inline-block;
+  width: 25%;
+}
+.active-layer .detail-block.esri-legend .legend-block span {
+}
+
+.active-layer .detail-block.esri-legend.extreme-precip .legend-block img {
+  width: 10%;
+}
+.active-layer .detail-block.legend .color-block {
+  display: inline-block;
+  min-width: 9.08%;
+  margin: 0;
+  position: relative;
+}
+.active-layer .detail-block.legend .color-legend {
+  text-align: center;
+  font-weight: 300;
+  font-size: 90%;
+  margin-top: -6px;
+}
+.active-layer .detail-block.legend .color-block .color {
+  width: 100%;
+  height: 100%;
+}
+.active-layer .detail-block.legend.quantiled .color-block label {
+  position: relative;
+  left: 50%;
+}
+.active-layer .detail-block.legend .color-block label {
+  text-align: center;
+  width: 100%;
+  font-weight: 300;
+  vertical-align: text-top;
+}
+
+.active-layer .detail-block.legend .color-block svg ,
+.active-layer .detail-block.legend .color-block svg rect {
+  width: 100%;
+  height: 25px;
+}
+
+.detail-block.legend-url-text.spa_surface_water ,
+.detail-block.legend-url-text.spa_ground_water {
+  position: relative;
+}
+
+.detail-block.legend-url-text.spa_ground_water span.legend-text,
+.detail-block.legend-url-text.spa_surface_water span.legend-text {
+  position: absolute;
+  top: -34px;
+  left: 130px;
+}
+
+.active-layer .detail-block.legend {
+  margin: 10px 0px;
+}
+
+.active-layer .detail-block.legend-url-text {
+  text-align: center;
+  font-weight: 300;
+  font-size: 90%;
+}
+.active-layer .detail-block label {
+  display: inline-block;
+  width: 25%;
+  border: 0;
+}
+.active-layer .opacity input ,
+.active-layer .plants-and-animals select,
+.active-layer .extreme-precip select,
+.active-layer .sea-level input {
+  display: inline-block;
+  width: 40%;
+  margin-right: 10px;
+}
+.active-layer .legend img {
+  display: inline-block;
+  max-width: 70%;
+}
+
+.active-layer .legend.nlcd label ,
+.active-layer .legend.anthromes label ,
+.active-layer .legend.nfhl label ,
+.active-layer .legend.regulated_wells label ,
+.active-layer .legend.lulc_2011 label ,
+.active-layer .legend.lulc_2011 label ,
+.active-layer .legend.lulc_2050 label ,
+.active-layer .legend.gap_lc label {
+  display: none;
+}
+
+.active-layer .legend.nlcd img ,
+.active-layer .legend.regulated_wells img ,
+.active-layer .legend.lulc_2011 img ,
+.active-layer .legend.anthromes img ,
+.active-layer .legend.lulc_2050 img ,
+.active-layer .legend.gap_lc img {
+  width: 100%;
+  max-width: 100%;
+}
+.active-layer .legend.private_wells img {
+  width: 74%;
+  max-width: 74%;
+}
+.active-layer .legend.sovi img {
+  width: 50%;
+}
+.active-layer .legend.nfhl img {
+  width: 70%;
+}
+.active-layer .legend.soils img.soils-0 {
+  width: 50%;
+  max-width: 50%;
+}
+.active-layer .legend.soils img.soils-1 {
+  width: 115%;
+  max-width: 115%;
+}
+
+.layer-controls .active-layer .show-confidence  input {
+  width: auto;
+}
+.layer-controls .active-layer .control-bar .fa {
+  /*font-size: 20px;*/
+  padding: 2px 5px;
+}
+.layer-controls .active-layer .control-bar .fa-trash-o {
+  float: right;
+}
+.layer-controls label:hover  {
+  transform: 0.5s all;
+  cursor: pointer;
+  color: #000;
+}
+.layer-controls label {
+  font-size: 90%;
+  border-bottom: 1px solid #999;
+  display: block;
+}
+
+.layer-controls .layer {
+  padding: 4px;
+  font-size: 90%;
+  clear: both;
+}
+
+.layer-controls .layer a.info {
+  float: right;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.map-controls {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  right: 10px;
+  min-width: 100px;
+  color: #666;
+  font-size: 16px;
+  padding: 5px;
+  padding-right: 50px;
+}
+.map-controls .add-layer  {
+  position: relative;
+}
+.map-controls .add-layer .fa-plus-circle {
+  font-size: 75%;
+  top: 16px;
+  right: 10px;
+  position: absolute;
+  background: white;
+}
+
+.map-control {
+  float: left;
+  margin: 5px;
+  position: relative;
+}
+
+.map-control-bg {
+  position: absolute;
+  top: -20px;
+  right: -10000px;
+  width: 20000px;
+  height: 20000px;
+  background: rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.control-details {
+  background: white;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  padding: 10px;
+  z-index: 150;
+}
+.control-details a {
+  padding: 2px 4px;
+  display: block;
+  white-space: nowrap;
+}
+.control-details a.active {
+  background: #428bca;
+  text-shadow: 1px 1px 2px #333;
+  color: white;
+}
+
+.zoom-controls {
+  position: absolute;
+  right: 0;
+  margin: 5px 5px 5px 10px;
+  background: white;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+  border: 1px solid #eaeaea;
+  box-shadow: 1px 1px 4px #999;
+}
+.zoom-controls a:hover, .show-cursor {
+  cursor: pointer;
+  text-decoration: none;
+}
+.zoom-controls a:hover {
+  background: #428bca;
+  text-shadow: 1px 1px 2px #333;
+  color: white;
+}
+.zoom-controls a:last-child {
+  border-bottom: none;
+}
+.zoom-controls a.disable:hover  {
+  cursor: default;
+}
+.zoom-controls a.disable {
+  color: #bbb;
+}
+.zoom-controls a {
+  padding: 4px 8px;
+  display: block;
+  border-bottom: 1px solid #eaeaea;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.leaflet-bottom .leaflet-control-scale {
+  position: fixed;
+  right: 0;
+  bottom: 25px;
+}
+
+/* Styles for Clusters  */
+.water-well {
+    color: white;
+    font-weight: bold;
+    width: 8px !important;
+    height: 8px !important;
+    background: rgb(0,0,250);
+    border: 1px solid rgb(0,0,250);
+}
+.water-wells-cluster {
+    color: white;
+    font-weight: 300;
+    width: 50px !important;
+    height: 35px !important;
+    line-height: 35px;
+    background: rgba(0,0,250,0.7);
+    border: 1px solid rgb(0,0,250);
+    text-align: center;
+    font-size: 14px;
+}
+.oil-wells-cluster {
+    color: black;
+    font-weight: 300;
+    width: 50px !important;
+    height: 35px !important;
+    line-height: 35px;
+    background: rgba(0,255,0,0.5);
+    border-radius: 35px;
+    border: 1px solid green;
+    text-align: center;
+    font-size: 14px;
+}
+.other-wells-cluster {
+    color: black;
+    font-weight: 30 {{layer_default_id}}0;
+    width: 50px !important;
+    height: 35px !important;
+    line-height: 35px;
+    background: rgba(0,0,255,0.5);
+    border-radius: 35px;
+    border: 1px solid blue;
+    text-align: center;
+    font-size: 14px;
+}
+.gas-wells-cluster {
+    color: black;
+    font-weight: bold;
+    width: 35px !important;
+    height: 35px !important;
+    line-height: 35px;
+    background: rgba(255,0,0,0.5);
+    border-radius: 35px;
+    border: 1px solid red;
+    text-align: center;
+    font-size: 12px;
+}
+.wellsCluster {
+    color: black;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    line-height: 40px;
+    background: transparent url(../img/wellsCluster.png) 0 0 no-repeat scroll;
+    text-align: center;
+    text-indent: -20px;
+    font-size: 11px;
+}
+
+.sewer_overflowsCluster {
+    color: black;
+    font-weight: 300;
+    width: 50px;
+    height: 48px;
+    line-height: 85px;
+    background: transparent url(../img/sewer-overflowsCluster.png) 0 0 no-repeat scroll;
+    text-align: center;
+    text-indent: -20px;
+    font-size: 14px;
+}
+
+.spdesCluster {
+    color: #000;
+    width: 40px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 63px;
+    background: transparent url(../img/spdes.png) 0 0 no-repeat scroll;
+    text-align: center;
+    text-indent: 0px;
+    font-size: 14px;
+}
+
+.hospitalCluster {
+  color: white;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    line-height: 15px;
+    background: transparent url(../img/hospitalCluster.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 8px;
+    font-size: 11px;
+}
+
+.damsCluster {
+  color: black;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    line-height: 15px;
+    background: transparent url(../img/damsCluster.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 8px;
+    font-size: 11px;
+}
+
+.bulkstorageCluster {
+  color: white;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: transparent url(../img/bulkstorage.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 8px;
+    font-size: 11px;
+}
+
+.ghg_facilitiesCluster {
+  color: white;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    line-height: 15px;
+    background: transparent url(../img/ghg_facilitiesCluster.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 8px;
+    font-size: 11px;
+}
+
+.alscCluster {
+  color: black;
+    font-weight: bold;
+    width: 37px;
+    height: 45px;
+    line-height: 38px;
+    background: transparent url(../img/alscCluster.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 4px;
+    font-size: 1.2em;
+}
+
+.out-of-zoom-alerts {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 100001;
+}
+.out-of-zoom-alerts .alert {
+  width: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 0;
+  border-bottom: 0;
+  border-radius: 0;
+}
+
+/* Hacking
+ * Leaflet to not give me such guiderails
+ */
+.leaflet-tile-pane ,
+  .leaflet-objects-pane,
+  .leaflet-overlay-pane,
+  .leaflet-shadow-pane {
+    z-index: initial !important;
+  }
+/*
+ * The layers are from 1000 - 5000.
+ * Boundaries are 5000.
+ *
+ * markers are 10,000
+ *
+ * popups are 15,000
+ *
+ */
+.leaflet-marker-pane {
+  z-index: 10000;
+}
+.leaflet-popup-pane {
+  z-index: 15000;
+}
+.leaflet-popup-content {
+  max-height: 50vh;
+  max-width: 25vw;
+  overflow: auto;
+}
+
+@media (max-width: 600px) {
+  .layer-controls .tray, .layer-controls {
+    right: 0;
+    width: auto;
+  }
+  .map-controls {
+    top: 115px;
+  }
+  .print-control {
+    display: none;
+  }
+  .modal-wrapper .wizard-modal .fa-arrow-right {
+    top: auto;
+    right: 0;
+    bottom:0;
+  }
+  .modal-wrapper .wizard-modal .fa-arrow-left {
+    top: auto;
+    left: 0;
+    bottom:0;
+  }
+  .modal-wrapper .modal-content {
+    width: auto;
+    left: 0;
+    right:0;
+  }
+}
+.printin-legends {
+  display: none;
+}
+
+.fa-spin-custom, .glyphicon-spin {
+  -webkit-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+.modal-wrapper .modal-content.wizard-modal {
+  box-shadow: 0 0 5px  #333;
+  min-height: 200px;
+  height: 100%;
+  padding-bottom: 0px;
+}
+
+.wizard-modal .back-to-start {
+    float: right;
+    margin-right: 50px;
+    margin-top: 13px;
+}
+.wizard-modal .footer{
+  color: #999;
+  text-align: center;
+  font-size: 80%;
+  clear: both;
+  line-height: 30px;
+  padding-top: 20px;
+}
+.wizard-modal .container-fluid {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.wizard-modal .fa-arrow-right ,
+.wizard-modal .fa-arrow-left {
+  position: fixed;
+  padding: 25px;
+  font-size: 16px;
+  display: inline-block;
+  color: white;
+  background: #428bca;
+}
+
+.wizard-modal .fa-arrow-left {
+  top: 100px;
+  left: 10%;
+}
+.wizard-modal .fa-arrow-right {
+  top: 100px;
+  right: 10%;
+}
+
+.wizard-modal .fa-arrow-left:hover ,
+.wizard-modal .fa-arrow-right:hover {
+  background: #414c54;
+  cursor: pointer;
+}
+
+.wizard-modal h1 {
+  border-bottom: 1px solid black;
+}
+
+.wizard-modal img {
+  min-width: 300px;
+  min-height: 300px;
+  float: right;
+}
+.wizard-modal img.full-width {
+  display: block;
+  width: 100%;
+}
+
+.tide-guage-slr-icon  {
+  width: auto;
+  display: block;
+}
+.tide-guage-slr-icon {
+}
+.tide-guage-slr-icon .likelihood  {
+  width: 6px;
+  height: 100px;
+
+  position: relative;
+}
+.tide-guage-slr-icon .likelihood > div.label {
+  position: absolute;
+  bottom: -18px;
+  display: block;
+  width: 50px;
+  text-align: center;
+  font-size: 11px;
+  left: -15px;
+  color: blue;
+  text-shadow: white 0.15em 0.15em 0.2em;
+
+}
+.tide-guage-slr-icon .likelihood > div.bar {
+  position: absolute;
+  bottom: 0;
+  min-height: 1px;
+  max-height: 100px;
+  background: blue;
+  text-shadow: white 0.1em 0.1em 0.2em
+}
+
+.active-year, .active-season {
+  background-color: rgba(0, 102, 51, 0.05);
+}
+tr.active-season td.active-year {
+  background-color: rgba(0, 102, 51, 0.3);
+}
+tr.smaller-header {
+  font-size: 90%;
+}
+th.deltas {
+  background: black;
+  color: white;
+}
+
+@media print {
+  .hide-printing {
+    display: none;
+  }
+  #control_panel_root > div {
+    display: none;
+  }
+  #control_panel_root > div.printing-legends {
+    position: absolute;
+    display: block;
+    top: 100%;
+  }
+
+  #control_panel_root > div.printing-legends  .columns  {
+    column-count: 4 !important;
+    column-gap: 1em !important;
+  }
+  #control_panel_root > div.printing-legends  .columns  .active-layer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin: 0 0 1em;
+  }
+
+  #control_panel_root > div.printing-legends  .columns  .active-layer label.layer-name {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+  }
+  #control_panel_root > div.printing-legends  .columns  .active-layer .opacity {
+    display: none;
+  }
+  #control_panel_root > div.printing-legends  .columns  .active-layer {
+    width: 40%;
+    float: left;
+    margin: 10px;
+  }
+  .zoom-controls , .layer-controls, .map-controls
+    { display: none; }
+
+  .print-legend-page {
+    display: block;
+    position: absolute;
+    top: 100%;
+    page-break-before: always;
+  }
+  .print-header {
+    position: absolute;
+    top: 0;
+    z-index: 990000;
+  }
+  html, body {
+    height: 100%;
+    display: block;
+  }
+  #content, #map { height: 50%; }
+  #map.tray-open { margin-left: 0; }
+  body {
+    height: 200%;
+    overflow: auto;
+  }
+}

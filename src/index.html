@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>NY CCSC Map Viewer</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" media="all">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
+  <link rel='stylesheet prefetch' href='./vendor/leaflet-1.0.3/dist/leaflet.css'>
+  <link rel="stylesheet" href="./css/main.css" media='all'>
+</head>
+
+<body>
+    <div class='main-header hide-printing'> </div>
+    <div id="container">
+      <div id='ractive_root'>
+        <div id='control_panel_root'></div>
+      </div>
+
+      <div id="map" class="sidebar-map" style="background-color:white;"></div>
+    </div>
+
+    <div class='print-legend-page visible-print visible-print-block'>
+      <!--PRINT PARAMETERS-->
+    </div>
+
+<!-- VIEW TEMPLATES -->
+<script id='control_panel_template' type="text/ractive">
+  {{>map_controls_template}}
+  {{>layer_controls_template}}
+  {{>layer_info_modal_template}}
+  {{>sharing_modal_template}}
+  {{>map_details_modal_template}}
+  {{>printing_legends_template}}
+  {{>wizard_template}}
+  {{>wizard_standalone_template}}
+  {{>map_out_of_view_layers_template}}
+  {{>layer_import_modal_template}}
+</script>
+<script id='map_color_block_legend_template' type='text/ractive'/>
+  <div class='detail-block legend {{quantiled ? 'quantiled' : ''}}'>
+    <div class='color-legend '>{{{legend}}}</div>
+    {{#colors:i}}
+      <div class='color-block' style="width: {{100.0 / colors.length}}%;">
+        <svg width="100" height="100">
+          <rect height="100" width="100" style="fill: {{.}}; opacity:{{(0.7 * parameters.opacity / 100.0) + 0.3}}; "/>
+        </svg>
+        <label>{{{u.color_range_label(metrics, colors, i, precision, signed, inverted)}}}</label>
+      </div>
+    {{/colors}}
+  </div>
+</script>
+
+<script id='map_out_of_view_layers_template' type='text/ractive'>
+  {{#if (out_of_view_layers(layers.active, map_state.zoom)).length > 0}}
+    <div class='out-of-zoom-alerts'>
+      {{#(out_of_view_layers(layers.active, map_state.zoom))}}
+        <div class='alert alert-warning'>
+          <label>{{{name}}} </label>
+          is not visible at this zoom level.
+          <a class='btn btn-sm btn-primary' on-click='zoom-to-view-layer'> Zoom to Layer </a>
+        </div>
+      {{/(out_of_view_layers(layers.active, map_state.zoom))}}
+    </div>
+  {{/if (out_of_view_layers(layers.active, map_state.zoom)).length > 0}}
+</script>
+
+<script id='wizard_link_template' type='text/ractive'>
+  Show a Link Here
+</script>
+
+<script id='layer_import_modal_template' type="text/ractive">
+  <div class='modal-wrapper {{layer_import.show_modal ? "open" : "closed"}} '>
+    <div class='modal-bg' on-tap="close-layer-import-modal"></div>
+    <div class='modal-content layer-import-modal'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="close-layer-import-modal"></span>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h2> Layer Import </h2>
+            <p> This mapper allows you to import and view your own map layer in the browser.  </p>
+            <div class='input-upload'>
+              <input id='layer_import_file_input' type='file' value='{{layer_import.import_file}}'
+                  accept=".zip, .kml, .geojson, .json, .gpx"/>
+              {{#if layer_import.import_file}}
+                {{#if layer_import.import_file_processing}}
+                  Loading ... <span class='fa fa-spinner fa-spin-custom'></span>
+                {{else}}
+                  <span class='btn btn-primary' on-click='upload-layer-import-file'> Import </span>
+                {{/if layer_import.import_file_processing}}
+              {{/if layer_import.import_file}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+
+<script id='wizard_standalone_template' type="text/ractive">
+  <div class='modal-wrapper {{wizard.standalone ? "open" : "closed"}} '>
+    <div class='modal-bg' on-tap="close-standalone-wizard"></div>
+    <div class='modal-content wizard-modal'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="close-standalone-wizard"></span>
+        {{#wizard.standalone.templates.wizard }}
+          {{> . }}
+        {{/wizard.standalone.templates.wizard }}
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id='wizard_template' type="text/ractive">
+  <div class='modal-wrapper {{wizard.open ? "open" : "closed"}}'>
+    <div class='modal-bg' on-tap="close-wizard"></div>
+    <div class='modal-content wizard-modal'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="close-wizard"></span>
+        <span class='fa fa-arrow-right noselect' on-tap="next-wizard"></span>
+        <span class='fa fa-arrow-left noselect' on-tap="prev-wizard"></span>
+        {{#if "welcome" != wizard.steps[wizard.current_step]}}
+          <span class='btn btn-sm btn-primary back-to-start show-cursor' on-tap="show-wizard">Back To Start</span>
+        {{/if "welcome" != wizard.steps[wizard.current_step]}}
+
+        {{#if "welcome" === wizard.steps[wizard.current_step]}}
+          <h1>Welcome</h1>
+          <p>Thanks for visiting the New York Climate Change Mapping Tool; a place to interactively explore data and create maps related to climate change impacts, vulnerability and adaptation across New York.</p>
+          <h2>What's in the Map?</h2>
+          <p>Our library of viewable map layers and interactive map functions has been developed by recommendations from state experts in climate change. </p>
+          <h2>What's Not in the Map?</h2>
+          <p>Our map viewer contains only a portion of the mappable data sources available in the Clearinghouse. </p>
+          <h2>Using the viewer</h2>
+          <p>Before getting started, scroll through this Map Guide to get familiar with the layout and functions of the interface. Most layers contain multiple data sources that can be explored with map controls. Many layers can be clicked upon in the map to provide more specific local information or data values. You can also share your map digitally or create pdf maps with legends.</p>
+          <ul>
+            <li> <a class='show-cursor' on-tap='wizard-sidebar-intro'> Learn about the sidebar </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-base-layers'> Moving the map and base layers </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-adding-things'> Adding things to the map </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-find-more-info'> Finding out more about a layer </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-order-layers'> Ordering layers </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-using-legends-tab'> Using Legends Tab </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-printing'> Printing the Map </a> </li>
+            <li> <a class='show-cursor' on-tap='wizard-advanced-layer-controls'> Advanced Layer Controls </a> </li>
+          </ul>
+        {{/if "welcome" === wizard.steps[wizard.current_step]}}
+        {{#if "sidebar_intro" === wizard.steps[wizard.current_step]}}
+          <h1> Using the sidebar </h1>
+          <img src="img/wizard/sidebar_intro.gif">
+          <p><strong>Layers</strong>
+            tab gives you access to a variety of map layers and data sources organized by sector. You can browse the layers in each sector or use the search box at the top.
+          </p>
+
+          <p>
+            <strong>Controls & Legends</strong>
+            tab provides map legend information, allows you to adjust the layer information and how it is shown in the map.
+          </p>
+
+          <p>
+            <strong>Quick Zoom</strong>
+            tab allows you to search for a location or address in and around New York. The map will zoom to the location you select from the search results.
+          </p>
+        {{/if "sidebar_intro" === wizard.steps[wizard.current_step]}}
+
+        {{#if "base_layers" === wizard.steps[wizard.current_step]}}
+          <h1> Adjusting your map view and base layer</h1>
+          <img src="img/wizard/base_layers.gif">
+          <p><strong>Click and drag</strong>
+            on the map itself to adjust the map view.
+          </p>
+          <p>
+            Use the controls in the upper right to <strong> zoom in and out </strong>.  You may also double-click on the map, use your mouse scroll wheel, or hold down shift and draw a box with your mouse to zoom.
+          </p>
+
+          <p>
+            Click the <strong>House</strong> icon (<span class='fa fa-home'></span>) to return to the default view of New York.
+          </p>
+
+          <p>
+            Click the <strong>Target</strong> icon (<span class='fa fa-crosshairs'></span>) to zoom to your current location
+            <br>
+            <em>(note: your browser may request permission to locate you)</em>
+          </p>
+
+          <p>
+            Click the <strong>Base Map</strong> button to select one of the available base map layers.
+          </p>
+        {{/if "base_layers" === wizard.steps[wizard.current_step]}}
+
+        {{#if "adding_things" === wizard.steps[wizard.current_step]}}
+          <h1> Adding things to the map</h1>
+          <img src="img/wizard/adding_things.gif">
+          <p>
+            You can add layers by clicking on the Layers tab, which will show you all the layers available to be added to the map.
+            <br>
+            You can also use the search box to find layers.
+          </p>
+          <p>
+            Once you find a layer you are interested in, you can click its name or checkbox to enable it. Once it is loaded it will display on the map. Some layers may take a few moments to load.
+          </p>
+          <p>
+            Use the 'Sectors' filter to find the layers relevant to various sectors.
+          </p>
+        {{/if "adding_things" === wizard.steps[wizard.current_step]}}
+
+        {{#if "find_more_info" === wizard.steps[wizard.current_step]}}
+          <h1> Finding out more about a layer</h1>
+          <p>
+            Click on the <span class='fa fa-info-circle'></span> to learn more about the layer
+            and find a link to its source, where you can often find detailed data descriptions and relevant information.
+          </p>
+          <p>
+            For some layers you can also click <strong>directly on the map</strong> to identify the value at that location.
+          </p>
+          <img class='full-width' src="img/wizard/find_more_info.gif">
+        {{/if "find_more_info" === wizard.steps[wizard.current_step]}}
+
+        {{#if "order_layers" === wizard.steps[wizard.current_step]}}
+          <h1> Ordering Layers </h1>
+          <p>
+            If a layer is active but you cannot see any features, it may be hidden behind other layers.
+            Layers are ordered in the sidebar as they are ‘stacked’ in the map view.
+          </p>
+          <p>
+            You can use the <span class='fa fa-angle-double-up'></span> to move layers to the top, or click and drag on the <span class='fa fa-hand-stop-o'></span> to drag layers into the order you prefer.
+            Note that some types of layers will always draw on top of other layers - and these will not have the <span class='fa fa-angle-double-up'></span> or <span class='fa fa-hand-stop-o'></span> available.
+          </p>
+          <p>
+            You can always hide (<span class='fa fa-eye'></span>) or remove (<span class='fa fa-trash'></span>) these layers to take them out of the map view.
+          </p>
+          <img class='full-width' src="img/wizard/order_layers.gif">
+        {{/if "order_layers" === wizard.steps[wizard.current_step]}}
+
+        {{#if "using_legends_tab" === wizard.steps[wizard.current_step]}}
+          <h1> Using Controls & Legends Tab </h1>
+          <p>
+            Each layer has a set of buttons that vary depending on the functions available for that layer.
+          </p>
+          <p>
+            All layers have:
+              <br>
+              <span class='fa fa-angle-double-up'></span> which moves the layer to the top of the map
+              <br>
+              <span class='fa fa-eye'></span> which hides or shows the layer
+              <br>
+              <span class='fa fa-info-circle'></span> which provides layer information
+              <br>
+              <span class='fa fa-trash'></span> which removes the layer from the view
+          </p>
+          <p>
+            Opacity can be adjusted using the slider
+          </p>
+          <p>
+            <strong>Expand / Collapse all </strong> – these buttons change how the legend information is viewed in the sidebar. It does not affect how layers appear in the map view. Each legend can also be opened or closed by clicking on the layer name or the triangle to the left.
+            <br>
+            <strong>Hide all </strong> – this hides all layers but does not remove them from the map view or change how their legends appear in the sidebar.
+            <br>
+            <strong>Remove all</strong> – this removes all layers from the map and their legends from the sidebar.
+          </p>
+          <img class='full-width' src="img/wizard/order_layers.gif">
+        {{/if "using_legends_tab" === wizard.steps[wizard.current_step]}}
+
+        {{#if "printing" === wizard.steps[wizard.current_step]}}
+          <h1> Printing the Map </h1>
+          <p>
+            The <span class='fa fa-print'></span> button will export your map and legends to a layout and open the print dialog window automatically from your browser.
+          </p>
+          <p>
+            The print layout includes a full-page map view and one or more additional pages for legend information. Note that the map view that is exported includes the area beneath the sidebar.
+          </p>
+          <p>
+            <em> Hint: you can hide the sidebar by double-clicking on any tab name, or clicking on the name of the open tab. When the sidebar is collapsed, the map view shows what will be sent to the print layout.  </em>
+          </p>
+          <img class='full-width' src="img/wizard/printing.gif">
+        {{/if "printing" === wizard.steps[wizard.current_step]}}
+        {{#if "advanced_layer_controls" === wizard.steps[wizard.current_step]}}
+          <h1> Advanced Layer Controls </h1>
+          <p>
+            Some layers, especially those in the <strong>Climate Data</strong> and <strong>Ecosystems</strong> folders, contain multiple datasets as part of the layer. These datasets can be accessed using customized controls found in the <strong>Controls & Legends</strong> tab once the layer is active.
+          </p>
+          <p>
+            Use drop down menus, buttons and sliders to navigate to the data you are interested in. <em>Note: for most interactive layers, the legend color bar will automatically adjust based on which data you select to show in the map.</em>
+          </p>
+          <p>
+          You can also <strong>Clone</strong> (<span class='fa fa-clone'></span>) a specific dataset and add it to the map as a ‘stand-alone’ layer. This is helpful when comparing multiple datasets from one or more of these types of interactive layers. The new layer is added to the list in the <strong>Controls & Legends</strong> tab (but does <em>not</em> appear in the list on the <strong>Layers</strong> tab).
+          </p>
+          <p>
+            Most interactive layers include the ability to click on the map <span class='fa fa-map-marker'></span> to return a value for that location.
+          </p>
+          <img class='full-width' src="img/wizard/advanced_layer_controls.gif">
+        {{/if "advanced_layer_controls" === wizard.steps[wizard.current_step]}}
+
+        <!--
+          <div class='footer'>
+            Hint {{wizard.current_step + 1}} / {{wizard.steps.length}}
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id='printing_legends_template' type="text/ractive">
+  <div class='printing-legends visible-print-block'>
+    <div class='columns'>
+      {{#layers.active}}
+        <div class='active-layer'>
+          <label class='layer-name'> {{{name}}} </label>
+         {{> layer_controls_details_blocks_template}}
+        </div>
+      {{/layers.active}}
+    </div>
+  </div>
+</script>
+
+<script id='map_details_modal_template' type="text/ractive">
+  <div class='modal-wrapper {{(map_details.location && map_details.feature_info_requests.length > 0) ? "open" : "closed"}}' >
+    <div class='modal-bg' on-tap="hide-feature-info-modal"></div>
+    <div class='modal-content feature-info-modal'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="hide-feature-info-modal"></span>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h2>
+              Location Info
+             <!--  <small>{{map_details.location.lat}},{{map_details.location.lng}}</small> -->
+            </h2>
+          </div>
+        </div>
+        {{#map_details.feature_info_requests}}
+          <div class='row response'>
+            {{#map_details.feature_info_responses[response_id]}}
+              {{#error}}
+                <div class='col-xs-2'>
+                  <label> {{{name}}} </label>
+                </div>
+                <div class='col-xs-10'>
+                  <span class='error'> Error Loading </span>
+                  {{#if (show_error_details)}}
+                    <a on-click='toggle-show-feature-info-response-details'> Hide Details. </a>
+                    <pre>{{error}}</pre>
+                  {{else}}
+                    <a on-click='toggle-show-feature-info-response-details'> Show Details. </a>
+                  {{/if (show_error_details)}}
+                </div>
+              {{else}}
+                {{> active_layer.templates.info}}
+              {{/error}}
+            {{else}}
+              <div class='col-xs-2'>
+                <label> {{{name}}} </label>
+              </div>
+              <div class='col-xs-10'>
+                <span> loading ...
+                  <span class='fa fa-spinner fa-spin-custom'></span>
+                </span>
+              </div>
+            {{/if}}
+          </div>
+        {{/map_details.feature_info_requests}}
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id='sharing_modal_template' type="text/ractive">
+  <div class='modal-wrapper {{sharing_modal_loading ? "open" : "closed"}}'>
+    <div class='modal-bg' on-tap="hide-sharing-modal"></div>
+    <div class='modal-content sharing-loading-modal'>
+      <div class='container-fluid'>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h2>
+              Loading your map...
+              <span class='fa fa-spinner fa-spin-custom'></span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='modal-wrapper {{sharing_modal.open ? "open" : "closed"}}'>
+    <div class='modal-bg' on-tap="hide-sharing-modal"></div>
+    <div class='modal-content'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="hide-sharing-modal"></span>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h2>
+              Saving and Sharing Maps
+            </h2>
+          </div>
+        </div>
+        <div class='row'>
+          <hr/>
+        </div>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <p> You can save the current map view, including all active layers and settings, by requesting a save link below. Bookmark the link to return to the map.</p>
+            <p>Share this link with others and they will be able to load up the map directly in their web browser.</p>
+          </div>
+        </div>
+        <hr/>
+        <div class='row'>
+          {{#if sharing_modal.token }}
+            {{#if "loading" === sharing_modal.token}}
+              <div class='col-xs-3'> &nbsp; </div>
+              <a disabled class='btn btn-primary col-xs-6' on-click="request-share-link-token">
+                <span class='fa fa-spinner fa-spin-custom'></span>
+                Requesting Link...
+              </a>
+              <div class='col-xs-3'> &nbsp; </div>
+            {{ else }}
+              <div class='col-xs-1'></div>
+              <div class='col-xs-10'>
+                <input class='form-control' readonly onfocus="this.select()" onmouseup='return false;' value='{{sharing_url(sharing_modal.token)}}'>
+              </div>
+              <div class='col-xs-1'></div>
+            {{/if}}
+          {{ else }}
+            <div class='col-xs-3'> &nbsp; </div>
+            <a class='btn btn-primary col-xs-6' on-click="request-share-link-token"> Request Link </a>
+            <div class='col-xs-3'> &nbsp; </div>
+          {{/if sharing_modal.token}}
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id='layer_info_modal_template' type="text/ractive">
+  <div class='modal-wrapper {{layer_controls.current_layer_info ? "open" : "closed"}}'>
+    <div class='modal-bg' on-tap="hide-layer-info-modal"></div>
+    <div class='modal-content layer-info-modal'>
+      <div class='container-fluid'>
+        <span class='show-cursor fa fa-close' on-tap="hide-layer-info-modal"></span>
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h2>
+              {{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).name}}}
+              <small>{{layer_controls.current_layer_info}}</small>
+            </h2>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Service Status </label>
+          </div>
+          <span class='col-xs-8'>
+            <span class='label label-{{layer_load_state(layers_loading_states, layer_controls.current_layer_info)}}'>
+              {{layer_load_state_error_count(layers_loading_states, layer_controls.current_layer_info)}}
+            </span>
+          </span>
+          <span class='col-xs-2'>
+          </span>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Folder </label>
+          </div>
+          <span class='col-xs-8'>{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).folder}}</span>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Description </label>
+          </div>
+          <span class='col-xs-8'>{{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).description}}}</span>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Sectors </label>
+          </div>
+          <span class='col-xs-8'>{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).sectors}}</span>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Source </label>
+          </div>
+          <span class='col-xs-8'>{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source}}</span>
+        </div>
+        <div class='row'>
+          <div class='col-xs-4'>
+            <label> Source URL </label>
+          </div>
+          <span class='col-xs-8'>
+            <a href="{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source_url}}" target="_blank">
+              {{u.shorten_url(get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source_url, 40)}}
+            </a>
+          </span>
+        </div>
+
+        {{#if get_layer_defaults(layers.defaults, layer_controls.current_layer_info).download_url}}
+          <div class='row'>
+            <div class='col-xs-4'>
+              <label> Download URL </label>
+            </div>
+            <span class='col-xs-8'>
+              <a href="{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).download_url}}" download target="_blank">
+                {{u.shorten_url(get_layer_defaults(layers.defaults, layer_controls.current_layer_info).download_url, 40)}}
+              </a>
+            </span>
+          </div>
+        {{/if}}
+        {{#if get_layer_defaults(layers.defaults, layer_controls.current_layer_info).metadata_url}}
+          <div class='row'>
+            <div class='col-xs-4'>
+              <label> MetaData URL </label>
+            </div>
+            <span class='col-xs-8'>
+              <a href="{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).metadata_url}}" target="_blank">
+                {{u.shorten_url(get_layer_defaults(layers.defaults, layer_controls.current_layer_info).metadata_url, 40)}}
+              </a>
+            </span>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="zoom_controls_template" type="text/ractive">
+  <div class='zoom-controls noselect'>
+    <a class='noselect {{map_state.zoom > map_state.zoom_max ? "disable" : ""}}  >'
+       decorator="tooltip:Zoom in" on-tap="map-zoom-in"> <span class='fa fa-plus'></span> </a>
+    {{#if has_geolocation }}
+      <a class='noselect' decorator="tooltip:Zoom to your location" on-tap='map-zoom-me'> <span class='fa fa-crosshairs'></span></a>
+    {{/if}}
+    <a class='noselect' decorator="tooltip:Zoom to original view" on-tap='map-zoom-home'> <span class='fa fa-home'></span></a>
+    <a class='noselect {{map_state.zoom < 1 ? "disable" : ""}}' decorator="tooltip:Zoom out" on-tap="map-zoom-out"> <span class='fa fa-minus'></span> </a>
+  </div>
+</script>
+
+<script id="layer_controls_template" type="text/ractive">
+  <div class='layer-controls noselect'>
+    <div class='tabs container-fluid'>
+      <div class='row'>
+        <a on-tap="show-layers-control" class="layers-tab col-xs-3 {{layer_controls.active_tab === 'layers' ? 'active': '' }}">
+          <span class='fa fa-check-square-o'></span>
+          Layers
+        </a>
+        <a on-tap="show-details-control" class="legend-map-controls-tab col-xs-6 {{layer_controls.active_tab === 'details' ? 'active': ''}}">
+          <span class='fa fa-sliders'></span>
+          Controls &amp; Legends
+          {{#if layers.active.length > 0 }}
+            <span class='label label-default label-xs'>{{layers.active.length}}</span>
+          {{/if}}
+
+          {{#wizard.adding_layers_popup}}
+            <span class='arrow_box notice-me-banner' on-click="remove-layer-add-notice">
+              <span>After adding layers to the map, click on the Controls &amp; Legends tab to dig deeper!</span>
+            </span>
+          {{/wizard.adding_layers_popup}}
+        </a>
+        <a on-tap='show-search-control' class="locations-tab col-xs-3 {{layer_controls.active_tab === 'search' ? 'active': ''}} " >
+          <span class='fa fa-search'></span>
+          Quick Zoom
+        </a>
+      </div>
+    </div>
+    <div class="tray {{layer_controls.tray.open ? 'show' : ''}}">
+      <div class='tray-container'>
+        {{#if layer_controls.active_tab === "layers"}}
+          {{>layer_controls_layers_template }}
+        {{else}}
+          {{#if layer_controls.active_tab === "search"}}
+            {{>layer_controls_search_template}}
+          {{else}}
+            {{>layer_controls_details_template }}
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="layer_controls_search_template" type="text/ractive">
+  <div class='search-header'>
+    <input id="search_input" placeholder="Type a search" value="{{layer_controls.search_string}}">
+    {{#if layer_controls.search_string.length > 0 }}
+      <a>
+        <span class='fa fa-times-circle-o show-cursor' on-tap="clear-search-query"></span>
+      </a>
+    {{/if}}
+  </div>
+
+  <div class='search-results'>
+    {{#layer_controls.search_results.results}}
+      <div class='result show-cursor'
+            on-tap="zoom-to-search-result">
+        <a class='' decorator="tooltip:Focus map on {{formatted_address}}">
+          <span class='fa fa-circle-o'></span>
+        </a>
+        <span> {{formatted_address}} </span>
+      </div>
+    {{/layer_controls.search_results}}
+
+    {{#if layer_controls.search_results.length === 0}}
+      <div class='search-results-empty'>
+        <span class='fa fa-search'></span>
+        <div class='text'>
+          Type a search above to find New York locations.
+        </div>
+      </div>
+    {{/if layer_controls.search_results.length === 0}}
+
+  </div>
+</script>
+
+<script id="layer_controls_layer_group_template" type="text/ractive">
+      <div class='show-cursor' on-tap="toggle-layer-active" >
+        {{#if is_active}}
+          <span class='fa fa-check-square-o'></span>
+        {{else}}
+          <span class='fa fa-square-o'></span>
+        {{/if is_active}}
+        <label class='show-cursor'>{{{name}}}</label>
+      </div>
+</script>
+<script id="layer_controls_layer_group_tree_template" type="text/ractive">
+  <li>
+    {{#if folder_name}}
+      <label on-tap="toggle-layer-group-collapse">
+        {{#if is_expanded}}
+          <span class='fa fa-caret-down'></span>
+        {{else}}
+          <span class='fa fa-caret-right'></span>
+        {{/if}}
+
+        {{folder_name}}
+      </label>
+    {{/if}}
+
+    {{#if is_expanded}}
+      <ul class='layer-group'>
+        {{#children:i}}
+          {{#if this.folder_name}}
+            {{> layer_controls_layer_group_tree_template}}
+          {{else}}
+            <li class='layer show-cursor' on-tap="toggle-layer-active">
+              {{#is_active_layer(layers.active, this)}}
+                {{#if (layer_load_state(layers_loading_states, this) === "success")}}
+                  <span class='fa fa-check-square-o'></span>
+                {{else}}
+                  <span class='fa fa-spinner fa-spin-custom'></span>
+                {{/if}}
+              {{else}}
+                <span class='fa fa-square-o'></span>
+              {{/if}}
+              <a class='info {{layer_load_state(layers_loading_states, this)}}'
+                 on-tap='show-layer-info'>
+                <span class='fa fa-info'> </span>
+              </a>
+              <span>{{{get_layer_defaults(layers.defaults, this).name}}}</span>
+            </li>
+          {{/if}}
+        {{/children}}
+      </ul>
+    {{/if}}
+  </li>
+</script>
+
+<script id="layer_controls_layers_template" type="text/ractive">
+  <div class='contents'>
+    <div class='search-header col-md-12'>
+      <div class='row'>
+        <input id="layers_search_input" placeholder="Search for layers..." value="{{layers.search_string}}">
+        {{#if layers.search_string.length > 0 }}
+          <a>
+            <span class='fa fa-times-circle-o show-cursor' on-tap="clear-layers-search-query"></span>
+          </a>
+        {{/if}}
+      </div>
+      <div class='row'>
+        <div class='sector-select'>
+          <label> Sectors: </label>
+          <div class='selected-text-container' on-click='toggle-sector-dropdown'>
+            <span class='selected'>{{selected_sectors_text(sectors.selected)}}</span>
+          </div>
+          <span on-click='toggle-sector-dropdown'
+           class='fa fa-caret-down'></span>
+          {{#if sectors.show_dropdown}}
+            <div class='sector-selection-dropdown'>
+              {{#sectors.all}}
+                <div on-click='toggle-sector-selection'>
+                  {{#if is_sector_selected(sectors.selected, .)}}
+                    <span class='fa fa-check-square-o'></span>
+                  {{else}}
+                    <span class='fa fa-square-o'></span>
+                  {{/if is_sector_selected(sectors.selected, .)}}
+                  <span class='sector-name'>{{.}}</span>
+                </div>
+              {{/sectors.all}}
+              <hr/>
+              <span class='btn btn-block btn-primary' on-click='toggle-sector-dropdown'>
+                Done
+              </span>
+              <span class='btn btn-sm btn-block btn-secondary' on-click='clear-sector-dropdown'>
+                Clear All
+              </span>
+            </div>
+          {{/if sectors.show_dropdown}}
+        </div>
+      </div>
+    </div>
+    <div class='search-results'>
+      <ul class='layer-group'>
+        {{#if layers.tree}}
+          {{> layer_controls_layer_group_tree_template layers.tree}}
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script id="layer_controls_details_blocks_template" type="text/ractive">
+  {{#if parameters.opacity !== false}}
+    <div class='detail-block opacity'>
+      <label  decorator='tooltip:Use slider to adjust layer transparency'> Opacity: </label>
+      <input type="range" value="{{parameters.opacity}}" min="0" max="100">
+      {{parameters.opacity}}%
+    </div>
+  {{/if}}
+  {{#if !copied_source}}
+    {{#templates.legend }}
+      {{> templates.legend}}
+    {{/templates.legend }}
+  {{/if !copied_source}}
+
+</script>
+
+<script id="layer_controls_details_template" type="text/ractive">
+  {{#if layers.active.length > 0 }}
+    <div class='bulk'>
+      {{#if !all_active_collapsed(layers.active)}}
+        <a on-tap='collapse-all-layers' class='show-cursor'> Collapse All</a>
+      {{else}}
+        <a on-tap='expand-all-layers' class='show-cursor'> Expand All</a>
+      {{/if}}
+
+      {{#if !all_active_hidden(layers.active)}}
+        <a on-tap='hide-all-layers' class='show-cursor'> Hide All</a>
+      {{else}}
+        <a on-tap='visible-all-layers' class='show-cursor'> Show All</a>
+      {{/if}}
+
+      <a on-tap='deactivate-all-layers' class='show-cursor'> Remove All</a>
+    </div>
+  {{else}}
+    <div class='active-layers-empty'>
+      <span class='fa fa-globe'></span>
+      <div class='text'>
+        You need to select some layers to display on the map.
+        <br/>
+        Look in the Layers tab to the left to choose.
+      </div>
+    </div>
+  {{/if}}
+
+  {{#each layers.active}}
+    <div decorator='{{parameters.no_sorting ? "" : "sortable"}}' class='active-layer'>
+      {{#if "" === layer_load_state(layers_loading_states, layer_default_id)}}
+        <div class='disable-active-layer-overlay'>
+          <label> Loading {{{name}}}...
+            <span class='fa fa-spinner fa-spin-custom'></span>
+          </label>
+        </div>
+      {{/if "" !== layer_load_state(layers_loading_states, layer_default_id)}}
+
+      <label class='name' on-tap="toggle-active-collapsed">
+        <span class='show-cursor'>
+          {{#if is_collapsed}}
+            <span decorator="tooltip:Expand Legend" class='fa fa-caret-right'></span>
+            {{#if layer_load_state(layers_loading_states, layer_default_id) !== "success"}}
+              <a decorator="tooltip:Show layer metadata" on-tap="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
+                <span class='show-cursor fa fa-info'></span>
+              </a>
+            {{/if}}
+          {{else}}
+            <span decorator="tooltip:Minimize Legend" class='fa fa-caret-down'></span>
+          {{/if}}
+          {{#if !parameters.no_sorting}}
+            <span decorator="tooltip:Drag to reorder layer" class='drag-handle fa fa-hand-stop-o'></span>
+          {{/if !parameters.no_sorting}}
+          {{{name}}}
+        </span>
+      </label>
+
+      {{#if !is_collapsed}}
+        <div class='active-details'>
+          <div class='control-bar'>
+            <a decorator="tooltip:Remove layer" on-tap="remove-active">
+              <span class='show-cursor fa fa-trash-o' > </span>
+            </a>
+            {{#if !parameters.no_sorting}}
+              <a decorator="tooltip:Move to top" on-tap='move-active-to-top'>
+                <span class='show-cursor fa fa-angle-double-up'> </span>
+              </a>
+            {{/if}}
+            {{#if is_hidden}}
+              <a decorator="tooltip:Make layer visible"  on-tap='make-active-visible'>
+                <span class='show-cursor fa fa-eye-slash' ></span>
+              </a>
+            {{else}}
+              <a decorator="tooltip:Make layer hidden"  on-tap='make-active-hidden'>
+                <span class='show-cursor fa fa-eye'></span>
+              </a>
+            {{/if}}
+
+            {{#if able_to_copy(this) }}
+              <a decorator="tooltip:Clone this layer" on-tap="clone-active-layer">
+                <span class='show-cursor fa fa-clone'></span>
+              </a>
+            {{/if}}
+
+            <a decorator="tooltip:Show layer metadata" on-tap="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
+              <span class='show-cursor fa fa-info'></span>
+            </a>
+
+            {{#if layer_has_click_info(this)}}
+              <a decorator="tooltip:Click on the map to find out more details">
+                <span class='fa fa-map-marker' > </span>
+              </a>
+            {{/if layer_has_click_info(this)}}
+
+            {{#if layer_has_standalone_wizard(this)}}
+              <a decorator="tooltip:This layer has detailed instructions. Click to view" on-tap="show-standalone-wizard">
+                <span class='fa fa-question'> </span>
+              </a>
+            {{/if layer_has_standalone_wizard(this)}}
+
+          </div>
+          {{> layer_controls_details_blocks_template}}
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+</script>
+
+<script id="map_controls_template" type="text/ractive">
+<div class='map-controls'>
+  <div class='map-control print-control btn-group'>
+    <span class='btn btn-md btn-default' on-tap="show-wizard">
+      <span class='fa fa-question'></span>
+    </span>
+    <span class='btn btn-md btn-default add-layer'
+          on-tap="open-layer-import-modal">
+      <span class='fa fa-map-o'></span>
+      <span class='fa fa-plus-circle'></span>
+    </span>
+    <span class='btn btn-md btn-default'
+          on-tap="print-map">
+      <span class='fa fa-print'></span>
+    </span>
+
+    <span class='btn btn-md btn-default'
+          on-tap="open-sharing-modal">
+      <span class='fa fa-share-alt'></span>
+    </span>
+
+  </div>
+
+  <div class='map-control'>
+    <span class='btn btn-md btn-default {{map_controls.base_layer_control_open ? "active" : ""}}'
+          on-tap="toggle-base-layer-control"
+      > Base Map </span>
+    {{#map_controls.base_layer_control_open }}
+      <div class='control-details base-layers'>
+        {{#each base_layers}}
+          <a class="base-layer show-cursor {{map_controls.active_base_layer === name ? 'active' : ''}}" on-tap="activate-base-layer">{{{name}}}</a>
+        {{/each}}
+      </div>
+      <div class='map-control-bg' on-tap='toggle-base-layer-control'></div>
+    {{/map_controls.base_layer_control_open }}
+  </div>
+  {{>zoom_controls_template}}
+</div>
+</script>
+
+<!-- VIEW TEMPLATES -->
+    <!--[if IE]>
+      <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src='https://unpkg.com/shpjs@latest/dist/shp.js'></script>
+
+    <script type='text/javascript' src='./vendor/leaflet-1.2.0/leaflet-src.js'></script>
+    <script type='text/javascript' src="./vendor/esri-leaflet-2.0.8/esri-leaflet.js"></script>
+    <script type='text/javascript' src='./vendor/togeojson.js'></script>
+
+    <script>
+      if (!console) {
+        window.console = { log: function () { }, warn: function() {}, error: function () {}};
+      }
+    </script>
+
+    <!-- OUR SYSTEM CODE -->
+
+    <script src="./vendor/uri.js"></script>
+    <script src="./vendor/colorbrewer.js"></script>
+
+    <script src="./vendor/ractive/ractive.js"></script>
+    <script src="./vendor/ractive/Ractive-decorators-sortable.min.js"></script>
+    <script src="./vendor/ractive/ractive-events-tap.umd.min.js"></script>
+    <script src='./vendor/ractive/ractive-tooltip.min.js'></script>
+    <script src="./vendor/leaflet-pip.js"></script>
+    <script src="./vendor/topojson.js"></script>
+    <script src='./vendor/path-data-polyfill.js'></script>
+    <script src='./vendor/togeojson.js'></script>
+
+    <!-- THIS NEEDS TO BE FIRST -->
+    <script src="./js/polyfills.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/layer_info.js"></script>
+
+    <!-- Add all the javascript libs here -->
+    <script src="./vendor/lodash.min.js"></script>
+    <script src="./js/api_handler.js"></script>
+    <script src="./js/base_layers.js"></script>
+
+    <script src="./js/renderers/utils.js"></script>
+
+    <script src="./js/geometry_loader.js"></script>
+
+    <script> var Controllers = {}; </script>
+    <script src='./js/controllers/layer_import.js'></script>
+    <script src="./js/controllers/search.js"></script>
+    <script src="./js/controllers/layers.js"></script>
+    <script src="./js/controllers/sharing.js"></script>
+    <script src="./js/controllers/feature_info.js"></script>
+
+    <script> var Views = {}; </script>
+    <script src="./js/views/utils.js"></script>
+    <script src="./js/views/map.js"></script>
+    <script src="./js/views/control_panel.js"></script>
+
+    <script src="./js/init.js"></script>
+</body>
+</html>
