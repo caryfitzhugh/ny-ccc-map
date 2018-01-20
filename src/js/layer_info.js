@@ -1,5 +1,6 @@
 /*global Config, _ , URI, console*/
 var GEOSERVER = "http://geoserver.nescaum-ccsc-dataservices.com/geoserver";
+var LEGACY_GEOSERVER = "http://52.2.5.122:8080/geoserver/nyccsc/wms";
 var API_SERVER = "http://api.nescaum-ccsc-dataservices.com/";
 
 var CDN = function (url_str) {
@@ -28,7 +29,18 @@ var CDN = function (url_str) {
 };
 
 var available_layers = [
-
+    {
+      "id": "aadt_2012",
+      "folder": "Transportation",
+      "name": "Traffic: Avg Annualized Daily",
+      "sectors": ["Transportation"],
+      "description": "A line shapefile showing traffic volumes (daily average in 2012) on significant roads in New York State. Includes links to detailed, hourly reports for volume, speed, and vehicle classification data. UTM NAD 83 Zone 18N. ",
+      "source": "NYS DOT",
+      "source_url": "http:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1282",
+      "sectors": "Transportation",
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1282&file=AADT_2015_tdv.zip",
+      "metadata_url": null,
+    },
 ];
 
 var desired_active_on_load = [

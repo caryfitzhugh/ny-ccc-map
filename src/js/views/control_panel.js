@@ -5,6 +5,7 @@ Views.ControlPanel = new Ractive({
   data: {
     u: ViewUtils,
     CDN: CDN,
+    LEGACY_GEOSERVER: LEGACY_GEOSERVER,
     sharing_url: function (token) {
       return Controllers.Sharing.sharing_url(token);
     },

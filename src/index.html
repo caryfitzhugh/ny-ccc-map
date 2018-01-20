@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" media="all">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
-  <link rel='stylesheet prefetch' href='./vendor/leaflet-1.0.3/dist/leaflet.css'>
+  <link rel='stylesheet prefetch' href='./vendor/leaflet-1.2.0/leaflet.css'>
   <link rel="stylesheet" href="./css/main.css" media='all'>
 </head>
 
@@ -881,6 +881,12 @@
 </div>
 </script>
 
+<script id='gfi_table' type='text/ractive'>
+  <div class='col-xs-2'>
+    <label> {{{name}}}</label>
+  </div>
+</script>
+
 <!-- VIEW TEMPLATES -->
     <!--[if IE]>
       <script src="https://www.promisejs.org/polyfills/promise-6.1.0.js"></script>
@@ -905,7 +911,7 @@
     <script src="./vendor/uri.js"></script>
     <script src="./vendor/colorbrewer.js"></script>
 
-    <script src="./vendor/ractive/ractive.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/ractive@0.8.14'></script>
     <script src="./vendor/ractive/Ractive-decorators-sortable.min.js"></script>
     <script src="./vendor/ractive/ractive-events-tap.umd.min.js"></script>
     <script src='./vendor/ractive/ractive-tooltip.min.js'></script>
@@ -923,8 +929,17 @@
     <script src="./vendor/lodash.min.js"></script>
     <script src="./js/api_handler.js"></script>
     <script src="./js/base_layers.js"></script>
-
     <script src="./js/renderers/utils.js"></script>
+
+    <script src="./js/renderer_templates/base.js"></script>
+    <script src="./js/renderer_templates/esri.js"></script>
+    <script src="./js/renderer_templates/esri_feature_layer.js"></script>
+    <script src="./js/renderer_templates/esri_feature_layer_points.js"></script>
+    <script src="./js/renderer_templates/wms.js"></script>
+    <script src="./js/renderer_templates/geojson_points.js"></script>
+    <script src="./js/renderer_templates/geojson_lines.js"></script>
+    <script src="./js/renderer_templates/geojson_polygons.js"></script>
+    <script src="./js/renderer_templates/imported_geojson.js"></script>
 
     <script src="./js/geometry_loader.js"></script>
 
@@ -939,6 +954,8 @@
     <script src="./js/views/utils.js"></script>
     <script src="./js/views/map.js"></script>
     <script src="./js/views/control_panel.js"></script>
+
+    <script src="./js/renderers/aadt_2012.js"></script>
 
     <script src="./js/init.js"></script>
 </body>
