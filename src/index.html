@@ -720,7 +720,7 @@
 <script id="layer_controls_details_blocks_template" type="text/ractive">
   {{#if parameters.opacity !== false}}
     <div class='detail-block opacity'>
-      <label  decorator='tooltip:Use slider to adjust layer transparency'> Opacity: </label>
+      <label decorator='tooltip:Use slider to adjust layer transparency'> Opacity: </label>
       <input type="range" value="{{parameters.opacity}}" min="0" max="100">
       {{parameters.opacity}}%
     </div>
@@ -762,7 +762,7 @@
   {{/if}}
 
   {{#each layers.active}}
-    <div decorator='{{parameters.no_sorting ? "" : "sortable"}}' class='active-layer'>
+    <div {{parameters.no_sorting ? "" : "as-sortable"}} class='active-layer'>
       {{#if "" === layer_load_state(layers_loading_states, layer_default_id)}}
         <div class='disable-active-layer-overlay'>
           <label> Loading {{{name}}}...
@@ -955,7 +955,7 @@
     <script src="./js/views/map.js"></script>
     <script src="./js/views/control_panel.js"></script>
 
-    <script src="./js/renderers/aadt_2012.js"></script>
+    <script src="./js/renderers/aadt.js"></script>
 
     <script src="./js/init.js"></script>
 </body>

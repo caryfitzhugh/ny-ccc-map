@@ -1,6 +1,5 @@
 /*global Config, _ , URI, console*/
 var GEOSERVER = "http://geoserver.nescaum-ccsc-dataservices.com/geoserver";
-var LEGACY_GEOSERVER = "http://52.2.5.122:8080/geoserver/nyccsc/wms";
 var API_SERVER = "http://api.nescaum-ccsc-dataservices.com/";
 
 var CDN = function (url_str) {
@@ -30,7 +29,7 @@ var CDN = function (url_str) {
 
 var available_layers = [
     {
-      "id": "aadt_2012",
+      "id": "aadt",
       "folder": "Transportation",
       "name": "Traffic: Avg Annualized Daily",
       "sectors": ["Transportation"],
