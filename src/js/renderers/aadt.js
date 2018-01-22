@@ -17,12 +17,11 @@ RendererTemplates.wms("aadt", {
     };
   },
   get_feature_info_url: function (active_layer) {
-    debugger
     return CDN(GEOSERVER+
           "/wms"+
           "?SERVICE=WMS&VERSION=1.1.1&"+
           "REQUEST=GetFeatureInfo&"+
-          "LAYERS=nyccsc:aadt&"+
+          "LAYERS=ny:aadt&"+
           "QUERY_LAYERS=ny:aadt&"+
           "STYLES=&"+
           "BBOX=<%= bbox %>&"+

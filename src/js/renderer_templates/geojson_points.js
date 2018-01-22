@@ -7,8 +7,9 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
     return active_layer.parameters.options;
   };
 
-  let load_data_url = (durl) => {
+  let load_data_url = (durl, url_opts) => {
     return new Promise( (win, lose) => {
+
       if (RendererTemplates.geojson_points_cache[durl]) {
         win(RendererTemplates.geojson_points_cache[durl])
       } else  {
@@ -34,7 +35,8 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
 
   var renderer = RendererTemplates.base(layer_id, opts, {
     render: function (map, active_layer, pane) {
-      load_data_url(opts.url)
+
+      load_data_url(opts.url, opts.url_opts)
       .then((data) => {
         Renderers.create_leaflet_layer_async(
           map,
