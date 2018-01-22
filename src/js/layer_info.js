@@ -62,6 +62,13 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/anthromes-anthropogenic-biomes-world-v2-2000",
     },
+    {
+      "id": "boundary_municipal",
+      "folder": "Boundaries",
+      "name": "Municipalities",
+      "description": "Towns, villages, hamlets, boroughs and other municipalities of New York State.",
+      "source": "NY"
+    },
 ];
 
 var desired_active_on_load = [
