@@ -63,6 +63,26 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/anthromes-anthropogenic-biomes-world-v2-2000",
     },
     {
+      "id": "boundary_climate_divisions",
+      "folder": "Boundaries",
+      "name": "NOAA Climate Divisions",
+      "description": "NOAA Climate Divisions for New York State.  Clicking on a climate division will provide links to NOAA web resources where temperature and precipitation data may be queried for that division.",
+      "source": "NOAA",
+      "source_url": "http://www.ncdc.noaa.gov/monitoring-references/maps/us-climate-divisions.php",
+      "metadata_url": "",
+      "download_url": ""
+    },
+    {
+      "id": "boundary_huc8",
+      "folder": "Boundaries",
+      "name": "Major Watersheds",
+      "description": "Sub-basin (8-digit HUC) boundaries derived from the National Hydrography Dataset (NHD).",
+      "source": "USGS",
+      "source_url": "http:\/\/nhd.usgs.gov/",
+      "metadata_url": "ftp:\/\/nhdftp.usgs.gov\/DataSets\/Staged\/States/FileGDB\/MediumResolution\/",
+      "download_url": "ftp:\/\/nhdftp.usgs.gov\/DataSets\/Staged\/States/FileGDB\/MediumResolution\/NHDM_NY_931v220.zip"
+    },
+    {
       "id": "boundary_municipal",
       "folder": "Boundaries",
       "name": "Municipalities",
