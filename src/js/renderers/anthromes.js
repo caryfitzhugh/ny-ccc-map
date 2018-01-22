@@ -1,9 +1,13 @@
 RendererTemplates.wms('anthromes', {
   parameters: {
-    year: "2000"
+    opacity: 70,
+    year_indx: 2,
+    options: {
+      years: ['1800','1900','2000']
+    }
   },
   wms_opts: (active_layer) => {
-    var year = active_layer.parameters.year;
+    var year = active_layer.parameters.options.years[active_layer.parameters.year_indx];
     return {
       layers: 'anthromes:anthromes-anthropogenic-biomes-world-v2-'+ year,
       format: 'image/png',
@@ -14,11 +18,10 @@ RendererTemplates.wms('anthromes', {
   },
   url: CDN("http://sedac.ciesin.columbia.edu/geoserver/wms"),
   legend_template: `
-    <div class='detail-block show-confidence'>
+    <div class='detail-block opacity'>
       <label> Model Year: </label>
-      <input type="radio" name='{{parameters.year}}' value="1800"> 1800
-      <input type="radio" name='{{parameters.year}}' value="1900"> 1900
-      <input type="radio" name='{{parameters.year}}' value="2000"> 2000
+      <input type='range' list='anthromes-year-tickmarks' value='{{parameters.year_indx}}' min='0' max='{{parameters.options.years.length - 1}}'>
+      {{parameters.options.years[parameters.year_indx]}}
     </div>
 
     <div class='detail-block'>
@@ -39,7 +42,7 @@ RendererTemplates.wms('anthromes', {
     </div>
   `,
   get_feature_info_url: function (active_layer) {
-    var year = active_layer.parameters.year;
+    var year = active_layer.parameters.options.years[active_layer.parameters.year_indx];
 
     return CDN("http://sedac.ciesin.columbia.edu/geoserver/wms") +
           "?SERVICE=WMS&VERSION=1.1.1&"+
