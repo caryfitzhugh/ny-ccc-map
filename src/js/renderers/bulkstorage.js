@@ -1,12 +1,13 @@
-RendererTemplates.wms("boundary_municipal", {
+RendererTemplates.wms("bulkstorage", {
   parameters: {
     opacity: 100,
   },
+
   url: CDN(GEOSERVER + "/wms"),
 
   wms_opts:(active_layer) => {
     return  {
-      layers: 'ny:citytownvillage',
+      layers: 'ny:bulkstorage',
       format: "image/png",
       opacity: 0,
       zIndex: -1,
@@ -18,8 +19,8 @@ RendererTemplates.wms("boundary_municipal", {
     return CDN(GEOSERVER + "/wms" +
               "?SERVICE=WMS&VERSION=1.1.1&"+
               "REQUEST=GetFeatureInfo&"+
-              "LAYERS=ny:citytownvillage&"+
-              "QUERY_LAYERS=ny:citytownvillage&"+
+              "LAYERS=ny:bulkstorage&"+
+              "QUERY_LAYERS=ny:bulkstorage&"+
               "STYLES=&"+
               "BBOX=<%= bbox %>&"+
               "FEATURE_COUNT=5&"+
@@ -32,32 +33,28 @@ RendererTemplates.wms("boundary_municipal", {
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:citytownvillage&format=image/png")}}>
+        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:bulkstorage&format=image/png")}}>
       </div>
   `,
   info_template: `
-      <div class='col-xs-2'>
-        <label> {{name}} </label>
-      </div>
-      <div class='col-xs-10'>
-        <table class="table">
+    <div class='col-xs-2'>
+      <label> {{name}} </label>
+    </div>
+    <div class='col-xs-10'>
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>ID</th>
+          <th>Type</th>
+        </tr>
+        {{#json.features}}
           <tr>
-            <th>Name</th>
-            <th>GNIS code</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <td>{{properties.name}}</td>
+            <td>{{properties.id}}</td>
+            <td>{{properties.type}}</td>
           </tr>
-          {{#json.features}}
-            <tr>
-              <td>{{properties.name}}</td>
-              <td>{{properties.gnis}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          {{/json.features}}
-        </table>
-      </div>
+        {{/json.features}}
+      </table>
+    </div>
   `
 });

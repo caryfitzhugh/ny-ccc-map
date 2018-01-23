@@ -102,6 +102,21 @@ var available_layers = [
       "description": "Towns, villages, hamlets, boroughs and other municipalities of New York State.",
       "source": "NY"
     },
+    {
+      "id": "bulkstorage",
+      "folder": "Public Health",
+      "name": "Bulk Storage Sites",
+      "description": "Point locations for: 1) Chemical Bulk Storage (CBS) Facilities, pursuant to the Hazardous Substance Bulk Storage Law, Article 40 of ECL; And 6 NYCRR 595-599. 2) Major Oil Storage Facilities, pursuant to Article 12 of the Navigation Law. 3) Petroleum Bulk Storage (PBS) Facilities, registered pursuant to title 10 of Article 17.",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1253",
+      "sectors": "Public Health,Energy",
+      "download_url": "ftp:\/\/ftp.dec.state.ny.us\/der\/FOIL\/bulkstorageGIS.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.BS.xml",
+      "parameters": {
+        // Don't do opacity, they are markers.
+        "opacity": 70
+      }
+    },
 ];
 
 var desired_active_on_load = [

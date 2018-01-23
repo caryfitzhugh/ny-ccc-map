@@ -43,16 +43,16 @@ RendererTemplates.wms("boundary_climate_divisions", {
       <table class="table">
         <tr>
           <th>Name</th>
-          <th>FIPS code</th>
-          <th>GNIS code</th>
-          <th></th>
-          <th></th>
+          <th>Sample Queries</th>
         </tr>
         {{#json.features}}
           <tr>
             <td>{{properties.name}}</td>
-            <td>{{properties.fips}}</td>
-            <td>{{properties.gnis}}</td>
+            <td>
+              <a href="http://www.ncdc.noaa.gov/cag/time-series/us/{{properties.clim_div_id_state}}/{{properties.clim_div_id}}/pcp/ytd/12/1895-2015?base_prd=true&firstbaseyear=1895&lastbaseyear=2015&trend=true&trend_base=10&firsttrendyear=1905&lasttrendyear=2015&filter=true&filterType=binomial" target="_blank">Annual PPT 1895-2015</a><br>
+              <a href="http://www.ncdc.noaa.gov/cag/time-series/us/{{properties.clim_div_id_state}}/{{properties.clim_div_id}}/tmax/1/9/1950-2015?base_prd=true&firstbaseyear=1950&lastbaseyear=2015&trend=true&trend_base=10&firsttrendyear=1950&lasttrendyear=2015&filter=true&filterType=binomial" target="_blank">Sept Max Temp 1895-2015</a>
+            </td>
+            <td></td>
             <td></td>
             <td></td>
           </tr>

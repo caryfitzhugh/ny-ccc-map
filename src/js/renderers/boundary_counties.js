@@ -36,28 +36,29 @@ RendererTemplates.wms("boundary_counties", {
       </div>
   `,
   info_template: `
-    <div class='col-xs-2'>
-      <label> {{name}} </label>
-    </div>
-    <div class='col-xs-10'>
-      <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>FIPS code</th>
-          <th>GNIS code</th>
-          <th></th>
-          <th></th>
-        </tr>
-        {{#json.features}}
+      <div class='col-xs-2'>
+        <label> {{name}} </label>
+      </div>
+      <div class='col-xs-10'>
+        <table class="table">
           <tr>
-            <td>{{properties.name}}</td>
-            <td>{{properties.fips}}</td>
-            <td>{{properties.gnis}}</td>
-            <td></td>
-            <td></td>
+            <th>Name</th>
+            <th>FIPS code</th>
+            <th>GNIS code</th>
+            <th></th>
+            <th></th>
           </tr>
-        {{/json.features}}
-      </table>
-    </div>
+          {{#json.features}}
+            <tr>
+              <td>{{properties.name}}</td>
+              <td>{{properties.fips}}</td>
+              <td>{{properties.gnis}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          {{/json.features}}
+        </table>
+      </div>
+  {{/if}}
   `
 });
