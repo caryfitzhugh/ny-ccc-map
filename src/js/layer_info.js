@@ -117,6 +117,19 @@ var available_layers = [
         "opacity": 70
       }
     },
+    {
+      "id": "carbon",
+      "folder": "Ecosystems",
+      "name": "Biomass Carbon Stock",
+      "description": "Current (2010) and projected future (2050) biomass carbon stock (grams of carbon per square meter) for two different emissions scenarios: IPCC A2 (medium-high emissions) and IPCC B1 (lower emissions). Biomass carbon includes carbon stored in above- and below-ground live plant components (such as leaf, branch, stem and root) as well as in standing and down dead woody debris, and fine litter.",
+      "source": "landcarbon.org",
+      "source_url": "http:\/\/landcarbon.org\/categories\/biomass-c\/download\/",
+      "sectors": "Ecosystems",
+      "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:biomass_a2_2010&format=image/png"),
+      "download_url": null,
+      "metadata_url": null,
+    },
+
 ];
 
 var desired_active_on_load = [
