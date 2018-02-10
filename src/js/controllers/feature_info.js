@@ -111,8 +111,20 @@ Controllers.FeatureInfo = {
               dataType: "xml",
               success: function (resp) {
                 if (cp.get("map_details.location") === evt.latlng) {
+                  var output = [];
+                  try {
+                      _.each( $(resp).find("FIELDS"), function (field) {
+                        var fields = {};
+                        _.each(field.attributes, function (attr) {
+                          fields[attr.nodeName] = attr.nodeValue;
+                        });
+                        output.push(fields);
+                      });
+                  } catch (e) { }
+
                   cp.set("map_details.feature_info_responses."+response_id, {
                     active_layer: active_layer,
+                    xml_output: output,
                     xml: resp});
                 }
               },

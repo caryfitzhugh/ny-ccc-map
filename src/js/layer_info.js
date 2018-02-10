@@ -130,6 +130,17 @@ var available_layers = [
       "metadata_url": null,
     },
     {
+      "id": "cfem_critical",
+      "folder": "Coastal Zones",
+      "name": "HAZUS Critical Facilities",
+      "description": "Selected facilities and structures along the Atlantic and Gulf coasts that, if flooded, would present an immediate threat to life, public health, or safety.",
+      "source": "NOAA Office For Coastal Management",
+      "source_url": "https://maps.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer",
+      "sectors": "Public Health,Coastal Zones",
+      "download_url": null,
+      "metadata_url": "https://maps.coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer",
+    },
+    {
       "id": "croplands",
       "folder": "Agriculture",
       "name": "Global Croplands,2000",
