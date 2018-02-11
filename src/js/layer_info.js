@@ -180,7 +180,22 @@ var available_layers = [
       "source": "'Natural Resource Navigator / NY Climate Adaptation",
       "source_url": "http://maps.naturalresourcenavigator.org/",
       "sectors": "Water Resources",
-    }
+    },
+    {
+      "id": "fema_historic",
+      "folder": "Water Resources",
+      "name": "FEMA Historic Emergencies 1964-2014",
+      "description": "This layer summarizes FEMA historic disaster declarations from 1964 through 2014, categorized by type.",
+      "source": "FEMA",
+      "source_url": "https:\/\/catalog.data.gov\/dataset\/fema-historical-disaster-declarations-shp",
+      "sectors": "All Sectors",
+      "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:fema_historic&format=image/png"),
+      "download_url": "http:\/\/gis.fema.gov\/kmz\/HistoricDeclarations.zip",
+      "metadata_url": "https:\/\/www.fema.gov\/openfema-dataset-disaster-declarations-summaries-v1",
+      "parameters": {
+        "opacity": 70,
+      }
+    },
 ];
 
 var desired_active_on_load = [

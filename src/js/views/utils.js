@@ -38,6 +38,14 @@ var ViewUtils = {
   capitalize: (str) => {
     return _.capitalize(str);
   },
+  to_sorted_keys_from_hash(hsh) {
+    var vals = _.reduce(hsh, (memo, v, k) => {
+          memo.push([k,v])
+              return memo;
+    }, []);
+    return _.map(_.sortBy(vals, (v) => { return v[0]; }),
+                 (v) => { return {key: v[0], value: v[1]};});
+  },
   to_sorted_values_from_hash(hsh) {
     var vals = _.reduce(hsh, (memo, v, k) => {
           memo.push([k,v])
