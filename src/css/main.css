@@ -590,7 +590,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .active-layer .detail-block.esri-legend.extreme-precip .legend-block img {
-  width: 10%;
+  width: 20%;
 }
 .active-layer .detail-block.legend .color-block {
   display: inline-block;

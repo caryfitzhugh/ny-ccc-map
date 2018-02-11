@@ -125,7 +125,6 @@ var available_layers = [
       "source": "landcarbon.org",
       "source_url": "http:\/\/landcarbon.org\/categories\/biomass-c\/download\/",
       "sectors": "Ecosystems",
-      "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:biomass_a2_2010&format=image/png"),
       "download_url": null,
       "metadata_url": null,
     },
@@ -159,10 +158,29 @@ var available_layers = [
       "source": "NYS DEC",
       "source_url": "http:\/\/maps.naturalresourcenavigator.org",
       "sectors": "Ecosystems,Water Resources",
-      "legend_url": null,
       "download_url": null,
       "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/136"
     },
+    {
+      "id": "dow_unconsolidated_aquifers",
+      "folder": "Water Resources",
+      "name": "Aquifers- Unconsolidated",
+      "description": "These aquifers include those in upstate NY that consist of sand and gravel and yield large supplies of water to wells. Bedrock aquifers, although significant in some areas, are not included here. Source data is 1:250,000, same scale as the NYS Geological Survey surficial and bedrock geology maps on which they were based. Together these maps form a consistent set of geologic and groundwater maps for use in regional management of the groundwater resources of the State. Long Island is represented in the separate 'Hydrogeologic Framework at 1:250,000 - Long Island, NY', published by USGS/NYSDEC. ",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1141",
+      "sectors": "Ecosystems,Water Resources",
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1141&file=dow_uncon_aqui.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.uncon_aqui.html",
+    },
+    {
+      "id": "extreme_precipitation",
+      "folder": "Climate Data.Precipitation",
+      "name": "Extreme Precipitation",
+      "description": "Natural Heritage Program: Predicted Future and Current Extreme Precipitation Events.  1) Average predicted future return frequency (in years) of a storm event with a precipitation magnitude matching that of a current 10 or 100-year event. 2)Average predicted percent increase in future precipitation amount for 10 and 100-year storm events (1 day duration). 3) Current magnitude of a 10 and 100-year precipitation event (1 day duration) in inches. (Raw data in thousandths of an inch.)",
+      "source": "'Natural Resource Navigator / NY Climate Adaptation",
+      "source_url": "http://maps.naturalresourcenavigator.org/",
+      "sectors": "Water Resources",
+    }
 ];
 
 var desired_active_on_load = [
