@@ -86,15 +86,22 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
             var active_leaflet_layer = Renderers.get_leaflet_layer(map, active_layer, get_opts(active_layer))
 
             _.each(layers, function (layer) {
+              let sublayers = null;
+              if (opts.clustering) {
+                sublayers = layer._featureGroup._layers;
+              } else {
+                sublayers = layer._layers;
+              }
+
               // Hide the ones which aren't active
               if (active_leaflet_layer && active_leaflet_layer._leaflet_id === layer._leaflet_id) {
-                Object.keys(layer._layers).forEach((key) => {
-                  let point = layer._layers[key];
+                Object.keys(sublayers).forEach((key) => {
+                  let point = sublayers[key];
                   point.setOpacity(opacity);
                 });
               } else {
-                Object.keys(layer._layers).forEach((key) => {
-                  let point = layer._layers[key];
+                Object.keys(sublayers).forEach((key) => {
+                  let point = sublayers[key];
                   point.setOpacity(0);
                 });
               }

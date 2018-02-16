@@ -862,54 +862,6 @@ input[type="radio"], input[type="checkbox"] {
     text-align: center;
     font-size: 14px;
 }
-.oil-wells-cluster {
-    color: black;
-    font-weight: 300;
-    width: 50px !important;
-    height: 35px !important;
-    line-height: 35px;
-    background: rgba(0,255,0,0.5);
-    border-radius: 35px;
-    border: 1px solid green;
-    text-align: center;
-    font-size: 14px;
-}
-.other-wells-cluster {
-    color: black;
-    font-weight: 30 {{layer_default_id}}0;
-    width: 50px !important;
-    height: 35px !important;
-    line-height: 35px;
-    background: rgba(0,0,255,0.5);
-    border-radius: 35px;
-    border: 1px solid blue;
-    text-align: center;
-    font-size: 14px;
-}
-.gas-wells-cluster {
-    color: black;
-    font-weight: bold;
-    width: 35px !important;
-    height: 35px !important;
-    line-height: 35px;
-    background: rgba(255,0,0,0.5);
-    border-radius: 35px;
-    border: 1px solid red;
-    text-align: center;
-    font-size: 12px;
-}
-.wellsCluster {
-    color: black;
-    font-weight: bold;
-    width: 35px;
-    height: 35px;
-    line-height: 40px;
-    background: transparent url(../img/wellsCluster.png) 0 0 no-repeat scroll;
-    text-align: center;
-    text-indent: -20px;
-    font-size: 11px;
-}
-
 .sewer_overflowsCluster {
     color: black;
     font-weight: 300;
@@ -976,7 +928,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 35px;
     height: 35px;
     line-height: 15px;
-    background: transparent url(../img/ghg_facilitiesCluster.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/ghg_facilitiesCluster.png) 0 0 no-repeat scroll;
     text-align: left;
     text-indent: 8px;
     font-size: 11px;

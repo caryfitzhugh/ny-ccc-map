@@ -208,6 +208,18 @@ var available_layers = [
       "metadata_url": "https://gis1.usgs.gov/arcgis/rest/services/gap/GAP_Land_Cover_NVC_Class_Landuse/MapServer",
     },
     {
+      "id": "ghg_facilities",
+      "folder": "Air Emissions",
+      "name": "GHG Emissions from Large Facilities",
+      "description": "Greenhouse gas emissions data, extracted from EPA's FLIGHT Tool. The data was reported to EPA by facilities as of 08/16/2015. All emissions data is presented in units of metric tons of carbon dioxide equivalent (CO2e) using GWP's from IPCC's AR4. ",
+      "source": "EPA Facility Level Information on GeeenHouse gases Tool (FLIGHT)",
+      "source_url": "http:\/\/ghgdata.epa.gov\/ghgp\/main.do",
+      "sectors": "Energy",
+      "download_url": null,
+      "metadata_url": null,
+    },
+
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
