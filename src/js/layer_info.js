@@ -207,6 +207,17 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "https://gis1.usgs.gov/arcgis/rest/services/gap/GAP_Land_Cover_NVC_Class_Landuse/MapServer",
     },
+    {
+      "id": "regulated_wells",
+      "folder": "Energy",
+      "name": "Regulated Wells",
+      "description": "This dataset contains locations of regulated wells. The Division of Mineral Resources maintains information and data on over 40,000 wells, categorized under New York State Article 23 Regulated wells. The dataset reflects the status of the wells as of the previous business day. The location data has not been field verified but is expected to be within 100 meters of the actual well location. The data should not be used for precise determination of distances to buildings, property boundaries or other features. This is a public dataset. Wells currently afforded confidential status are plotted but confidential data is redacted. ",
+      "source": "GIS NY State",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1272",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.dmn.oil.gas.well.forportal_prod.xml",
+      "sectors": "Energy"
+    },
+
 ];
 
 var desired_active_on_load = [

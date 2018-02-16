@@ -7,9 +7,8 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
     return active_layer.parameters.options;
   };
 
-  let load_data_url = (durl, url_opts) => {
+  let load_data_url = opts.load_data_url || ((active_layer, durl, url_opts) => {
     return new Promise( (win, lose) => {
-
       if (RendererTemplates.geojson_points_cache[durl]) {
         win(RendererTemplates.geojson_points_cache[durl])
       } else  {
@@ -30,13 +29,12 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
         }
       }
     });
-
-  };
+  });
 
   var renderer = RendererTemplates.base(layer_id, opts, {
     render: function (map, active_layer, pane) {
 
-      load_data_url(opts.url, opts.url_opts)
+      load_data_url(active_layer, opts.url, opts.url_opts)
       .then((data) => {
         Renderers.create_leaflet_layer_async(
           map,
@@ -46,7 +44,7 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
             return new Promise((win, lose) => {
               let features = opts.selectData ? opts.selectData(active_layer, data.features) : data.features;
 
-              var layer = new L.GeoJSON(Object.assign({}, data, {features: features}), {
+              var layer = new L.GeoJSON(Object.assign({}, data), {
                 pointToLayer: function(feature, latlng) {
                   if (opts.pointToLayer) {
                     return opts.pointToLayer(active_layer, feature, latlng);
@@ -62,6 +60,22 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
                   }
                 }
               });
+
+              if (opts.clustering) {
+                  let group = new L.MarkerClusterGroup(_.merge({
+                    spiderfyOnMaxZoom: true,
+                    showCoverageOnHover: false,
+                    zoomToBoundsOnClick: true,
+                    disableClusteringAtZoom: 11,
+                    iconCreateFunction: function (cluster) {
+                      return new L.DivIcon({
+                        html: cluster.getChildCount()
+                      });
+                    }
+                  }, opts.clustering));
+                  group.addLayer(layer);
+                  layer = group;
+              }
               win(layer);
               Views.ControlPanel.fire("tile-layer-loaded", active_layer);
             })
