@@ -218,7 +218,17 @@ var available_layers = [
       "download_url": null,
       "metadata_url": null,
     },
-
+    {
+      "id": "hospitals",
+      "folder": "Public Health",
+      "name": "Hospitals",
+      "description": "Hospitals in New York State, based on NYS Department of Health data.",
+      "source": "New York State Department of Health",
+      "source_url": "http:\/\/www.health.ny.gov",
+      "sectors": "Public Health",
+      "download_url": "http:\/\/maps.nysprofile.ipro.org\/live\/php\/data.php?table=hospitals",
+      "metadata_url": "http:\/\/profiles.health.ny.gov\/hospital"
+    },
     {
       "id": "regulated_wells",
       "folder": "Energy",

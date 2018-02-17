@@ -892,7 +892,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 35px;
     height: 35px;
     line-height: 15px;
-    background: transparent url(../img/hospitalCluster.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/hospitalCluster.png) 0 0 no-repeat scroll;
     text-align: left;
     text-indent: 8px;
     font-size: 11px;
