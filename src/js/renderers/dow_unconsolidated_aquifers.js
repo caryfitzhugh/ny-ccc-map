@@ -1,7 +1,7 @@
 RendererTemplates.wms("dow_unconsolidated_aquifers", {
   parameters: {
     opacity: 100,
-    layers: "ny:dow_uncon_aqui_main",
+    layers: "ny:aquifers_unconsolidated",
     options: {
     }
   },
@@ -22,8 +22,8 @@ RendererTemplates.wms("dow_unconsolidated_aquifers", {
           "/wms"+
           "?SERVICE=WMS&VERSION=1.1.1&"+
           "REQUEST=GetFeatureInfo&"+
-          "LAYERS=" + active_layer.parameters.layers +
-          "QUERY_LAYERS=" + active_layer.parameters.layers +
+          "LAYERS=" + active_layer.parameters.layers + "&"+
+          "QUERY_LAYERS=" + active_layer.parameters.layers + "&"+
           "STYLES=&"+
           "BBOX=<%= bbox %>&"+
           "FEATURE_COUNT=5&"+
@@ -36,7 +36,7 @@ RendererTemplates.wms("dow_unconsolidated_aquifers", {
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + parameters.layers + "format=image/png")}}/>
+        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + parameters.layers + "&format=image/png")}}/>
       </div>
       <div class='detail-block legend-url-text'>
         <span class='legend-text'> Click on map to view more detail</span>
@@ -49,21 +49,17 @@ RendererTemplates.wms("dow_unconsolidated_aquifers", {
       <div class='col-xs-10'>
         <table class="table">
           <tr>
-            <th>GID</th>
-            <th>Len</th>
-            <th>Area</th>
+            <th>Primary Aquifer</th>
             <th>Type</th>
             <th>Yield</th>
-            <th>Primary Aquifer</th>
+            <th>Acres</th>
           </tr>
           {{#json.features}}
             <tr>
-              <td>{{properties.gid}}</td>
-              <td>{{properties.len}}</td>
-              <td>{{properties.area}}</td>
+              <td>{{properties.primary_aq}}</td>
               <td>{{properties.type}}</td>
               <td>{{properties.yield}}</td>
-              <td>{{properties.primary_aq}}</td>
+              <td>{{properties.acres}}</td>
             </tr>
           {{/json.features}}
         </table>
