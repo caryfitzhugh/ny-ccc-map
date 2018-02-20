@@ -1,0 +1,17 @@
+{"grid":"loca:wmean:rcp85",
+ "state":"NY",
+  "elems":[{
+        "elem":{
+            "name":"maxt",
+            "reduce": "cnt_gt_90",
+            "interval":"yly"
+            },
+        "interval":[10],
+        "duration":10,
+        "reduce": "mean",
+        "sdate":[2035],
+        "edate":[2087],
+        "area_reduce":"county_mean"
+        }
+    ]
+}
