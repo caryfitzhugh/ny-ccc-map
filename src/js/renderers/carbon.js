@@ -14,12 +14,15 @@ RendererTemplates.wms("carbon", {
   url: CDN(GEOSERVER + "/wms"),
 
   wms_opts:(active_layer) => {
+    var scenario_year = active_layer.parameters.scenario_year;
     return  {
-      layers: 'ny:aadt',
+      layers: scenario_year,
       format: "image/png",
       opacity: 0,
       zIndex: -1,
       transparent: true,
+      crs: L.CRS.EPSG4326,
+      srs: L.CRS.EPSG4326
     };
   },
   get_feature_info_url: function (active_layer) {
@@ -27,7 +30,8 @@ RendererTemplates.wms("carbon", {
 
     return CDN(GEOSERVER+"/wms" +
           "?SERVICE=WMS&VERSION=1.1.1&"+
-          "REQUEST=GetFeatureInfo&LAYERS="+scenario_year+"&"+
+          "REQUEST=GetFeatureInfo&"+
+          "LAYERS="+scenario_year+"&"+
           "QUERY_LAYERS="+scenario_year+"&"+
           "STYLES=&"+
           "BBOX=<%= bbox %>&"+

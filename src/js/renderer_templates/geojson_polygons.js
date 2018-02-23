@@ -1,79 +1,104 @@
 RendererTemplates.geojson_polygons = function (layer_id, opts) {
-  var renderer = {
-    pickle: function (al) {
-      delete al.legend_url;
-      al.leaflet_layer_ids = [];
-    },
+  let _cache = {}
+  let _loading = {}
 
-    update_legend: Renderers.update_legend(opts),
-    create_leaflet_layers: function (map, active_layer) {
-      if (_.isEmpty(active_layer.leaflet_layer_ids)) {
-        active_layer.leaflet_layer_ids = ['loading-so-we-avoid-race-conditions'];
-        $.ajax({
-          cache: true,
-          dataType: "json",
-          url: opts.url,
-          success: function (data) {
-            var layer = new L.GeoJSON(data, {
-              pointToLayer: opts.pointToLayer,
-              onEachFeature: opts.onEachFeature || function (feature, layer) {
-                if (opts.popupContents) {
-                  layer.bindPopup(opts.popupContents(feature));
-                }
-              },
-            });
-            Renderers.geojson_add_to_map(map, active_layer, layer);
-          },
-          error:   function (err) {
-            if (err.status !== 200) {
-              Renderers.add_layer_error(active_layer);
+  let _get_opts = opts.get_opts || (function (active_layer) {
+    return active_layer.parameters.options;
+  });
+
+  let load_data_url = opts.load_data_url || ((active_layer, durl, url_opts) => {
+    return new Promise( (win, lose) => {
+      if (_cache[durl]) {
+        win(_cache[durl])
+      } else  {
+        if (!_loading[durl]) {
+          _loading[durl] = true;
+          $.ajax({
+            cache: true,
+            dataType: "json",
+            url: durl,
+            success: function (json) {
+              _cache[durl] = json;
+              win(json);
+            },
+            error:   function (err) {
+              lose();
             }
-          }
-        });
+          });
+        }
       }
-    },
+    });
+  });
+
+  var renderer = RendererTemplates.base(layer_id, opts, {
     find_geo_json: function (map, active_layer, evt) {
       var details_at_point = [];
-      var leaflet_ids = active_layer.leaflet_layer_ids;
-      var layers = Renderers.lookup_layers(map, leaflet_ids);
+      var layer = Renderers.get_leaflet_layer(map, active_layer, _get_opts(active_layer))
 
-      _.each(layers, function (layer) {
-        var match = Renderers.find_geojson_polygon_by_point(evt, layer);
+      var match = Renderers.find_geojson_polygon_by_point(evt, layer);
 
-        if (match) {
-          if (opts.find_geojson_match) {
-            var data = opts.find_geojson_match(active_layer, match)
-            if (data) {
-              details_at_point.push(data);
-            }
+      if (match) {
+        if (opts.find_geojson_match) {
+          var data = opts.find_geojson_match(active_layer, match)
+          if (data) {
+            details_at_point.push(data);
           }
         }
-      });
-
-      return {
-        features: details_at_point,
-        geojson: details_at_point.length > 0,
       }
+      return details_at_point;
+    },
+
+    render: function (map, active_layer, pane) {
+      Renderers.create_leaflet_layer_async(
+        map,
+        active_layer,
+        _get_opts(active_layer),
+        () => {
+          return new Promise((win, lose) => {
+            load_data_url(active_layer, opts.url, opts.url_opts)
+              .then((data) => {
+                  let layer_data = data;
+
+                  var layer = new L.GeoJSON(layer_data, {
+                    pane: pane,
+                    filter: opts.filter ? ((feature, layer) => {
+                      return opts.filter(active_layer, feature, layer);
+                    }) : null,
+                    onEachFeature: (feature, layer) => {
+                      if (opts.onEachGeometry) {
+                        opts.onEachGeometry(data, active_layer, feature, layer);
+                      }
+                      if (opts.popupContents) {
+                        layer.bindPopup(opts.popupContents(feature));
+                      }
+                    }
+                  });
+
+                  win(layer);
+                  Views.ControlPanel.fire("tile-layer-loaded", active_layer);
+              });
+          })
+        },
+        () => {
+          var layers = Renderers.get_all_leaflet_layers(map,active_layer);
+          var active_leaflet_layer = Renderers.get_leaflet_layer(map, active_layer, _get_opts(active_layer))
+          let opacity = Renderers.opacity(active_layer);
+
+          _.each(layers, function (layer) {
+            _.each(layer._layers, function (polygon) {
+              if (layer._leaflet_id == active_leaflet_layer._leaflet_id) {
+                if (opts.onEachPolygon) {
+                  opts.onEachPolygon(active_layer, polygon, opacity);
+                } else {
+                  polygon.setStyle({"fillOpacity": opacity, "opacity": opacity});
+                }
+              } else {
+                polygon.setStyle({"fillOpacity": 0, "opacity": 0});
+              }
+            });
+          });
+        })
     }
-  };
-
-  renderer.render = function (map, active_layer, z_index) {
-    alert("This is not converted");
-    renderer.update_legend(active_layer);
-    renderer.create_leaflet_layers(map, active_layer);
-
-    var opacity = Renderers.opacity(active_layer);
-    var leaflet_ids = active_layer.leaflet_layer_ids;
-    var layers = Renderers.lookup_layers(map, leaflet_ids);
-
-    _.each(layers, function (layer) {
-
-      _.each(layer._layers, function (polygon) {
-        polygon.setStyle({"fillOpacity": opacity, "opacity": opacity});
-        if (opts.each_polygon) { opts.each_polygon(polygon); }
-      });
-    });
-  }
-
+  });
   Renderers[layer_id] = renderer;
 }

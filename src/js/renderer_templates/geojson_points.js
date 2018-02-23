@@ -1,31 +1,41 @@
-RendererTemplates.geojson_points_cache = {};
-
 RendererTemplates.geojson_points = function (layer_id, opts) {
+  let _cache = {};
   let loading = {};
 
   let get_opts = function (active_layer) {
     return active_layer.parameters.options;
   };
 
-  let load_data_url = opts.load_data_url || ((active_layer, durl, url_opts) => {
+  let load_data_url = ((active_layer, durl, url_opts) => {
     return new Promise( (win, lose) => {
-      if (RendererTemplates.geojson_points_cache[durl]) {
-        win(RendererTemplates.geojson_points_cache[durl])
+      if (_cache[durl]) {
+        win(_cache[durl])
       } else  {
         if (!loading[durl]) {
           loading[durl] = true;
-          $.ajax({
-            cache: true,
-            dataType: "json",
-            url: durl,
-            success: function (json) {
-              RendererTemplates.geojson_points_cache[durl] = json;
-              win(json);
-            },
-            error:   function (err) {
-              lose();
-            }
-          });
+          if (opts.load_data_url) {
+            opts.load_data_url(active_layer, durl, url_opts)
+              .then((json) => {
+                _cache[durl] = json;
+                win(json);
+              })
+              .error(() => {
+                lose();
+              })
+          } else {
+            $.ajax({
+              cache: true,
+              dataType: "json",
+              url: durl,
+              success: function (json) {
+                _cache[durl] = json;
+                win(json);
+              },
+              error:   function (err) {
+                lose();
+              }
+            });
+          }
         }
       }
     });

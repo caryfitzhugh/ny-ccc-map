@@ -1,8 +1,8 @@
 RendererTemplates.wms("cfem_critical", {
   parameters: {
     opacity: 100,
-    //layers: "0,1,2,3,4,5,6,7,8,9",
-    layers: "0,7,8",
+    layers: "0,1,2,3,4,5,6,7,8,9",
+    //layers: "0,7,8",
     options: {
     }
   },
@@ -16,6 +16,8 @@ RendererTemplates.wms("cfem_critical", {
       opacity: 0,
       zIndex: -1,
       transparent: true,
+      crs: L.CRS.EPSG4326,
+      srs: L.CRS.EPSG4326
     };
   },
   get_feature_info_xml_url: function (active_layer) {
@@ -27,12 +29,13 @@ RendererTemplates.wms("cfem_critical", {
           "QUERY_LAYERS="+active_layer.parameters.layers+"&"+
           "STYLES=&"+
           "BBOX=<%= bbox %>&"+
-          "FEATURE_COUNT=5&"+
+          "FEATURE_COUNT=1000&"+
           "HEIGHT=<%= height %>&"+
           "WIDTH=<%= width %>&"+
-          "FORMAT=application%2Fjson&"+
-          "INFO_FORMAT=application%2Fjson&"+
+          //"FORMAT=application%2Fjson&"+
+          //"INFO_FORMAT=application%2Fjson&"+
           "SRS=EPSG%3A4326&"+
+          "CRS=EPSG%3A4326&"+
           "X=<%= x %>&Y=<%= y %>");
   },
   legend_template: `
