@@ -664,26 +664,6 @@ input[type="radio"], input[type="checkbox"] {
   max-width: 70%;
 }
 
-.active-layer .legend.nlcd label ,
-.active-layer .legend.anthromes label ,
-.active-layer .legend.nfhl label ,
-.active-layer .legend.regulated_wells label ,
-.active-layer .legend.lulc_2011 label ,
-.active-layer .legend.lulc_2011 label ,
-.active-layer .legend.lulc_2050 label ,
-.active-layer .legend.gap_lc label {
-  display: none;
-}
-
-.active-layer .legend.nlcd img ,
-.active-layer .legend.regulated_wells img ,
-.active-layer .legend.lulc_2011 img ,
-.active-layer .legend.anthromes img ,
-.active-layer .legend.lulc_2050 img ,
-.active-layer .legend.gap_lc img {
-  width: 100%;
-  max-width: 100%;
-}
 .active-layer .legend.private_wells img {
   width: 74%;
   max-width: 74%;
@@ -1246,4 +1226,8 @@ th.deltas {
     height: 200%;
     overflow: auto;
   }
+}
+
+.detail-block.lulc span {
+  font-weight: 300;
 }

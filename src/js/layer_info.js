@@ -263,6 +263,18 @@ var available_layers = [
       "sectors": "Ecosystems, Transportation, Coastal Zones"
     },
     {
+      "id": "lulc_2011",
+      "folder": "Land Cover",
+      "name": "NY Land Use/Land Class (2011)",
+      "description": "Current (2011) land use / land cover map of NY State, from the ClimAID Natural Resource Navigator site.",
+      "source": "NYS",
+      "source_url": "http:\/\/maps.naturalresourcenavigator.org",
+      "sectors": "Ecosystems",
+      "legend_url": null,
+      "download_url": null,
+      "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/209"
+    },
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
