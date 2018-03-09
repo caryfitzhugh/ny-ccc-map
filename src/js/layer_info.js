@@ -275,6 +275,18 @@ var available_layers = [
       "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/209"
     },
     {
+      "id": "lulc_2050",
+      "folder": "Land Cover",
+      "name": "NY Land Use/Land Class (2050)",
+      "description": "Predicted future (2050) land use / land cover map of NY State, from the ClimAID Natural Resource Navigator site.",
+      "source": "NYS",
+      "source_url": "http:\/\/maps.naturalresourcenavigator.org",
+      "sectors": "Ecosystems",
+      "legend_url": null,
+      "download_url": null,
+      "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/208"
+    },
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
