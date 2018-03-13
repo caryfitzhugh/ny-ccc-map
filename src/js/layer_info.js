@@ -287,6 +287,17 @@ var available_layers = [
       "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/208"
     },
     {
+      "id": "national_flood_hazard",
+      "folder": "Water Resources",
+      "name": "Flood Hazard",
+      "description": "FEMA National Flood Hazard Layer",
+      "source": "FEMA",
+      "source_url": "http:\/\/www.fema.gov\/",
+      "sectors": "Water Resources",
+      "download_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
+      "metadata_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
+    },
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
