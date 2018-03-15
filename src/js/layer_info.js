@@ -343,6 +343,18 @@ var available_layers = [
       "metadata_url": "https:\/\/github.com\/matthiasmengel\/sealevel",
     },
     {
+      "id": "pastures",
+      "folder": "Agriculture",
+      "name": "Global Pastures,2000",
+      "description": "The Global Pastures dataset represents the proportion of land areas used as pasture land (land used to support grazing animals) in the year 2000. Satellite data from Modetate Resolution Imaging Spectroradiometer (MODIS) and Satellite Pour l'Observation de la Terre (SPOT) Image Vegetation sensor were combined with agricultural inventory data to create a global data set. The visual presentation of this data demonstrates the extent to which human land use for agriculture has changed the Earth and in which areas this change is most intense. The data was compiled by Navin Ramankutty, et. al. (2008) and distributed by the Columbia University Center for International Earth Science Information Network (CIESIN).",
+      "source": "Center for International Earth Science Information Network (CIESIN)",
+      "source_url": "http:\/\/sedac.ciesin.columbia.edu\/",
+      "sectors": "Agriculture,Ecosystems",
+      "download_url": null,
+      "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
+    },
+
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
