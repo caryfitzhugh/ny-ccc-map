@@ -18,6 +18,10 @@ RendererTemplates.geojson_polygons = function (layer_id, opts) {
             dataType: "json",
             url: durl,
             success: function (json) {
+              if (json.type === "Topology") {
+                let name = _.keys(json.objects)[0];
+                json = topojson.feature(json, json.objects[name]);
+              }
               _cache[durl] = json;
               win(json);
             },
@@ -87,10 +91,9 @@ RendererTemplates.geojson_polygons = function (layer_id, opts) {
           _.each(layers, function (layer) {
             _.each(layer._layers, function (polygon) {
               if (layer._leaflet_id == active_leaflet_layer._leaflet_id) {
+                polygon.setStyle({"fillOpacity": opacity, "opacity": opacity});
                 if (opts.onEachPolygon) {
                   opts.onEachPolygon(active_layer, polygon, opacity);
-                } else {
-                  polygon.setStyle({"fillOpacity": opacity, "opacity": opacity});
                 }
               } else {
                 polygon.setStyle({"fillOpacity": 0, "opacity": 0});

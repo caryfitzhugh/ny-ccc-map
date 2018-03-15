@@ -1,5 +1,4 @@
 (function () {
-  // http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_toolkit/MapServer/legend?dynamicLayers=208&f=pjson
   let _legend_data = [
     {"label": "Coverage area - Zoom in to see details", "imageData":  "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAGJJREFUOI3t1EEKgDAMBMB0yc9K32X+VfK11YuW1oNg40m6pyWEIaeofBy9CkmLQACsgSe2JfdpkKQAsHZhchcpZU6rtVV9WJvKAhe4wD+C3dd4kz3nEQRgJAN33R5sP4jmAJKYGEcjsXAtAAAAAElFTkSuQmCC", "contentType": "image/png"},
     {"label": "High Risk - Floodway", "imageData":  "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAH5JREFUOI211MENwCAIBdBP0jVczeFczUHooT2UAib0W44oL/+AHthcx2+gAvo+lDHDIe3N9QQQA1LYmMDdD8Ey9igHMpgDWcyAOzCXkMWWYAXT3q6dycAqtkzIYA5kMQPuwFxCFkvBKrZ8y5+wLCGLGVAAQTYYdoHo/vYf+wS600fTP7m0hwAAAABJRU5ErkJggg==", "contentType": "image/png"},

@@ -3,7 +3,7 @@ var GeometryLoader ={
     var paths = {
       "county": CDN("http://api.nescaum-ccsc-dataservices.com/ny.counties.json"),
       "basin": CDN("http://api.nescaum-ccsc-dataservices.com/ny.basins.topojson"),
-      "watershed": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/watershed.json"),
+      "watershed": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/watershed.json")
     };
     if (GeometryLoader.cache[name]) {
       callback(null, GeometryLoader.cache[name]);
