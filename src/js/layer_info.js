@@ -331,6 +331,18 @@ var available_layers = [
       "sectors": "",
     },
     {
+      "id": "nyserda_slr",
+      "folder": "Coastal Zones",
+      "name": "Sea Level Rise (SIT/Columbia)",
+      "description": "Sea level and storm surge predictions for the lower Hudson River, based on model simulations developed for NYSERDA.",
+      "source": "Stevens Institute of Technology/Columbia University/NYSERDA",
+      "source_url": "http:\/\/ciesin.columbia.edu\/geoserver\/ows?service=wms&version=1.3.0&request=GetCapabilities",
+      "sectors": "Coastal Zones",
+      "legend_url": null,
+      "download_url": "http://www.ciesin.columbia.edu/hudson-river-flood-map/",
+      "metadata_url": "https:\/\/github.com\/matthiasmengel\/sealevel",
+    },
+    {
       "id": "regulated_wells",
       "folder": "Energy",
       "name": "Regulated Wells",
