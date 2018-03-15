@@ -353,6 +353,17 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
     },
+    {
+      "id": "public_environmental_justice_areas",
+      "folder": "Public Health",
+      "name": "Potential Environmental Justice Areas",
+      "description": "As established in DEC Commissioner Policy 29 on Environmental Justice and Permitting (CP-29), Potential EJ Areas are 2000 U.S. Census block groups of 250 to 500 households each that, in the 2000 Census, had populations that met or exceeded at least one of the following statistical thresholds: 1) At least 51.1% of the population in an urban area reported themselves to be members of minority groups; or 2) At least 33.8% of the population in a rural area reported themselves to be members of minority groups; or 3) At least 23.59% of the population in an urban or rural area had household incomes below the federal poverty level.",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/www.dec.ny.gov\/public\/899.html",
+      "sectors": "Public Health",
+      "download_url": "http:\/\/www.dec.ny.gov\/maps\/pejalink.kmz",
+      "metadata_url": "http:\/\/www.dec.ny.gov\/public\/899.html",
+    },
 
     {
       "id": "regulated_wells",
