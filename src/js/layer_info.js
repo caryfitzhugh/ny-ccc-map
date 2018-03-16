@@ -151,6 +151,18 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
     },
     {
+      "id": "dams",
+      "folder": "Water Resources",
+      "name": "Dams",
+      "description": "Location of dams in New York State, with selected attributes of each dam, including relative risk level." +
+        "(http://www.dec.ny.gov/docs/water_pdf/togs315.pdf)",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1130",
+      "sectors": "Water Resources",
+      "download_url": "http:\/\/www.dec.ny.gov\/maps\/nysdamslink.kmz",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.dams_KML.xml"
+    },
+    {
       "id": "dec_wetlands",
       "folder": "Ecosystems",
       "name": "Regulatory Wetlands",

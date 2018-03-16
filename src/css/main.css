@@ -848,7 +848,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 50px;
     height: 48px;
     line-height: 85px;
-    background: transparent url(../img/sewer-overflowsCluster.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/sewer-overflowsCluster.png) 0 0 no-repeat scroll;
     text-align: center;
     text-indent: -20px;
     font-size: 14px;
@@ -860,7 +860,7 @@ input[type="radio"], input[type="checkbox"] {
     font-weight: bold;
     height: 40px;
     line-height: 63px;
-    background: transparent url(../img/spdes.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/spdes.png) 0 0 no-repeat scroll;
     text-align: center;
     text-indent: 0px;
     font-size: 14px;
@@ -884,7 +884,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 35px;
     height: 35px;
     line-height: 15px;
-    background: transparent url(../img/damsCluster.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/damsCluster.png) 0 0 no-repeat scroll;
     text-align: left;
     text-indent: 8px;
     font-size: 11px;
@@ -896,7 +896,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 35px;
     height: 35px;
     line-height: 35px;
-    background: transparent url(../img/bulkstorage.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/bulkstorage.png) 0 0 no-repeat scroll;
     text-align: left;
     text-indent: 8px;
     font-size: 11px;
@@ -920,7 +920,7 @@ input[type="radio"], input[type="checkbox"] {
     width: 37px;
     height: 45px;
     line-height: 38px;
-    background: transparent url(../img/alscCluster.png) 0 0 no-repeat scroll;
+    background: transparent url(../img/icons/alscCluster.png) 0 0 no-repeat scroll;
     text-align: left;
     text-indent: 4px;
     font-size: 1.2em;
