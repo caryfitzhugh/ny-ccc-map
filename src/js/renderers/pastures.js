@@ -9,6 +9,8 @@
       format: 'image/png',
       opacity: 0,
       zIndex: -1,
+      crs: L.CRS.EPSG4326,
+      srs: L.CRS.EPSG4326,
       transparent: true
     },
     'legend_template': `

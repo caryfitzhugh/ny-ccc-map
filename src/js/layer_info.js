@@ -364,6 +364,30 @@ var available_layers = [
       "download_url": "http:\/\/www.dec.ny.gov\/maps\/pejalink.kmz",
       "metadata_url": "http:\/\/www.dec.ny.gov\/public\/899.html",
     },
+    /*
+    {
+      "id": "power_stations",
+      "folder": "Energy",
+      "name": "Power Plants",
+      "description": "Power plants, by fuel type.",
+      "source_url": "http://www.eia.gov/state/?sid=NY",
+      "sectors": "Energy",
+      "download_url": null,
+      "metadata_url": "http://www.eia.gov/state/?sid=NY",
+    },
+    */
+    {
+      "id": "primary_aquifers",
+      "folder": "Water Resources",
+      "name": "Aquifers - Primary",
+      "description": "This layer shows the location of primary aquifers in New York State. Primary aquifers are highly productive aquifers presently being utilized as sources of water supply by major municipal water supply systems.",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1232",
+      "sectors": "Ecosystems,Water Resources",
+      "legend_url": CDN("http:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:primary_aquifers&format=image\/png"),
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1232&file=primaryaquifers.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.primary.aquifers.shp.xml",
+    },
 
     {
       "id": "regulated_wells",
