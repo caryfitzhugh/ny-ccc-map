@@ -22,28 +22,25 @@
       </div>
     `,
     'info_template': `
-        <div class='row'>
-          <div class='col-xs-2'>
-            <label> {{name}} </label>
-          </div>
-          <div class='col-xs-10'>
-            <table class="table">
+        <div class='col-xs-2'>
+          <label> {{name}} </label>
+        </div>
+        <div class='col-xs-10'>
+          <table class="table">
+            <tr>
+              <th>Source</th>
+              <th>Shape Area</th>
+              <th>Shape Length</th>
+            </tr>
+            {{#json.features}}
               <tr>
-                <th>GID</th>
-                <th>Source</th>
-                <th>Shape Area</th>
-                <th>Shape Length</th>
+                <td>{{properties.source}}</td>
+                <td>{{properties.shape_area}}</td>
+                <td>{{properties.shape_len}}</td>
               </tr>
-              {{#json.features}}
-                <tr>
-                  <td>{{properties.gid}}</td>
-                  <td>{{properties.source}}</td>
-                  <td>{{properties.shape_area}}</td>
-                  <td>{{properties.shape_len}}</td>
-                </tr>
-              {{/json.features}}
-            </table>
-          </div>
+            {{/json.features}}
+          </table>
+        </div>
     `,
   get_feature_info_url: function (active_layer) {
     return CDN(GEOSERVER + "/wms" +
