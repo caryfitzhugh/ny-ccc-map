@@ -52,29 +52,36 @@ RendererTemplates.esri_feature_layer_points = function (layer_id, opts) {
   var renderer = RendererTemplates.base(layer_id, opts,
     {
       render: function (map, active_layer, pane) {
-        Renderers.create_leaflet_layer(
+        Renderers.create_leaflet_layer_async(
           map,
           active_layer,
           get_esri_opts(active_layer),
           () => {
-            var eopts = _.merge(
-                {useCors: false, pane: pane},
-                { pointToLayer: (geojson, latlng) => {
-                  // We need to inject the pane into the marker's opts
-                  return opts.marker(active_layer, geojson, latlng, { pane: Renderers.layer_to_pane_name(active_layer)}); },
+            return new Promise((win, lose) => {
+              var eopts = _.merge(
+                  {useCors: false, pane: pane},
+                  { pointToLayer: (geojson, latlng) => {
+                    // We need to inject the pane into the marker's opts
+                    return opts.marker(active_layer, geojson, latlng, { pane: Renderers.layer_to_pane_name(active_layer)}); },
 
-                  onEachFeature: opts.popup_content ?
-                  (feature, layer) => { layer.bindPopup(opts.popup_content(active_layer, feature, layer)); } : null
-                },
-                get_esri_opts(active_layer));
+                    onEachFeature: opts.popup_content ?
+                    (feature, layer) => { layer.bindPopup(opts.popup_content(active_layer, feature, layer)); } : null
+                  },
+                  get_esri_opts(active_layer));
 
-            var layer = L.esri.featureLayer(eopts);
+              var layer = L.esri.featureLayer(eopts);
 
-            layer.on("load", function (loaded) { Views.ControlPanel.fire("tile-layer-loaded", active_layer); });
-            layer.on("requesterror", function (err) { Renderers.add_layer_error(active_layer);});
-            layer.on("error", function (err) { Renderers.add_layer_error(active_layer);});
+              layer.on("load", function (loaded) { Views.ControlPanel.fire("tile-layer-loaded", active_layer); });
+              layer.on("requesterror", function (err) { Renderers.add_layer_error(active_layer);});
+              layer.on("error", function (err) { Renderers.add_layer_error(active_layer);});
 
-            return layer;
+              win(layer);
+            });
+          },
+          () => {
+            if (opts.on_layer_create) {
+              opts.on_layer_create(active_layer);
+            }
           });
 
         var layers = Renderers.get_all_leaflet_layers(map,active_layer);

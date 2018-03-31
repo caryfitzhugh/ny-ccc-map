@@ -14,19 +14,26 @@ RendererTemplates.esri_rest = function (layer_id, opts) {
         active_layer,
         get_esri_opts(active_layer),
         () => {
-          var layer = new L.TileLayer.EsriRest(opts.url,
-            _.merge({ pane: pane,
-                      minZoom: opts.parameters.min_zoom || 0,
-                      maxZoom: opts.parameters.max_zoom || 18},
-                    get_esri_opts(active_layer)));
-          layer.on("tileload", function (loaded) {
-            Views.ControlPanel.fire("tile-layer-loaded", active_layer);
+          return new Promise((win, lose) => {
+            var layer = new L.TileLayer.EsriRest(opts.url,
+              _.merge({ pane: pane,
+                        minZoom: opts.parameters.min_zoom || 0,
+                        maxZoom: opts.parameters.max_zoom || 18},
+                      get_esri_opts(active_layer)));
+            layer.on("tileload", function (loaded) {
+              Views.ControlPanel.fire("tile-layer-loaded", active_layer);
+            });
+            layer.on("tileerror", function (err) {
+              console.warn("layer_id", "WMS Renderer",  err);
+              Views.ControlPanel.fire("tile-layer-loading-error", active_layer);
+            });
+            win(layer);
           });
-          layer.on("tileerror", function (err) {
-            console.warn("layer_id", "WMS Renderer",  err);
-            Views.ControlPanel.fire("tile-layer-loading-error", active_layer);
-          });
-          return layer;
+        },
+        function () {
+          if (opts.on_layer_create) {
+            opts.on_layer_create(active_layer);
+          }
         });
 
       var opacity = Renderers.opacity(active_layer);

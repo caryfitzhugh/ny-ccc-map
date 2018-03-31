@@ -57,7 +57,6 @@ RendererTemplates.invasives = function (layer_id, opts) {
   let _cache = null;
   let _get_opts =  (active_layer) => {
       let opts = _.pick(active_layer.parameters, ["species", "area"]);
-      console.log("get opts", opts, active_layer.parameters);
       return opts;
     };
 

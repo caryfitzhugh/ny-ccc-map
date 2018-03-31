@@ -400,7 +400,16 @@ var available_layers = [
       "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1232&file=primaryaquifers.zip",
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.primary.aquifers.shp.xml",
     },
-
+    {
+      "id": "rare_plants_and_animals",
+      "folder": "Ecosystems",
+      "name": "Rare Plants and Animals",
+      "description": "NHP Predicted Future/Current/Delta Species Richness - Species richness of rare species (# species) within each 30m grid cell within NY State for rare species tracked by the NY Natural Heritage Program. Data represent total species or broken down by taxonomic or regulatory groups, based on predicted suitable habitat occurring under current or future climatic and landuse conditions using EDM models developed by NYNHP. Changes in species richness represent the difference between future and current predicted richness. These data represent predicted species richness assuming species precense within predicted suitable habitat. These data do not represent actual species richness based on known occurances.",
+      "source": "'Natural Resource Navigator / NY Climate Adaptation",
+      "source_url": "http://maps.naturalresourcenavigator.org/",
+      "metadata_url": "",
+      "sectors": "Ecosystems",
+    },
     {
       "id": "regulated_wells",
       "folder": "Energy",

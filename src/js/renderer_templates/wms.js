@@ -9,24 +9,31 @@ RendererTemplates.wms = function (layer_id, opts) {
 
   var renderer = RendererTemplates.base(layer_id, opts, {
     render: function (map, active_layer, pane) {
-      Renderers.create_leaflet_layer(
+      Renderers.create_leaflet_layer_async(
         map,
         active_layer,
         get_wms_opts(active_layer),
         () => {
-          var layer = new L.TileLayer.WMS(opts.url,
-            _.merge({ pane: pane,
-                      minZoom: opts.parameters.min_zoom || 0,
-                      maxZoom: opts.parameters.max_zoom || 18},
-                    get_wms_opts(active_layer)));
-          layer.on("tileload", function (loaded) {
-            Views.ControlPanel.fire("tile-layer-loaded", active_layer);
+          return new Promise((win, lose) => {
+            var layer = new L.TileLayer.WMS(opts.url,
+              _.merge({ pane: pane,
+                        minZoom: opts.parameters.min_zoom || 0,
+                        maxZoom: opts.parameters.max_zoom || 18},
+                      get_wms_opts(active_layer)));
+            layer.on("tileload", function (loaded) {
+              Views.ControlPanel.fire("tile-layer-loaded", active_layer);
+            });
+            layer.on("tileerror", function (err) {
+              console.warn("layer_id", "WMS Renderer",  err);
+              Views.ControlPanel.fire("tile-layer-loading-error", active_layer);
+            });
+          win(layer);
           });
-          layer.on("tileerror", function (err) {
-            console.warn("layer_id", "WMS Renderer",  err);
-            Views.ControlPanel.fire("tile-layer-loading-error", active_layer);
-          });
-          return layer;
+        },
+        () => {
+          if (opts.on_layer_create) {
+            opts.on_layer_create(active_layer);
+          }
         });
 
       var opacity = Renderers.opacity(active_layer);

@@ -86,12 +86,12 @@ var Renderers = {
         !Renderers.is_loading_leaflet_layer(active_layer, attributes)) {
       Renderers.loading_leaflet_layer(active_layer, attributes);
 
-     load_layer()
-     .then((layer) => {
-        layer.addTo(map);
-        Renderers.save_leaflet_layer(active_layer, layer._leaflet_id, attributes);
-        completed();
-     });
+      load_layer()
+      .then((layer) => {
+          layer.addTo(map);
+          Renderers.save_leaflet_layer(active_layer, layer._leaflet_id, attributes);
+          completed();
+      });
     } else {
       completed();
     }

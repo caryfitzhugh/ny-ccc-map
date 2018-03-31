@@ -91,6 +91,9 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
             })
           },
           () => {
+            if (opts.on_layer_create) {
+              opts.on_layer_create(active_layer);
+            }
             var opacity = Renderers.opacity(active_layer);
             var layers = Renderers.get_all_leaflet_layers(map,active_layer);
             var active_leaflet_layer = Renderers.get_leaflet_layer(map, active_layer, get_opts(active_layer))

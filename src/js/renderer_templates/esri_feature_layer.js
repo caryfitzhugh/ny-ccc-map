@@ -52,22 +52,29 @@ RendererTemplates.esri_feature_layer = function (layer_id, opts) {
   var renderer = RendererTemplates.base(layer_id, opts,
     {
       render: function (map, active_layer, pane) {
-        Renderers.create_leaflet_layer(
+        Renderers.create_leaflet_layer_async(
           map,
           active_layer,
           get_esri_opts(active_layer),
           () => {
-            var layer = L.esri.featureLayer(_.merge({useCors: false, pane: pane}, get_esri_opts(active_layer)));
-            layer.on("load", function (loaded) { Views.ControlPanel.fire("tile-layer-loaded", active_layer); });
-            layer.on("requesterror", function (err) { Renderers.add_layer_error(active_layer);});
-            layer.on("error", function (err) { Renderers.add_layer_error(active_layer);});
+            return new Promise((win, lose) => {
+                var layer = L.esri.featureLayer(_.merge({useCors: false, pane: pane}, get_esri_opts(active_layer)));
+                layer.on("load", function (loaded) { Views.ControlPanel.fire("tile-layer-loaded", active_layer); });
+                layer.on("requesterror", function (err) { Renderers.add_layer_error(active_layer);});
+                layer.on("error", function (err) { Renderers.add_layer_error(active_layer);});
 
-            // Proxy the click event through to the map!
-            if (!get_esri_opts(active_layer).pointToLayer) {
-              layer.on("click", function (evt) { LeafletMap.fire('click', evt, true);});
+                // Proxy the click event through to the map!
+                if (!get_esri_opts(active_layer).pointToLayer) {
+                  layer.on("click", function (evt) { LeafletMap.fire('click', evt, true);});
+                }
+
+                win(layer);
+            });
+          },
+          function () {
+            if (opts.on_layer_create) {
+              opts.on_layer_create(active_layer);
             }
-
-            return layer;
           });
 
         var opacity = Renderers.opacity(active_layer);
