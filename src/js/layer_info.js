@@ -399,7 +399,17 @@ var available_layers = [
       "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.dmn.oil.gas.well.forportal_prod.xml",
       "sectors": "Energy"
     },
-
+    {
+      "id": "railroads",
+      "folder": "Transportation",
+      "name": "Railroads",
+      "description": "Line shapefile of active railroad lines. UTM NAD 83 Zone 18. Copyright 2001 by NYS Dept of Transportation.",
+      "source": "NYS DOT",
+      "source_url": "https:\/\/www.dot.ny.gov\/index",
+      "sectors": "Transportation",
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=904&file=NYSDOTRailroad_May2013.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/dot.Railroad.shp.xml"
+    },
 ];
 
 var desired_active_on_load = [
