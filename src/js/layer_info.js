@@ -431,6 +431,18 @@ var available_layers = [
       "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=904&file=NYSDOTRailroad_May2013.zip",
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/dot.Railroad.shp.xml"
     },
+    {
+      "id": "remediation_sites",
+      "folder": "Miscellaneous",
+      "name": "Remediation Sites",
+      "description": "The points in this file represent only the existence of a site which has cleanup currently, or has undergone cleanup under the oversight of NYS DEC. This dataset includes a single point location for a subset of sites which are currently included in one of the Remedial Programs being overseen by the Division of Environmental Remediation.",
+      "source": "NYS DEC",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1097",
+      "sectors": "Public Health",
+      "legend_url": CDN("http:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:remediation_sites&format=image/png"),
+      "download_url": "ftp:\/\/ftp.dec.state.ny.us\/der\/FOIL\/RemedialGIS.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.remedsite_borders_export.html"
+    },
 ];
 
 var desired_active_on_load = [
