@@ -1,7 +1,7 @@
 RendererTemplates.wms("dow_unconsolidated_aquifers", {
   parameters: {
     opacity: 100,
-    layers: "ny:aquifers_unconsolidated",
+    layers: "ny:dow_uncon_aqui_main",
     options: {
     }
   },
