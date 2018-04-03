@@ -443,6 +443,17 @@ var available_layers = [
       "download_url": "ftp:\/\/ftp.dec.state.ny.us\/der\/FOIL\/RemedialGIS.zip",
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.remedsite_borders_export.html"
     },
+    {
+      "id": "sandy_surge",
+      "folder": "Coastal Zones",
+      "name": "Hurricane Sandy Surge Extent",
+      "description": "Final High Resolution (3 and 1 meter) Hurricane Sandy Storm Surge Extents, Field Verified HWMs and SSs Data 0214 ",
+      "source": "FEMA",
+      "source_url": "http:\/\/services.femadata.com\/",
+      "sectors": "All",
+      "download_url": null,
+      "metadata_url": "http:\/\/services.femadata.com\/arcgis\/rest\/services\/2012_Sandy\/SurgeBoundaries_Final_0214\/MapServer",
+    },
 ];
 
 var desired_active_on_load = [
