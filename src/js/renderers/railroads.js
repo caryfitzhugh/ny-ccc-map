@@ -6,7 +6,7 @@ RendererTemplates.wms("railroads", {
 
   wms_opts:(active_layer) => {
     return  {
-      layers: 'ny:railroads',
+      layers: 'ny:railroad',
       format: "image/png",
       opacity: 0,
       zIndex: -1,
@@ -19,8 +19,8 @@ RendererTemplates.wms("railroads", {
     return CDN(GEOSERVER + "/wms" +
               "?SERVICE=WMS&VERSION=1.1.1&"+
               "REQUEST=GetFeatureInfo&"+
-              "LAYERS=ny:railroads&"+
-              "QUERY_LAYERS=ny:railroads&"+
+              "LAYERS=ny:railroad&"+
+              "QUERY_LAYERS=ny:railroad&"+
               "STYLES=&"+
               "BBOX=<%= bbox %>&"+
               "FEATURE_COUNT=5&"+
@@ -33,7 +33,7 @@ RendererTemplates.wms("railroads", {
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:railroads&format=image/png")}}>
+        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:railroad&format=image/png")}}>
       </div>
   `,
   info_template: `
