@@ -454,6 +454,18 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "http:\/\/services.femadata.com\/arcgis\/rest\/services\/2012_Sandy\/SurgeBoundaries_Final_0214\/MapServer",
     },
+    {
+      "id": "sewer_overflows",
+      "folder": "Water Resources",
+      "name": "Sewer Overflows",
+      "description": "The dataset represents the locations of combined sewer overflow (CSOs) outfall locations in NYS. It also includes overflow detection capabilities of CSO communities and overflow frequency data within a specified timeframe.",
+      "source": "NYS Office of Information Technology Services",
+      "source_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi",
+      "sectors": "Water Resources,Public Health",
+      "legend_url": "./img\/sewer-overflows.png",
+      "download_url": "https:\/\/data.ny.gov\/resource\/5d4q-pk7d.geojson",
+      "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
+    },
 ];
 
 var desired_active_on_load = [
