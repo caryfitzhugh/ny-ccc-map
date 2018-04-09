@@ -454,6 +454,29 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "http:\/\/services.femadata.com\/arcgis\/rest\/services\/2012_Sandy\/SurgeBoundaries_Final_0214\/MapServer",
     },
+    {
+      "id": "spdes",
+      "folder": "Water Resources",
+      "name": "Waste Treatment Plants",
+      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
+      "source": "NYS DEC",
+      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
+      "sectors": "Water Resources,Public Health",
+      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
+    },
+    {
+      "id": "sewer_overflows",
+      "folder": "Water Resources",
+      "name": "Sewer Overflows",
+      "description": "The dataset represents the locations of combined sewer overflow (CSOs) outfall locations in NYS. It also includes overflow detection capabilities of CSO communities and overflow frequency data within a specified timeframe.",
+      "source": "NYS Office of Information Technology Services",
+      "source_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi",
+      "sectors": "Water Resources,Public Health",
+      "legend_url": "./img\/sewer-overflows.png",
+      "download_url": "https:\/\/data.ny.gov\/resource\/5d4q-pk7d.geojson",
+      "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
+    }
 ];
 
 var desired_active_on_load = [

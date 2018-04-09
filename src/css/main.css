@@ -646,6 +646,13 @@ input[type="radio"], input[type="checkbox"] {
   font-weight: 300;
   font-size: 90%;
 }
+.active-layer .detail-block.clusterlegend {
+  text-align: left;
+  font-weight: 300;
+  font-size: 90%;
+  position: absolute;
+  left:70px;
+}
 .active-layer .detail-block label {
   display: inline-block;
   width: 25%;
