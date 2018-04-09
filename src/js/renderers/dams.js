@@ -20,8 +20,9 @@ RendererTemplates.geojson_points('dams',  {
       zoomToBoundsOnClick: true,
       maxClusterRadius: 40,
       disableClusteringAtZoom: 10,
-      iconCreateFunction: function (cluster) {
+      iconCreateFunction: function (cluster, pane) {
         return new L.DivIcon({
+          pane: pane,
           html: cluster.getChildCount(),
           className: 'damsCluster',
           iconSize: new L.Point(35,35)
@@ -29,7 +30,7 @@ RendererTemplates.geojson_points('dams',  {
       }
     },
 
-  pointToLayer: function (active_layer, feature, latlng) {
+  pointToLayer: function (active_layer, feature, latlng, pane) {
       var url = "./img/icons/dam-";
               if (feature.properties.hazard_code === "A" ||
                   feature.properties.hazard_code === "a") {
@@ -44,6 +45,7 @@ RendererTemplates.geojson_points('dams',  {
                 url += "unk.png";
               }
       return L.marker(latlng, {
+                  pane: pane,
                   riseOnHover: true,
                     icon: L.icon({
                         className: "dam-" + feature.properties.hazard_code.toLowerCase() ,

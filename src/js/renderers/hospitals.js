@@ -25,8 +25,9 @@
       zoomToBoundsOnClick: true,
       maxClusterRadius: 40,
       disableClusteringAtZoom: 10,
-      iconCreateFunction: function (cluster) {
+      iconCreateFunction: function (cluster, pane) {
         return new L.DivIcon({
+          pane: pane,
           html: cluster.getChildCount(),
           className: 'hospitalCluster',
           iconSize: new L.Point(35,35)
@@ -34,8 +35,9 @@
       }
     },
 
-    pointToLayer: function (active_layer, feature, latlng) {
+    pointToLayer: function (active_layer, feature, latlng, pane) {
         return L.marker(latlng, {
+            pane: pane,
             icon: L.icon({
                 iconAnchor: [12, 28],
                 iconSize: [16, 18],

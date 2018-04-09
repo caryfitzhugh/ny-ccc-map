@@ -57,7 +57,7 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
               var layer = new L.GeoJSON(Object.assign({}, data), {
                 pointToLayer: function(feature, latlng) {
                   if (opts.pointToLayer) {
-                    return opts.pointToLayer(active_layer, feature, latlng);
+                    return opts.pointToLayer(active_layer, feature, latlng, pane);
                   }
                 },
                 pane: pane,
@@ -72,17 +72,27 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
               });
 
               if (opts.clustering) {
+                  let icf = opts.clustering.iconCreateFunction
+                  if (!icf) {
+                    icf = (cluster, pane) => {
+                      return new L.DivIcon({
+                        pane: pane,
+                        html: cluster.getChildCount()
+                      });
+                    };
+                  }
+
+                  opts.clustering.iconCreateFunction = (cluster) => {
+                    return icf(cluster, pane);
+                  }
+
                   let group = new L.MarkerClusterGroup(_.merge({
                     spiderfyOnMaxZoom: true,
                     showCoverageOnHover: false,
                     zoomToBoundsOnClick: true,
-                    disableClusteringAtZoom: 11,
-                    iconCreateFunction: function (cluster) {
-                      return new L.DivIcon({
-                        html: cluster.getChildCount()
-                      });
-                    }
+                    disableClusteringAtZoom: 11
                   }, opts.clustering));
+
                   group.addLayer(layer);
                   layer = group;
               }

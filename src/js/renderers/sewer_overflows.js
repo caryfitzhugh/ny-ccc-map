@@ -10,8 +10,9 @@ RendererTemplates.geojson_points('sewer_overflows',  {
       zoomToBoundsOnClick: true,
       disableClusteringAtZoom: 11,
       removeOutsideVisibleBounds: true,
-      iconCreateFunction: function (cluster) {
+      iconCreateFunction: function (cluster, pane) {
         return new L.DivIcon({
+          pane: pane,
           html: cluster.getChildCount(),
           className: 'sewer_overflowsCluster',
           iconSize: new L.Point(50,48)
@@ -20,8 +21,13 @@ RendererTemplates.geojson_points('sewer_overflows',  {
   },
   url: CDN("https://api.nescaum-ccsc-dataservices.com/ny.sewer_overflows.geojson"),
 
-  pointToLayer: function (active_layer, feature, latlng) {
+  selectData: (active_layer, features) => {
+      active_layer.parameters.total_shown = features.length;
+      return features;
+  },
+  pointToLayer: function (active_layer, feature, latlng, pane) {
       return L.marker(latlng, {
+          pane: pane,
           icon: L.icon({
               iconUrl: './img/icons/sewer-overflows.png',
               iconSize: [18, 21],
@@ -64,14 +70,15 @@ RendererTemplates.geojson_points('sewer_overflows',  {
   },
 
   legend_template: `
-      <div class='detail-block show-confidence'>
-        <label> Showing: </label>
-        <div style='text-align: center'>
-          <div class='sewer_overflowsCluster' style='display: inline-block'>
-            {{parameters.total_shown}}
-          </div>
-          <span class='legend-text'> Number of sewer overflows shown </span>
-        </div>
+      <div class='detail-block'>
+        <label>Legend</label>
+      </div>
+      <div class='detail-block clusterlegend'>
+        <img src="./img/icons/sewer-overflows.png"/>
+        <br/>
+        <span class='legend-text'>
+          <strong>&nbsp;{{parameters.total_shown}}</strong>&nbsp;&nbsp;&nbsp; Number of sewer overflows shown
+        </span>
       </div>
   `
 

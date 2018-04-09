@@ -16,8 +16,9 @@ RendererTemplates.geojson_points('airmon',  {
     outputFormat: "application/json"
   }).toString()),
 
-  pointToLayer: function (active_layer, feature, latlng) {
+  pointToLayer: function (active_layer, feature, latlng, pane) {
       return L.marker(latlng, {
+          pane: pane,
           icon: L.icon({
               iconUrl: './img/icons/airmon.png',
               iconSize: [18, 21],

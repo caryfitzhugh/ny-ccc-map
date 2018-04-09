@@ -498,7 +498,18 @@ var available_layers = [
       "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:trout_streams&format=image/png"),
       "download_url": null,
       "metadata_url": null
-    }
+    },
+    {
+      "id": "spdes",
+      "folder": "Water Resources",
+      "name": "Waste Treatment Plants",
+      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
+      "source": "NYS DEC",
+      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
+      "sectors": "Water Resources,Public Health",
+      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
+    },
 ];
 
 var desired_active_on_load = [

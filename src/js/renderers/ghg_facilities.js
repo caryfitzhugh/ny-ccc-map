@@ -24,8 +24,9 @@
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
       disableClusteringAtZoom: 11,
-      iconCreateFunction: function (cluster) {
+      iconCreateFunction: function (cluster, pane) {
         return new L.DivIcon({
+          pane: pane,
           html: cluster.getChildCount(),
           className: 'ghg_facilitiesCluster',
           iconSize: new L.Point(35,35)
@@ -33,8 +34,9 @@
       }
     },
 
-    pointToLayer: function (active_layer, feature, latlng) {
+    pointToLayer: function (active_layer, feature, latlng, pane) {
         return L.marker(latlng, {
+            pane: pane,
             icon: L.icon({
                 iconUrl: './img/icons/ghg_facilities.png',
                 iconSize: [18, 21],
