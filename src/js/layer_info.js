@@ -466,6 +466,39 @@ var available_layers = [
       "download_url": "https:\/\/data.ny.gov\/resource\/5d4q-pk7d.geojson",
       "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
     },
+    {
+      "id": "sovi",
+      "folder": "Public Health",
+      "name": "Social Vulnerability Index for U.S. Coastal States",
+      "description": "The Social Vulnerability Index (SoVI) 2006-10 measures the social vulnerability of U.S. counties to environmental hazards. The index is a comparative metric that facilitates the examination of the differences in social vulnerability among counties. SoVI is a valuable tool for policy makers and practitioners. It graphically illustrates the geographic variation in social vulnerability. It shows where there is uneven capacity for preparedness and response and where resources might be used most effectively to r",
+      "source": "NOAA Office For Coastal Management",
+      "source_url": "http:\/\/catalog.data.gov\/dataset\/social-vulnerability-index-sovi-for-the-u-s-coastal-states-based-on-the-2010-census-tracts",
+      "sectors": "Water Resources,Coastal Zones",
+      "download_url": null,
+      "metadata_url": "http:\/\/catalog.data.gov\/dataset\/social-vulnerability-index-sovi-for-the-u-s-coastal-states-based-on-the-2010-census-tracts"
+    },
+    {
+      "id": "subway_lines",
+      "folder": "Transportation",
+      "name": "NYC Subways",
+      "description": "NY Metropolitan Subway Lines",
+      "source": "Spatiality Blog",
+      "source_url": "http:\/\/spatialityblog.com\/2010\/07\/08\/mta-gis-data-update\/#datalinks",
+      "sectors": "Transportation",
+      "download_url": "https:\/\/wfs.gc.cuny.edu\/SRomalewski\/MTA_GISdata\/June2010_update\/nyctsubwayroutes_100627.zip"
+    },
+    {
+      "id": "trout_streams",
+      "folder": "Ecosystems",
+      "name": "Designated Trout Streams",
+      "description": "New York State Department of Environmental Conservation Water Quality Classifications dataset. The symbol (T or TS) after any class designation means that designated waters are trout waters (T) or suitable for trout spawning (TS).",
+      "source": "NYS DEC",
+      "source_url": "https://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1118",
+      "sectors": "Ecosystems",
+      "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:trout_streams&format=image/png"),
+      "download_url": null,
+      "metadata_url": null
+    }
 ];
 
 var desired_active_on_load = [
