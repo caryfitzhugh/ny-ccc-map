@@ -5,10 +5,11 @@ RendererTemplates.geojson_points('sewer_overflows',  {
     no_sorting: true
   },
   clustering: {
-      spiderfyOnMaxZoom: true,
+      spiderfyOnMaxZoom: false,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
       disableClusteringAtZoom: 11,
+      removeOutsideVisibleBounds: true,
       iconCreateFunction: function (cluster) {
         return new L.DivIcon({
           html: cluster.getChildCount(),
