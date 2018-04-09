@@ -35,7 +35,7 @@
                 opacity: 0,
                 popupAnchor: [0, -25]
             }),
-            title: feature.properties.name
+            title: feature.properties.facility_name
         });
     },
     popupContents: function (feature) {
@@ -54,13 +54,10 @@
     legend_template: `
       <div class='detail-block'>
         <label>Legend</label>
-      </div>
-      <div class='detail-block clusterlegend'>
+        <br/>
         <img src="./img/icons/sewer-overflowsCluster.png"/>
         <br/>
-        <span class='legend-text'>
-          <strong>1940</strong>&nbsp;&nbsp;&nbsp; Number of sewer overflows shown
-        </span>
+        <strong>1230</strong>&nbsp;&nbsp;&nbsp; Number of sewer overflows shown
       </div>
     `
   });
