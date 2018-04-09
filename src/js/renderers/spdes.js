@@ -23,12 +23,12 @@
       active_layer.parameters.total_shown = features.length;
       return features;
   },
-    clustering: {
-      spiderfyOnMaxZoom: true,
+  clustering: {
+      spiderfyOnMaxZoom: false,
       showCoverageOnHover: false,
       zoomToBoundsOnClick: true,
-      maxClusterRadius: 40,
-      disableClusteringAtZoom: 10,
+      disableClusteringAtZoom: 11,
+      removeOutsideVisibleBounds: true,
       iconCreateFunction: function (cluster, pane) {
         return new L.DivIcon({
           pane: pane,
@@ -43,9 +43,9 @@
         return L.marker(latlng, {
             pane: pane,
             icon: L.icon({
-                iconAnchor: [12, 28],
-                iconSize: [16, 18],
                 iconUrl: './img/icons/spdes.png',
+                iconSize: [16, 18],
+                iconAnchor: [12, 28],
                 opacity: 0,
                 popupAnchor: [0, -25]
             }),
@@ -54,7 +54,7 @@
     },
 
     popupContents: function (feature) {
-        return `
+        content =  `
           <strong>${feature.properties.name}</strong>
           <br/>
           Owner: ${feature.properties.owner}
@@ -65,6 +65,7 @@
           <br/>
           ${Renderers.utils.zoom_to_location_link(feature.geometry)}
       `;
+      return content;
     },
 
     legend_template: `
