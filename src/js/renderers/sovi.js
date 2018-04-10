@@ -39,7 +39,7 @@
     },
     get_feature_info_xml_url: function (active_layer) {
       return _url +
-            "SERVICE=WMS&VERSION=1.1.1&"+
+            "?SERVICE=WMS&VERSION=1.1.1&"+
             "REQUEST=GetFeatureInfo&"+
             // NOT SURE ON LAYERS?
             "LAYERS=41&"+
