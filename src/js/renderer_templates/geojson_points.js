@@ -54,6 +54,15 @@ RendererTemplates.geojson_points = function (layer_id, opts) {
             return new Promise((win, lose) => {
               let features = opts.selectData ? opts.selectData(active_layer, data.features) : data.features;
 
+              // Doesn't support MultiPoints!
+              // Breaks the popups?!?
+              _.each(features, (f) => {
+                if (f.geometry.type == 'MultiPoint') {
+                    f.geometry.type = 'Point';
+                    f.geometry.coordinates = f.geometry.coordinates[0];
+                }
+              });
+
               var layer = new L.GeoJSON(Object.assign({}, data), {
                 pointToLayer: function(feature, latlng) {
                   if (opts.pointToLayer) {

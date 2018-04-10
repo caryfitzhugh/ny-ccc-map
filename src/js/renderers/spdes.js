@@ -23,6 +23,7 @@
       active_layer.parameters.total_shown = features.length;
       return features;
   },
+
   clustering: {
       spiderfyOnMaxZoom: false,
       showCoverageOnHover: false,
