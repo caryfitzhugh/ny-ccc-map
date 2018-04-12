@@ -104,7 +104,7 @@ var available_layers = [
     },
     {
       "id": "bulkstorage",
-      "folder": "Public Health",
+      "folder": "Critical Infrastructure",
       "name": "Bulk Storage Sites",
       "description": "Point locations for: 1) Chemical Bulk Storage (CBS) Facilities, pursuant to the Hazardous Substance Bulk Storage Law, Article 40 of ECL; And 6 NYCRR 595-599. 2) Major Oil Storage Facilities, pursuant to Article 12 of the Navigation Law. 3) Petroleum Bulk Storage (PBS) Facilities, registered pursuant to title 10 of Article 17.",
       "source": "NYS DEC",
@@ -152,7 +152,7 @@ var available_layers = [
     },
     {
       "id": "dams",
-      "folder": "Water Resources",
+      "folder": "Critical Infrastructure",
       "name": "Dams",
       "description": "Location of dams in New York State, with selected attributes of each dam, including relative risk level." +
         "(http://www.dec.ny.gov/docs/water_pdf/togs315.pdf)",
@@ -209,6 +209,17 @@ var available_layers = [
       }
     },
     {
+      "id": "flood_exposure",
+      "folder": "Coastal Zones",
+      "name": "Flood Exposure",
+      "description": "This map service was created to support the National Oceanic and Atmospheric Administration (NOAA) Office for Coastal Management’s (OCM) Coastal Flood Exposure Mapper. The purpose of the online mapping tool is to provide coastal managers, planners, and stakeholders a preliminary look at exposures to coastal flooding hazards. The Mapper is a screening-level tool that uses nationally consistent data sets and analyses. Data and maps provided can be used at several scales to help communities initiate resilience planning efforts. Currently the extent of this map service and the Coastal Flood Exposure Mapper is limited to U.S. coastal counties along the Gulf of Mexico and Atlantic Ocean. The purpose of this dataset is to provide boundaries and information for the county selection function within the mapping application. The dataset should be used only as a screening-level tool for management decisions. As with all remotely sensed data, all features should be verified with a site visit. The dataset is provided as is, without warranty to its performance, merchantable state, or fitness for any particular purpose. The entire risk associated with the results and performance of this dataset is assumed by the user. This dataset should be used strictly as a planning reference and not for navigation, permitting, or other legal purposes. For more information, visit the Coastal Flood Exposure Mapper (https://coast.noaa.gov/floodexposure). Send questions or comments to the NOAA Office for Coastal Management (coastal.info@noaa.gov). ",
+      "source": "NOAA",
+      "source_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer",
+      "sectors": "All Sectors",
+      "legend_url": CDN("https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1"),
+      "metadata_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"
+    },
+    {
       "id": "gap_lc",
       "folder": "Land Cover",
       "name": "GAP Land Cover Dataset",
@@ -232,7 +243,7 @@ var available_layers = [
     },
     {
       "id": "hospitals",
-      "folder": "Public Health",
+      "folder": "Critical Infrastructure",
       "name": "Hospitals",
       "description": "Hospitals in New York State, based on NYS Department of Health data.",
       "source": "New York State Department of Health",
@@ -366,6 +377,17 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
     },
     {
+      "id": "power_plants",
+      "folder": "Energy",
+      "name": "Power Plants",
+      "description": "Operable electric generating plants in the Massachusetts by energy source. This includes all plants that are operating, on standby, or short- or long-term out of service with a combined nameplate capacity of 1 MW or more.",
+      "source": "US Energy Information Administration",
+      "source_url": "https://www.eia.gov/",
+      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "download_url": "https://www.eia.gov/maps/map_data/PowerPlants_US_EIA.zip",
+      "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
+    },
+    {
       "id": "public_environmental_justice_areas",
       "folder": "Public Health",
       "name": "Potential Environmental Justice Areas",
@@ -433,7 +455,7 @@ var available_layers = [
     },
     {
       "id": "remediation_sites",
-      "folder": "Miscellaneous",
+      "folder": "Critical Infrastructure",
       "name": "Remediation Sites",
       "description": "The points in this file represent only the existence of a site which has cleanup currently, or has undergone cleanup under the oversight of NYS DEC. This dataset includes a single point location for a subset of sites which are currently included in one of the Remedial Programs being overseen by the Division of Environmental Remediation.",
       "source": "NYS DEC",
@@ -486,6 +508,18 @@ var available_layers = [
       "source_url": "http:\/\/spatialityblog.com\/2010\/07\/08\/mta-gis-data-update\/#datalinks",
       "sectors": "Transportation",
       "download_url": "https:\/\/wfs.gc.cuny.edu\/SRomalewski\/MTA_GISdata\/June2010_update\/nyctsubwayroutes_100627.zip"
+    },
+    {
+      "id": "superfund",
+      "folder": "Critical Infrastructure",
+      "name": "Superfund Sites",
+      "description": "The Agency for Toxic Substances and Disease Registry (ATSDR) Hazardous Waste Site Polygon Data with CIESIN Modifications, Version 2 is a database providing georeferenced data for 1,572 National Priorities List (NPL) Superfund sites",
+      "source": "Center for International Earth Science Information Network (CIESIN)",
+      "source_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2",
+      "sectors": "",
+      "legend_url": "http:\/\/sedac.ciesin.columbia.edu\/geoserver\/wms?request=GetLegendGraphic&LAYER=superfund:superfund-atsdr-hazardous-waste-site-ciesin-mod-v2&format=image\/png",
+      "download_url": null,
+      "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2"
     },
     {
       "id": "trout_streams",
