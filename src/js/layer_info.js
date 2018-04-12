@@ -63,6 +63,17 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/anthromes-anthropogenic-biomes-world-v2-2000",
     },
     {
+      "id": "armories",
+      "folder": "Emergency Operations",
+      "name": "Armories",
+      "description": "This data file contains information on the 64 Armories for NYS.",
+      "source": "New York State Department of Environmental Conservation",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=79",
+      "sectors": "Public Health",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=79&file=armories.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dmna.NYS_ARMORIES.html",
+    },
+    {
       "id": "boundary_climate_divisions",
       "folder": "Boundaries",
       "name": "NOAA Climate Divisions",
