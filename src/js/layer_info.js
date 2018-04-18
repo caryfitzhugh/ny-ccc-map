@@ -114,6 +114,17 @@ var available_layers = [
       "source": "NY"
     },
     {
+      "id": "bridges",
+      "folder": "Transportation",
+      "name": "Bridges",
+      "description": "Point layer of all New York State bridge that carry or cross a public road including general inventory attributes. Bridge ID Number (BIN) attribute used to identify each bridge. ",
+      "source": "NYS DOT",
+      "source_url": "https:\/\/www.dot.ny.gov\/index",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=397&file=NYSDOTBridges.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=397"
+    },
+    {
       "id": "bulkstorage",
       "folder": "Critical Infrastructure",
       "name": "Bulk Storage Sites",
@@ -160,6 +171,17 @@ var available_layers = [
       "sectors": "Agriculture,Ecosystems",
       "download_url": null,
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
+    },
+    {
+      "id": "culverts",
+      "folder": "Transportation",
+      "name": "Large Culverts",
+      "description": "Point layer of all New York State bridge that carry or cross a public road including general inventory attributes. Bridge ID Number (BIN) attribute used to identify each bridge. ",
+      "source": "NYS DOT",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1255",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1255&file=NYSDOTLargeCulverts.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dot.LargeCulverts.xml"
     },
     {
       "id": "dams",
@@ -229,6 +251,17 @@ var available_layers = [
       "sectors": "All Sectors",
       "legend_url": CDN("https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1"),
       "metadata_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"
+    },
+    {
+      "id": "freight_stations",
+      "folder": "Transportation",
+      "name": "Freight Stations",
+      "description": "Vector file of locations where freight traffic would be billed to. While shown as point data, it would encompass any nearby industries.",
+      "source": "NYS DOT",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1262",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1262&file=FreightStations.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dot.FreightStations.shp.xml"
     },
     {
       "id": "gap_lc",
@@ -330,6 +363,17 @@ var available_layers = [
       "sectors": "Water Resources",
       "download_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
       "metadata_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
+    },
+    {
+      "id": "naturalgas_pipelines",
+      "folder": "Energy",
+      "name": "Natural Gas Pipelines",
+      "description": "Natural gas interstate and intrastate pipelines in the United States. Based on a variety of sources with varying scales and levels of accuracy and therefore accuracy is directly affected. This layer is not visible if zoomed in beyond 1:200,000 scale.  Collected by EIA from FERC and other external sources.",
+      "source": "US Energy Information Administration",
+      "source_url": "https://www.eia.gov/",
+      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "download_url": "https://www.eia.gov/maps/map_data/NaturalGas_InterIntrastate_Pipelines_US_EIA.zip",
+      "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
     },
     /*{
       "id": "national_land_cover_dataset",
@@ -500,6 +544,17 @@ var available_layers = [
       "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
     },
     {
+      "id": "spdes",
+      "folder": "Water Resources",
+      "name": "Waste Treatment Plants",
+      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
+      "source": "NYS DEC",
+      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
+      "sectors": "Water Resources,Public Health",
+      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
+    },
+    {
       "id": "sovi",
       "folder": "Public Health",
       "name": "Social Vulnerability Index for U.S. Coastal States",
@@ -532,7 +587,18 @@ var available_layers = [
       "download_url": null,
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2"
     },
-    {
+  {
+    "id": "tree_atlas",
+    "folder": "Ecosystems",
+    "name": "USFS Climate Change Atlas - Tree Species",
+    "description": "Modeled importance value (IV) of 20 Massachusetts native tree species for three climate conditions: 1) current climate (1961-1990 average); 2) future climate (2071-2100 average) with IPCC scenario B1 (significant conservation and reduction of CO2 emissions); and 3) future climate (2071-2100 average) with IPCC scenario A1FI (high emissions, no modification in current emission trends). Importance Value measures the dominance of a tree species in a forest, based on the relative frequency, density, and basal area of the species. For more information on the models and to explore more tree species and climate scenarios, visit the US Forest Service Climate Change Atlas: http://www.fs.fed.us/nrs/atlas/",
+    "source": "USDA Forest Service Northern Research Station",
+    "source_url": "http:\/\/www.fs.fed.us\/nrs\/atlas\/",
+    "sectors": ["Agriculture", "Forestry","Economy","Natural Resources/Habitats"],
+    "download_url": null,
+    "metadata_url": null,
+  },
+  {
       "id": "trout_streams",
       "folder": "Ecosystems",
       "name": "Designated Trout Streams",
@@ -543,17 +609,6 @@ var available_layers = [
       "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:trout_streams&format=image/png"),
       "download_url": null,
       "metadata_url": null
-    },
-    {
-      "id": "spdes",
-      "folder": "Water Resources",
-      "name": "Waste Treatment Plants",
-      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
-      "source": "NYS DEC",
-      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
-      "sectors": "Water Resources,Public Health",
-      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
-      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
     },
 ];
 
