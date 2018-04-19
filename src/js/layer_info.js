@@ -63,6 +63,17 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/anthromes-anthropogenic-biomes-world-v2-2000",
     },
     {
+      "id": "armories",
+      "folder": "Emergency Operations",
+      "name": "Armories",
+      "description": "This data file contains information on the 64 Armories for NYS.",
+      "source": "New York State Department of Environmental Conservation",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=79",
+      "sectors": "Public Health",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=79&file=armories.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dmna.NYS_ARMORIES.html",
+    },
+    {
       "id": "boundary_climate_divisions",
       "folder": "Boundaries",
       "name": "NOAA Climate Divisions",
@@ -103,8 +114,19 @@ var available_layers = [
       "source": "NY"
     },
     {
+      "id": "bridges",
+      "folder": "Transportation",
+      "name": "Bridges",
+      "description": "Point layer of all New York State bridge that carry or cross a public road including general inventory attributes. Bridge ID Number (BIN) attribute used to identify each bridge. ",
+      "source": "NYS DOT",
+      "source_url": "https:\/\/www.dot.ny.gov\/index",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=397&file=NYSDOTBridges.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=397"
+    },
+    {
       "id": "bulkstorage",
-      "folder": "Public Health",
+      "folder": "Critical Infrastructure",
       "name": "Bulk Storage Sites",
       "description": "Point locations for: 1) Chemical Bulk Storage (CBS) Facilities, pursuant to the Hazardous Substance Bulk Storage Law, Article 40 of ECL; And 6 NYCRR 595-599. 2) Major Oil Storage Facilities, pursuant to Article 12 of the Navigation Law. 3) Petroleum Bulk Storage (PBS) Facilities, registered pursuant to title 10 of Article 17.",
       "source": "NYS DEC",
@@ -151,8 +173,19 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
     },
     {
+      "id": "culverts",
+      "folder": "Transportation",
+      "name": "Large Culverts",
+      "description": "Point layer of all New York State bridge that carry or cross a public road including general inventory attributes. Bridge ID Number (BIN) attribute used to identify each bridge. ",
+      "source": "NYS DOT",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1255",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1255&file=NYSDOTLargeCulverts.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dot.LargeCulverts.xml"
+    },
+    {
       "id": "dams",
-      "folder": "Water Resources",
+      "folder": "Critical Infrastructure",
       "name": "Dams",
       "description": "Location of dams in New York State, with selected attributes of each dam, including relative risk level." +
         "(http://www.dec.ny.gov/docs/water_pdf/togs315.pdf)",
@@ -209,6 +242,28 @@ var available_layers = [
       }
     },
     {
+      "id": "flood_exposure",
+      "folder": "Coastal Zones",
+      "name": "Flood Exposure",
+      "description": "This map service was created to support the National Oceanic and Atmospheric Administration (NOAA) Office for Coastal Management’s (OCM) Coastal Flood Exposure Mapper. The purpose of the online mapping tool is to provide coastal managers, planners, and stakeholders a preliminary look at exposures to coastal flooding hazards. The Mapper is a screening-level tool that uses nationally consistent data sets and analyses. Data and maps provided can be used at several scales to help communities initiate resilience planning efforts. Currently the extent of this map service and the Coastal Flood Exposure Mapper is limited to U.S. coastal counties along the Gulf of Mexico and Atlantic Ocean. The purpose of this dataset is to provide boundaries and information for the county selection function within the mapping application. The dataset should be used only as a screening-level tool for management decisions. As with all remotely sensed data, all features should be verified with a site visit. The dataset is provided as is, without warranty to its performance, merchantable state, or fitness for any particular purpose. The entire risk associated with the results and performance of this dataset is assumed by the user. This dataset should be used strictly as a planning reference and not for navigation, permitting, or other legal purposes. For more information, visit the Coastal Flood Exposure Mapper (https://coast.noaa.gov/floodexposure). Send questions or comments to the NOAA Office for Coastal Management (coastal.info@noaa.gov). ",
+      "source": "NOAA",
+      "source_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer",
+      "sectors": "All Sectors",
+      "legend_url": CDN("https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1"),
+      "metadata_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"
+    },
+    {
+      "id": "freight_stations",
+      "folder": "Transportation",
+      "name": "Freight Stations",
+      "description": "Vector file of locations where freight traffic would be billed to. While shown as point data, it would encompass any nearby industries.",
+      "source": "NYS DOT",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1262",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1262&file=FreightStations.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dot.FreightStations.shp.xml"
+    },
+    {
       "id": "gap_lc",
       "folder": "Land Cover",
       "name": "GAP Land Cover Dataset",
@@ -232,7 +287,7 @@ var available_layers = [
     },
     {
       "id": "hospitals",
-      "folder": "Public Health",
+      "folder": "Critical Infrastructure",
       "name": "Hospitals",
       "description": "Hospitals in New York State, based on NYS Department of Health data.",
       "source": "New York State Department of Health",
@@ -309,6 +364,17 @@ var available_layers = [
       "download_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
       "metadata_url": "http:\/\/www.hazards.fema.gov\/gis\/nfhl\/rest\/services\/public\/NFHL\/MapServer",
     },
+    {
+      "id": "naturalgas_pipelines",
+      "folder": "Energy",
+      "name": "Natural Gas Pipelines",
+      "description": "Natural gas interstate and intrastate pipelines in the United States. Based on a variety of sources with varying scales and levels of accuracy and therefore accuracy is directly affected. This layer is not visible if zoomed in beyond 1:200,000 scale.  Collected by EIA from FERC and other external sources.",
+      "source": "US Energy Information Administration",
+      "source_url": "https://www.eia.gov/",
+      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "download_url": "https://www.eia.gov/maps/map_data/NaturalGas_InterIntrastate_Pipelines_US_EIA.zip",
+      "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
+    },
     /*{
       "id": "national_land_cover_dataset",
       "folder": "Land Cover",
@@ -364,6 +430,17 @@ var available_layers = [
       "sectors": "Agriculture,Ecosystems",
       "download_url": null,
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/maps\/services#Global Agricultural Lands",
+    },
+    {
+      "id": "power_plants",
+      "folder": "Energy",
+      "name": "Power Plants",
+      "description": "Operable electric generating plants in the Massachusetts by energy source. This includes all plants that are operating, on standby, or short- or long-term out of service with a combined nameplate capacity of 1 MW or more.",
+      "source": "US Energy Information Administration",
+      "source_url": "https://www.eia.gov/",
+      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "download_url": "https://www.eia.gov/maps/map_data/PowerPlants_US_EIA.zip",
+      "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
     },
     {
       "id": "public_environmental_justice_areas",
@@ -433,7 +510,7 @@ var available_layers = [
     },
     {
       "id": "remediation_sites",
-      "folder": "Miscellaneous",
+      "folder": "Critical Infrastructure",
       "name": "Remediation Sites",
       "description": "The points in this file represent only the existence of a site which has cleanup currently, or has undergone cleanup under the oversight of NYS DEC. This dataset includes a single point location for a subset of sites which are currently included in one of the Remedial Programs being overseen by the Division of Environmental Remediation.",
       "source": "NYS DEC",
@@ -465,6 +542,17 @@ var available_layers = [
       "legend_url": "./img\/sewer-overflows.png",
       "download_url": "https:\/\/data.ny.gov\/resource\/5d4q-pk7d.geojson",
       "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
+    },
+    {
+      "id": "spdes",
+      "folder": "Water Resources",
+      "name": "Waste Treatment Plants",
+      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
+      "source": "NYS DEC",
+      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
+      "sectors": "Water Resources,Public Health",
+      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
     },
     {
       "id": "sovi",
@@ -510,6 +598,29 @@ var available_layers = [
       "download_url": "https:\/\/wfs.gc.cuny.edu\/SRomalewski\/MTA_GISdata\/June2010_update\/nyctsubwayroutes_100627.zip"
     },
     {
+      "id": "superfund",
+      "folder": "Critical Infrastructure",
+      "name": "Superfund Sites",
+      "description": "The Agency for Toxic Substances and Disease Registry (ATSDR) Hazardous Waste Site Polygon Data with CIESIN Modifications, Version 2 is a database providing georeferenced data for 1,572 National Priorities List (NPL) Superfund sites",
+      "source": "Center for International Earth Science Information Network (CIESIN)",
+      "source_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2",
+      "sectors": "",
+      "legend_url": "http:\/\/sedac.ciesin.columbia.edu\/geoserver\/wms?request=GetLegendGraphic&LAYER=superfund:superfund-atsdr-hazardous-waste-site-ciesin-mod-v2&format=image\/png",
+      "download_url": null,
+      "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2"
+    },
+  {
+    "id": "tree_atlas",
+    "folder": "Ecosystems",
+    "name": "USFS Climate Change Atlas - Tree Species",
+    "description": "Modeled importance value (IV) of 20 Massachusetts native tree species for three climate conditions: 1) current climate (1961-1990 average); 2) future climate (2071-2100 average) with IPCC scenario B1 (significant conservation and reduction of CO2 emissions); and 3) future climate (2071-2100 average) with IPCC scenario A1FI (high emissions, no modification in current emission trends). Importance Value measures the dominance of a tree species in a forest, based on the relative frequency, density, and basal area of the species. For more information on the models and to explore more tree species and climate scenarios, visit the US Forest Service Climate Change Atlas: http://www.fs.fed.us/nrs/atlas/",
+    "source": "USDA Forest Service Northern Research Station",
+    "source_url": "http:\/\/www.fs.fed.us\/nrs\/atlas\/",
+    "sectors": ["Agriculture", "Forestry","Economy","Natural Resources/Habitats"],
+    "download_url": null,
+    "metadata_url": null,
+  },
+  {
       "id": "trout_streams",
       "folder": "Ecosystems",
       "name": "Designated Trout Streams",

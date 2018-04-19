@@ -914,6 +914,18 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 11px;
 }
 
+.freightStationCluster {
+  color: white;
+    font-weight: bold;
+    width: 34px;
+    height: 34px;
+    line-height: 15px;
+    background: transparent url(../img/icons/freight_stationCluster.png) 0 0 no-repeat scroll;
+    text-align: left;
+    text-indent: 5px;
+    font-size: 11px;
+}
+
 .alscCluster {
   color: black;
     font-weight: bold;

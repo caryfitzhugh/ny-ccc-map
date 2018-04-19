@@ -35,7 +35,7 @@ RendererTemplates.wms("aadt", {
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:aadt&format=image/png")}}/>
+        Daily Traffic (# vehicles)<br/><img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:aadt&format=image/png")}}/>
       </div>
   `,
   info_template: `
