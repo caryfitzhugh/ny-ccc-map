@@ -478,6 +478,28 @@ var available_layers = [
       "metadata_url": "http:\/\/catalog.data.gov\/dataset\/social-vulnerability-index-sovi-for-the-u-s-coastal-states-based-on-the-2010-census-tracts"
     },
     {
+      "id": "soils",
+      "folder": "Ecosystems",
+      "name": "Soils & Surficial Geology",
+      "description": "The topographic moisture potential for the conterminous United States was derived to help contribute substrate moisture regimes into the ecosystems model (Cress and others, 2009c). The method used to produce these topographic moisture potential classes was based on the derivation of ground moisture potential using a combination of computed topographic characteristics (CTI, slope, and aspect) and mapped National Wetland Inventory boundaries. This method does not use climate or soil attributes to calculate relative topographic moisture potential since these characteristics are incorporated into the ecosystem model though other input layers. All of the topographic data used for this assessment was derived from the USGS 30-meter NED including the National Compound Topographic Index.",
+      "source": "USGS Geosciences and Environmental Change Science Center",
+      "source_url": "https:\/\/catalog.data.gov\/dataset\/terrestrial-ecosystems-topographic-moisture-potential-of-the-conterminous-united-states",
+      "sectors": "Agriculture,Ecosystems",
+      "download_url": null,
+      "metadata_url": "https:\/\/catalog.data.gov\/dataset\/terrestrial-ecosystems-topographic-moisture-potential-of-the-conterminous-united-states",
+    },
+    {
+      "id": "spdes",
+      "folder": "Water Resources",
+      "name": "Waste Treatment Plants",
+      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
+      "source": "NYS DEC",
+      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
+      "sectors": "Water Resources,Public Health",
+      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
+    },
+    {
       "id": "subway_lines",
       "folder": "Transportation",
       "name": "NYC Subways",
@@ -498,17 +520,6 @@ var available_layers = [
       "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:trout_streams&format=image/png"),
       "download_url": null,
       "metadata_url": null
-    },
-    {
-      "id": "spdes",
-      "folder": "Water Resources",
-      "name": "Waste Treatment Plants",
-      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
-      "source": "NYS DEC",
-      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
-      "sectors": "Water Resources,Public Health",
-      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
-      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
     },
 ];
 
