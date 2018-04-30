@@ -366,7 +366,7 @@ var available_layers = [
     },
     {
       "id": "naturalgas_pipelines",
-      "folder": "Energy",
+      "folder": "Energy/Communications",
       "name": "Natural Gas Pipelines",
       "description": "Natural gas interstate and intrastate pipelines in the United States. Based on a variety of sources with varying scales and levels of accuracy and therefore accuracy is directly affected. This layer is not visible if zoomed in beyond 1:200,000 scale.  Collected by EIA from FERC and other external sources.",
       "source": "US Energy Information Administration",
@@ -375,17 +375,17 @@ var available_layers = [
       "download_url": "https://www.eia.gov/maps/map_data/NaturalGas_InterIntrastate_Pipelines_US_EIA.zip",
       "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
     },
-    /*{
-      "id": "national_land_cover_dataset",
+    {
+      "id": "nlcd",
       "folder": "Land Cover",
       "name": "National Land Cover Dataset",
-      "description": "National Land Cover Dataset (NLCD). NLCD 1992, NLCD 2001, NLCD 2006, and NLCD 2011 are National Land Cover Database classification schemes based primarily on Landsat data along with ancillary data sources, such as topography, census and agricultural statistics, soil characteristics, wetlands, and other land cover maps. NLCD 1992 is a 21-class land cover classification scheme that has been applied consistently across the conterminous U.S. at a spatial resolution of 30 meters.",
+      "description": "National Land Cover Dataset (NLCD). NLCD 2011 are National Land Cover Database classification schemes based primarily on Landsat data along with ancillary data sources, such as topography, census and agricultural statistics, soil characteristics, wetlands, and other land cover maps. NLCD 1992 is a 21-class land cover classification scheme that has been applied consistently across the conterminous U.S. at a spatial resolution of 30 meters.",
       "source": "USGS",
       "source_url": "http:\/\/www.mrlc.gov",
       "sectors": "Agriculture,Ecosystems,Buildings and Transportation",
-      "download_url": null,
-      "metadata_url": "http:\/\/catalog.data.gov\/dataset\/usgs-land-cover-nlcd-overlay-map-service-from-the-national-map-national-geospatial-data-asset-#sec-dates"
-    },*/
+      "download_url": "https://www.mrlc.gov/nlcd11_data.php",
+      "metadata_url": "https://www.mrlc.gov/index.php"
+    },
     {
       "id": "noaa_sea_level_rise",
       "folder": "Coastal Zones",
@@ -433,7 +433,7 @@ var available_layers = [
     },
     {
       "id": "power_plants",
-      "folder": "Energy",
+      "folder": "Energy/Communications",
       "name": "Power Plants",
       "description": "Operable electric generating plants in the Massachusetts by energy source. This includes all plants that are operating, on standby, or short- or long-term out of service with a combined nameplate capacity of 1 MW or more.",
       "source": "US Energy Information Administration",
@@ -467,7 +467,7 @@ var available_layers = [
     /*
     {
       "id": "power_stations",
-      "folder": "Energy",
+      "folder": "Energy/Communications",
       "name": "Power Plants",
       "description": "Power plants, by fuel type.",
       "source_url": "http://www.eia.gov/state/?sid=NY",
@@ -489,24 +489,26 @@ var available_layers = [
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.primary.aquifers.shp.xml",
     },
     {
-      "id": "rare_plants_and_animals",
-      "folder": "Ecosystems",
-      "name": "Rare Plants and Animals",
-      "description": "NHP Predicted Future/Current/Delta Species Richness - Species richness of rare species (# species) within each 30m grid cell within NY State for rare species tracked by the NY Natural Heritage Program. Data represent total species or broken down by taxonomic or regulatory groups, based on predicted suitable habitat occurring under current or future climatic and landuse conditions using EDM models developed by NYNHP. Changes in species richness represent the difference between future and current predicted richness. These data represent predicted species richness assuming species precense within predicted suitable habitat. These data do not represent actual species richness based on known occurances.",
-      "source": "'Natural Resource Navigator / NY Climate Adaptation",
-      "source_url": "http://maps.naturalresourcenavigator.org/",
-      "metadata_url": "",
-      "sectors": "Ecosystems",
+      "id": "railroad_junctions",
+      "folder": "Transportation",
+      "name": "Railroad Junctions",
+      "description": "Point shapefile of railroad junctions and locations. ",
+      "source": "NYS DOT",
+      "source_url": "https:\/\/www.dot.ny.gov\/index",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1102&file=Rail_Place_Locations.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1102"
     },
     {
-      "id": "regulated_wells",
-      "folder": "Energy",
-      "name": "Regulated Wells",
-      "description": "This dataset contains locations of regulated wells. The Division of Mineral Resources maintains information and data on over 40,000 wells, categorized under New York State Article 23 Regulated wells. The dataset reflects the status of the wells as of the previous business day. The location data has not been field verified but is expected to be within 100 meters of the actual well location. The data should not be used for precise determination of distances to buildings, property boundaries or other features. This is a public dataset. Wells currently afforded confidential status are plotted but confidential data is redacted. ",
-      "source": "GIS NY State",
-      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1272",
-      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.dmn.oil.gas.well.forportal_prod.xml",
-      "sectors": "Energy"
+      "id": "railroad_passenger_stations",
+      "folder": "Transportation",
+      "name": "Railroad Stations",
+      "description": "Point shapefile of railroad passenger stations.",
+      "source": "NYS DOT",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1263",
+      "sectors": "Transportation",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1263&file=PassengerStations.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dot.PassengerStations.shp.xml"
     },
     {
       "id": "railroads",
@@ -518,6 +520,26 @@ var available_layers = [
       "sectors": "Transportation",
       "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=904&file=NYSDOTRailroad_May2013.zip",
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/dot.Railroad.shp.xml"
+    },
+    {
+      "id": "rare_plants_and_animals",
+      "folder": "Ecosystems",
+      "name": "Rare Plants and Animals",
+      "description": "NHP Predicted Future/Current/Delta Species Richness - Species richness of rare species (# species) within each 30m grid cell within NY State for rare species tracked by the NY Natural Heritage Program. Data represent total species or broken down by taxonomic or regulatory groups, based on predicted suitable habitat occurring under current or future climatic and landuse conditions using EDM models developed by NYNHP. Changes in species richness represent the difference between future and current predicted richness. These data represent predicted species richness assuming species precense within predicted suitable habitat. These data do not represent actual species richness based on known occurances.",
+      "source": "'Natural Resource Navigator / NY Climate Adaptation",
+      "source_url": "http://maps.naturalresourcenavigator.org/",
+      "metadata_url": "",
+      "sectors": "Ecosystems",
+    },
+    {
+      "id": "regulated_wells",
+      "folder": "Energy/Communications",
+      "name": "Regulated Wells",
+      "description": "This dataset contains locations of regulated wells. The Division of Mineral Resources maintains information and data on over 40,000 wells, categorized under New York State Article 23 Regulated wells. The dataset reflects the status of the wells as of the previous business day. The location data has not been field verified but is expected to be within 100 meters of the actual well location. The data should not be used for precise determination of distances to buildings, property boundaries or other features. This is a public dataset. Wells currently afforded confidential status are plotted but confidential data is redacted. ",
+      "source": "GIS NY State",
+      "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1272",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.dmn.oil.gas.well.forportal_prod.xml",
+      "sectors": "Energy"
     },
     {
       "id": "remediation_sites",

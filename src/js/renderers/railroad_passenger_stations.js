@@ -1,9 +1,9 @@
 (() => {
   let _url = GEOSERVER + "/ny/ows"
 
-  let _layer = "ny:freight_stations";
+  let _layer = "ny:rail_passenger_stations";
 
-  RendererTemplates.geojson_points('freight_stations',  {
+  RendererTemplates.geojson_points('railroad_passenger_stations',  {
     parameters: {
       opacity: false,
       no_sorting: true
@@ -29,7 +29,7 @@
         return new L.DivIcon({
           pane: pane,
           html: cluster.getChildCount(),
-          className: 'freightStationCluster',
+          className: 'railPassengerStationCluster',
           iconSize: new L.Point(35,35)
         });
       }
@@ -41,7 +41,7 @@
             icon: L.icon({
                 iconAnchor: [12, 28],
                 iconSize: [21, 24],
-                iconUrl: './img/icons/freight_station.png',
+                iconUrl: './img/icons/rail_passenger_station.png',
                 opacity: 0,
                 popupAnchor: [0, -25]
             }),
@@ -50,18 +50,21 @@
     },
     popupContents: function (feature) {
         return `
-          <strong>${feature.properties.city} Freight Station</strong>
+          <strong>${feature.properties.name} Station</strong>
           <br/>
-          Railroad: ${feature.properties.railroad}
+          Use:${feature.properties.use}
+          <br/>
+          Operator:${feature.properties.operator}
+          <br/>
+          Line:${feature.properties.line_name}
           <br/>
           ${Renderers.utils.zoom_to_location_link(feature.geometry)}
       `;
     },
-
     legend_template: `
       <div class='detail-block'>
         <label>Legend</label>
-        <img src="./img/icons/freight_station.png"/> Railroad Freight Stations
+        <img src="./img/icons/rail_passenger_station.png"/> Railroad Junctions
       </div>
       <div class='detail-block legend-url-text'>
         <span class='legend-text'>
