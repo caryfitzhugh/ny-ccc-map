@@ -1,4 +1,4 @@
-RendererTemplates.ma_projected_climate_data('projected_max_temp', {
+RendererTemplates.ny_projected_climate_data('projected_max_temp', {
   title: "Maximum Temperature",
   legend: "Projected change in maximum temperature (&deg;F)",
   legend_precision: 1,

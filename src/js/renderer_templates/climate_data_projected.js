@@ -1,4 +1,4 @@
-const findDataForMAProjectedData = (layer_data, area, season, year) => {
+const findDataForNYProjectedData = (layer_data, area, season, year) => {
   let data_value = {};
   _.each(layer_data.features, (feature) => {
     if (feature.properties.name === area) {
@@ -24,8 +24,8 @@ const findDataForMAProjectedData = (layer_data, area, season, year) => {
   return data_value;
 };
 
-RendererTemplates.ma_projected_climate_data = function (layer_id, opts) {
-  RendererTemplates.ma_climate_data(layer_id, {
+RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
+  RendererTemplates.ny_climate_data(layer_id, {
 
     clone_layer_name: function(active_layer) {
       let p = active_layer.parameters.options;
@@ -150,11 +150,11 @@ RendererTemplates.ma_projected_climate_data = function (layer_id, opts) {
     },
     onEachGeometry: (layer_data, active_layer, feature, layer) => {
       let p = active_layer.parameters.options;
-      //let ma_trans = RendererTemplates.ma_climate_data_translation;
-      let colorize = RendererTemplates.ma_climate_data_colorize;
+      //let ma_trans = RendererTemplates.ny_climate_data_translation;
+      let colorize = RendererTemplates.ny_climate_data_colorize;
 
       try {
-        let location_data = findDataForMAProjectedData(layer_data,
+        let location_data = findDataForNYProjectedData(layer_data,
                                                feature.properties.name,
                                                p.season,
                                                active_layer.parameters.years[p.year_indx]
@@ -193,10 +193,12 @@ RendererTemplates.ma_projected_climate_data = function (layer_id, opts) {
       },
       all_seasons: {
         "yly": "Annual",
+        /*
         "fall": "Fall",
         "winter": "Winter",
         "spring": "Spring",
         "summer": "Summer",
+        */
       },
       years: [],
       options: {

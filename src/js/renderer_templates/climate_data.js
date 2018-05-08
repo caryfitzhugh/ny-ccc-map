@@ -1,6 +1,6 @@
-RendererTemplates.ma_climate_data_cache = {};
+RendererTemplates.ny_climate_data_cache = {};
 
-RendererTemplates.ma_climate_data_colorize = (metrics_range, value, colors, opts) => {
+RendererTemplates.ny_climate_data_colorize = (metrics_range, value, colors, opts) => {
   // Start from left.
   // Find the first quantile which our value is LESS than.
   //    if it's < [0], it returns immediately.
@@ -21,7 +21,7 @@ RendererTemplates.ma_climate_data_colorize = (metrics_range, value, colors, opts
   return colors[index];
 };
 
-RendererTemplates.ma_climate_data_translation = {
+RendererTemplates.ny_climate_data_translation = {
   "Massachusetts": "MA",
   "Barnstable County, MA": "Barnstable",
   "Berkshire County, MA": "Berkshire",
@@ -67,7 +67,7 @@ RendererTemplates.ma_climate_data_translation = {
   "Westfield Basin":"Westfield",
 };
 
-RendererTemplates.ma_climate_data = function (layer_id, opts) {
+RendererTemplates.ny_climate_data = function (layer_id, opts) {
   let geometries = {
     //"county": "https://repository.nescaum-ccsc-dataservices.com/geofocuses/bulk_geojson/?ids=1545%2C%201724%2C%201646%2C%201644%2C%201596%2C%201554%2C%201645%2C%201622%2C%201676%2C%201606%2C%201708%2C%201555%2C%201725%2C%201730",
     "county": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:county&maxFeatures=1000&outputFormat=application%2Fjson",
@@ -90,8 +90,8 @@ RendererTemplates.ma_climate_data = function (layer_id, opts) {
 
   let load_data_url = (durl) =>  {
     return new Promise( (win, lose) => {
-      if (RendererTemplates.ma_climate_data_cache[durl]) {
-        win(RendererTemplates.ma_climate_data_cache[durl])
+      if (RendererTemplates.ny_climate_data_cache[durl]) {
+        win(RendererTemplates.ny_climate_data_cache[durl])
       } else  {
         if (!loading[durl]) {
           loading[durl] = true;
@@ -100,7 +100,7 @@ RendererTemplates.ma_climate_data = function (layer_id, opts) {
             dataType: "json",
             url: durl,
             success: function (json) {
-              RendererTemplates.ma_climate_data_cache[durl] = json;
+              RendererTemplates.ny_climate_data_cache[durl] = json;
               win(json);
             },
             error:   function (err) {
@@ -114,8 +114,8 @@ RendererTemplates.ma_climate_data = function (layer_id, opts) {
 
   let load_geometry_url = (durl) =>  {
     return new Promise( (win, lose) => {
-      if (RendererTemplates.ma_climate_data_cache[durl]) {
-        win(_.cloneDeep(RendererTemplates.ma_climate_data_cache[durl]));
+      if (RendererTemplates.ny_climate_data_cache[durl]) {
+        win(_.cloneDeep(RendererTemplates.ny_climate_data_cache[durl]));
       } else  {
         if (!loading[durl]) {
           loading[durl] = true;
@@ -124,7 +124,7 @@ RendererTemplates.ma_climate_data = function (layer_id, opts) {
             dataType: "json",
             url: durl,
             success: function (json) {
-              RendererTemplates.ma_climate_data_cache[durl] = json;
+              RendererTemplates.ny_climate_data_cache[durl] = json;
               win(_.cloneDeep(json));
             },
             error:   function (err) {
