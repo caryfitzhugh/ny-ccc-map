@@ -4,12 +4,12 @@ const findDataForNYProjectedData = (layer_data, area, season, year) => {
     if (feature.properties.name === area) {
       _.each(feature.properties.data, (data) => {
         if (data.season === season) {
-          data_value = _.find(data.values, (value) => {
+          found_data_value = _.find(data.values, (value) => {
             return value.year === year;
           });
-          if (data_value) {
+          if (found_data_value) {
             data_value = {
-              value: data_value,
+              value: found_data_value,
               season: season,
               year: year,
               area: area,
@@ -65,12 +65,14 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                   <td>{{u.capitalize(season)}}</td>
                   <td>{{baseline}}</td>
                   {{#u.sort_by(values, 'year')}}
-                    <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>{{{u.add_sign(delta_low)}}}</td>
+                    <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
+                    {{{u.add_sign(delta_low)}}}</td>
                   {{/sort_by(values, 'year')}}
                 </tr>
               {{/u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
             </tbody>
           </table>
+        </div>
     `,
     legend_template: `
       <div class='detail-block show-confidence'>
@@ -89,6 +91,14 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         {{parameters.years[parameters.options.year_indx]}}s
       </div>
       <div class='detail-block show-confidence'>
+        <label decorator='tooltip:Choose a Scenario'> Scenario: </label>
+        <select value='{{parameters.options.scenario}}'>
+          {{#u.to_sorted_values_from_hash(parameters.all_scenarios)}}
+            <option value='{{key}}'>{{value}}</option>
+          {{/u.to_sorted_values_from_hash(parameters.all_scenarios)}}
+        </select>
+      </div>
+      <div class='detail-block show-confidence'>
         <label decorator='tooltip:Choose a Season'> Season: </label>
         <select value='{{parameters.options.season}}'>
           {{#u.to_sorted_values_from_hash(parameters.all_seasons)}}
@@ -97,7 +107,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         </select>
       </div>
 
-      {{#{metrics: parameters.metrics_ranges[parameters.options.season],
+      {{#{metrics: parameters.metrics_ranges[parameters.options.season][parameters.options.scenario],
           legend: '` + opts.legend + `',
           inverted: '` + opts.invert_scale + `',
           quantiled: true,
@@ -127,9 +137,10 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       let data_values = {};
       _.each(layer_data.features, (feature) => {
         _.each(feature.properties.data, (data) => {
-          data_values[data.season] = data_values[data.season] || [];
+          data_values[data.season] = data_values[data.season] || {'high': [], 'low': []};
           _.each(data.values, (value) => {
-            data_values[data.season].push(value.delta_low);
+            data_values[data.season]['low'].push(value.delta_low);
+            data_values[data.season]['high'].push(value.delta_high);
           });
         });
       });
@@ -140,30 +151,38 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       }
 
       _.each(active_layer.parameters.all_seasons, (name, season) => {
-        let scale = d3.scaleQuantile().domain(data_values[season]).range(color_range).quantiles();
+        let scale_h = d3.scaleQuantile().domain(data_values[season]['high']).range(color_range).quantiles();
+        let scale_l = d3.scaleQuantile().domain(data_values[season]['low']).range(color_range).quantiles();
 
         if (opts.invert_scale) {
-          scale.reverse();
+          scale_h.reverse();
+          scale_l.reverse();
         }
-        active_layer.parameters.metrics_ranges[season] = scale;
+
+        active_layer.parameters.metrics_ranges[season] = {
+          'low': scale_l,
+          'high': scale_h
+        };
       });
     },
     onEachGeometry: (layer_data, active_layer, feature, layer) => {
       let p = active_layer.parameters.options;
-      //let ma_trans = RendererTemplates.ny_climate_data_translation;
+
       let colorize = RendererTemplates.ny_climate_data_colorize;
 
       try {
         let location_data = findDataForNYProjectedData(layer_data,
                                                feature.properties.name,
                                                p.season,
-                                               active_layer.parameters.years[p.year_indx]
+                                               active_layer.parameters.years[p.year_indx],
                                               );
 
         feature.properties.location_data = location_data;
 
-        let color = colorize(active_layer.parameters.metrics_ranges[p.season],
-                             location_data.value.delta_low,
+        let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
+
+        let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
+                             value,
                              active_layer.parameters.color_range,
                              opts);
 
@@ -184,6 +203,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       opacity: 100,
       color_range: opts.color_range,
       metrics_ranges: {},
+      all_scenarios: {"high": "High", "low": "Low"},
       all_summaries: {
         "county": "County",
         "state": "State",
@@ -205,6 +225,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         year_indx: 0,
         season: 'yly',
         summary: 'county',
+        scenario: 'high'
       },
     }
   });
