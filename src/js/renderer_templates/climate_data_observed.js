@@ -1,27 +1,5 @@
-const findDataForNYObservedData = (layer_data, area, season, year) => {
-  let data_value = {};
-  _.each(layer_data.features, (feature) => {
-    if (feature.properties.name === area) {
-      _.each(feature.properties.data, (data) => {
-        if (data.season === season) {
-          found_data_value = _.find(data.values, (value) => {
-            return value.year === year;
-          });
-          if (found_data_value) {
-            data_value = {
-              value: found_data_value,
-              season: season,
-              year: year,
-              area: area,
-              season_data: data,
-              area_data: feature
-            }
-          }
-        }
-      });
-    }
-  })
-  return data_value;
+const findDataForNYObservedData = (layer_data, geom_feature, summary, season, year) => {
+  return RendererTemplates.ny_match_geometry_and_data(layer_data, geom_feature, summary, season, year);
 };
 
 RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
@@ -172,10 +150,11 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
 
       try {
         let location_data = findDataForNYObservedData(layer_data,
-                                               feature.properties.name,
-                                               p.season,
-                                               active_layer.parameters.years[p.year_indx],
-                                              );
+                                                      feature,
+                                                      p.summary,
+                                                      p.season,
+                                                      active_layer.parameters.years[p.year_indx]
+                                                      );
 
         feature.properties.location_data = location_data;
 

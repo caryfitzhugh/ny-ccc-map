@@ -1,5 +1,55 @@
 RendererTemplates.ny_climate_data_cache = {};
 
+RendererTemplates.ny_climate_data_translation = {
+  "county": "properties.name",
+  "basin":  {
+    "02050101": "Upper Susquehanna"
+  }
+};
+
+RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summary, season, year) => {
+  let is_same_geometry = (ldf) => {
+      if (summary == 'county') {
+         return ldf.properties.name == geom_feature.properties.name;
+      } else if (summary == 'basin') {
+        console.log(ldf.properties.name, geom_feature.id);
+        if ( ldf.properties.name == RendererTemplates.ny_climate_data_translation[geom_feature.id]) {
+          console.log("FOUND");
+          debugger;
+        }
+        return ldf.properties.name == RendererTemplates.ny_climate_data_translation[geom_feature.id]
+      } else if (summary == 'state') {
+      } else {
+        console.log("matching", ldf.properties, geom_feature.properties);
+      }
+  };
+
+  let data_value = {};
+
+  _.each(layer_data.features, (layer_data_feature) => {
+    if (is_same_geometry(layer_data_feature)) {
+      _.each(layer_data_feature.properties.data, (data) => {
+        if (data.season === season) {
+          found_data_value = _.find(data.values, (value) => {
+            return value.year === year;
+          });
+          if (found_data_value) {
+            data_value = {
+              value: found_data_value,
+              season: season,
+              year: year,
+              season_data: data,
+              area_data: geom_feature
+            }
+          }
+        }
+      });
+    }
+  })
+
+  return data_value;
+};
+
 RendererTemplates.ny_climate_data_colorize = (metrics_range, value, colors, opts) => {
   // Start from left.
   // Find the first quantile which our value is LESS than.
@@ -21,16 +71,7 @@ RendererTemplates.ny_climate_data_colorize = (metrics_range, value, colors, opts
   return colors[index];
 };
 
-RendererTemplates.ny_climate_data_translation = {
-};
-
 RendererTemplates.ny_climate_data = function (layer_id, opts) {
-  let geometries = {
-    "county": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:county&maxFeatures=1000&outputFormat=application%2Fjson",
-    "state": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ma/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ma:state_boundary&maxFeatures=1000&outputFormat=application%2Fjson",
-    "basin": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:huc8&maxFeatures=1000&outputFormat=application%2Fjson"
-  }
-
   // This takes an active layer and returns a hash of uniquely identifying data (including parameters)
   // This relates a set of params (sliders/toggles/etc) with a leaflet layer.
   // (a_l.parameters.year == 2044)
@@ -65,27 +106,12 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
     });
   };
 
-  let load_geometry_url = (durl) =>  {
+  let load_geometry_url = (name) =>  {
     return new Promise( (win, lose) => {
-      if (RendererTemplates.ny_climate_data_cache[durl]) {
-        win(_.cloneDeep(RendererTemplates.ny_climate_data_cache[durl]));
-      } else  {
-        if (!loading[durl]) {
-          loading[durl] = true;
-          $.ajax({
-            cache: true,
-            dataType: "json",
-            url: durl,
-            success: function (json) {
-              RendererTemplates.ny_climate_data_cache[durl] = json;
-              win(_.cloneDeep(json));
-            },
-            error:   function (err) {
-              lose();
-            }
-          });
-        }
-      }
+      GeometryLoader.load(name, (err, data) => {
+        if (err) { lose(err); }
+        else { win(data); }
+      });
     });
   };
 
@@ -123,7 +149,7 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
           get_opts(active_layer),
           () => {
             return new Promise((win, lose) => {
-              load_geometry_url(geometries[active_layer.parameters.options.summary])
+              load_geometry_url(active_layer.parameters.options.summary)
               .then((geom_data) => {
                 var layer = new L.GeoJSON(geom_data, {
                   pointToLayer: opts.pointToLayer,

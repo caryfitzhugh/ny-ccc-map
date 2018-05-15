@@ -1,26 +1,8 @@
-const findDataForNYProjectedData = (layer_data, area, season, year) => {
-  let data_value = {};
-  _.each(layer_data.features, (feature) => {
-    if (feature.properties.name === area) {
-      _.each(feature.properties.data, (data) => {
-        if (data.season === season) {
-          found_data_value = _.find(data.values, (value) => {
-            return value.year === year;
-          });
-          if (found_data_value) {
-            data_value = {
-              value: found_data_value,
-              season: season,
-              year: year,
-              area: area,
-              season_data: data,
-              area_data: feature
-            }
-          }
-        }
-      });
-    }
-  })
+const findDataForNYProjectedData = (layer_data, geom_feature, summary, season, year, scenario) => {
+  let data_value = RendererTemplates.ny_match_geometry_and_data(layer_data, geom_feature, summary, season, year);
+  if (!_.isEmpty(data_value)) {
+    data_value.scenario = scenario;
+  }
   return data_value;
 };
 
@@ -48,11 +30,12 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                 <th> </th>
                 <th></th>
                 <th class='deltas' style='text-align: center;'
-                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons)}}'>
+                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'>
                       ` + opts.legend + ` </th>
               </tr>
               <tr>
                 <th> Season </th>
+                <th> Scenario </th>
                 <th> Baseline (` + opts.legend_units + `)</th>
                 {{#active_layer.parameters.years}}
                   <th> {{.}}s</th>
@@ -62,10 +45,20 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
             <tbody>
               {{#u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
                 <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
-                  <td>{{u.capitalize(season)}}</td>
+                  <td rowspan='2'>{{u.capitalize(season)}}</td>
+                  <td> High </td>
                   <td>{{baseline}}</td>
                   {{#u.sort_by(values, 'year')}}
-                    <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
+                    <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year && "high" == geojson.location_data.scenario) ? 'active-year' : '')}}'>
+                    {{{u.add_sign(delta_high)}}}</td>
+                  {{/sort_by(values, 'year')}}
+                </tr>
+                <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
+                  <td> Low </td>
+                  <td>{{baseline}}</td>
+                  {{#u.sort_by(values, 'year')}}
+                    <td decorator="tooltip: Likely Range: {{range}} "
+                        class='{{((year === geojson.location_data.year && "low" == geojson.location_data.scenario) ? 'active-year' : '')}}'>
                     {{{u.add_sign(delta_low)}}}</td>
                   {{/sort_by(values, 'year')}}
                 </tr>
@@ -172,11 +165,16 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
 
       try {
         let location_data = findDataForNYProjectedData(layer_data,
-                                               feature.properties.name,
+                                               feature,
+                                               p.summary,
                                                p.season,
                                                active_layer.parameters.years[p.year_indx],
+                                               p.scenario
                                               );
-
+        if (_.isEmpty(location_data)) {
+          console.error("Did not find " + (feature.properties.name || feature.id));
+          console.error("In: ", layer_data, p);
+        }
         feature.properties.location_data = location_data;
 
         let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
@@ -190,6 +188,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       } catch( e) {
         feature.properties.location_data = null;
 
+        console.error(e);
         console.log('failed to find value for ', p.metric,
                     "Feature Name:", feature.properties.name,
                     feature.properties.name,
