@@ -63,7 +63,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
               {{#u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
                 <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
                   <td>{{u.capitalize(season)}}</td>
-                  <td>{{baseline}}</td>
                   {{#u.sort_by(values, 'year')}}
                     <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
                     {{{data_value}}}</td>
@@ -212,7 +211,8 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         //"6km": "6km Bounding Box",
       },
       all_seasons: {
-        "yly": "Annual",
+        "Annual": "Annual",
+        "Jan": "January"
         /*
         "fall": "Fall",
         "winter": "Winter",
@@ -223,7 +223,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
       years: [],
       options: {
         year_indx: 0,
-        season: 'yly',
+        season: 'Annual',
         summary: 'county',
         scenario: 'high'
       },
