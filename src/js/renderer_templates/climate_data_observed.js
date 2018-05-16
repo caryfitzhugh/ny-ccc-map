@@ -68,14 +68,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         {{parameters.years[parameters.options.year_indx]}}
       </div>
       <div class='detail-block show-confidence'>
-        <label decorator='tooltip:Choose a Scenario'> Scenario: </label>
-        <select value='{{parameters.options.scenario}}'>
-          {{#u.to_sorted_values_from_hash(parameters.all_scenarios)}}
-            <option value='{{key}}'>{{value}}</option>
-          {{/u.to_sorted_values_from_hash(parameters.all_scenarios)}}
-        </select>
-      </div>
-      <div class='detail-block show-confidence'>
         <label decorator='tooltip:Choose a Season'> Season: </label>
         <select value='{{parameters.options.season}}'>
           {{#u.to_sorted_values_from_hash(parameters.all_seasons)}}
@@ -84,7 +76,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         </select>
       </div>
 
-      {{#{metrics: parameters.metrics_ranges[parameters.options.season][parameters.options.scenario],
+      {{#{metrics: parameters.metrics_ranges[parameters.options.season],
           legend: '` + opts.legend + `',
           inverted: '` + opts.invert_scale + `',
           quantiled: true,
@@ -114,10 +106,9 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
       let data_values = {};
       _.each(layer_data.features, (feature) => {
         _.each(feature.properties.data, (data) => {
-          data_values[data.season] = data_values[data.season] || {'high': [], 'low': []};
+          data_values[data.season] = data_values[data.season] || [];
           _.each(data.values, (value) => {
-            data_values[data.season]['low'].push(value.data_value);
-            data_values[data.season]['high'].push(value.data_value);
+            data_values[data.season].push(value.data_value);
           });
         });
       });
@@ -128,18 +119,13 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
       }
 
       _.each(active_layer.parameters.all_seasons, (name, season) => {
-        let scale_h = d3.scaleQuantile().domain(data_values[season]['high']).range(color_range).quantiles();
-        let scale_l = d3.scaleQuantile().domain(data_values[season]['low']).range(color_range).quantiles();
+        let scale = d3.scaleQuantile().domain(data_values[season]).range(color_range).quantiles();
 
         if (opts.invert_scale) {
-          scale_h.reverse();
-          scale_l.reverse();
+          scale.reverse();
         }
 
-        active_layer.parameters.metrics_ranges[season] = {
-          'low': scale_l,
-          'high': scale_h
-        };
+        active_layer.parameters.metrics_ranges[season] = scale;
       });
     },
     onEachGeometry: (layer_data, active_layer, feature, layer) => {
@@ -154,17 +140,21 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                                                       p.season,
                                                       active_layer.parameters.years[p.year_indx]
                                                       );
+        if (_.isEmpty(loction_data)) {
+            console.error("Did not find " + (feature.properties.name || feature.id));
+            console.error("In: ", layer_data, p);
+        } else {
+            feature.properties.location_data = location_data;
 
-        feature.properties.location_data = location_data;
+            let value = location_data.value;
 
-        let value = p.scenario === 'high' ? location_data.value.data_value : location_data.value.data_value;
+            let color = colorize(active_layer.parameters.metrics_ranges[p.season],
+                                value,
+                                active_layer.parameters.color_range,
+                                opts);
 
-        let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
-                             value,
-                             active_layer.parameters.color_range,
-                             opts);
-
-        layer.setStyle({fillColor: color, color: color});
+            layer.setStyle({fillColor: color, color: color});
+        }
       } catch( e) {
         feature.properties.location_data = null;
 
@@ -173,7 +163,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                     feature.properties.name,
                     "Available Names:", Object.keys(layer_data));
         let rgb = `transparent`;
-        layer.setStyle({fillColor: rgb, color: rgb});
+        layer.setStyle({color: 'transparent', 'weight': 0, fillColor: rgb, color: rgb});
       }
     },
 
@@ -181,7 +171,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
       opacity: 100,
       color_range: opts.color_range,
       metrics_ranges: {},
-      all_scenarios: {"high": "High", "low": "Low"},
       all_summaries: {
         "county": "County",
         "state": "State",
@@ -204,7 +193,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         year_indx: 0,
         season: 'Annual',
         summary: 'county',
-        scenario: 'high'
       },
     }
   });

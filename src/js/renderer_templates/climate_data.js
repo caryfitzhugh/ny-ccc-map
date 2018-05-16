@@ -1,24 +1,13 @@
 RendererTemplates.ny_climate_data_cache = {};
 
-RendererTemplates.ny_climate_data_translation = {
-  "county": "properties.name",
-  "basin":  {
-    "02050101": "Upper Susquehanna"
-  }
-};
-
 RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summary, season, year) => {
   let is_same_geometry = (ldf) => {
       if (summary == 'county') {
          return ldf.properties.name == geom_feature.properties.name;
       } else if (summary == 'basin') {
-        console.log(ldf.properties.name, geom_feature.id);
-        if ( ldf.properties.name == RendererTemplates.ny_climate_data_translation[geom_feature.id]) {
-          console.log("FOUND");
-          debugger;
-        }
-        return ldf.properties.name == RendererTemplates.ny_climate_data_translation[geom_feature.id]
+        return ldf.properties.uid === parseInt(geom_feature.id, 10)
       } else if (summary == 'state') {
+        debugger
       } else {
         console.log("matching", ldf.properties, geom_feature.properties);
       }

@@ -172,19 +172,21 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                                                p.scenario
                                               );
         if (_.isEmpty(location_data)) {
-          console.error("Did not find " + (feature.properties.name || feature.id));
-          console.error("In: ", layer_data, p);
+            console.error("Did not find " + (feature.properties.name || feature.id));
+            console.error("In: ", layer_data, p);
+            layer.setStyle({fillColor: "blue", color: "blue"});
+        } else {
+            feature.properties.location_data = location_data;
+
+            let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
+
+            let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
+                                value,
+                                active_layer.parameters.color_range,
+                                opts);
+
+            layer.setStyle({fillColor: color, color: color});
         }
-        feature.properties.location_data = location_data;
-
-        let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
-
-        let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
-                             value,
-                             active_layer.parameters.color_range,
-                             opts);
-
-        layer.setStyle({fillColor: color, color: color});
       } catch( e) {
         feature.properties.location_data = null;
 
