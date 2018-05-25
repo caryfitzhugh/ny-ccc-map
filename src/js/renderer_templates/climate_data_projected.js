@@ -213,14 +213,11 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         //"6km": "6km Bounding Box",
       },
       all_seasons: {
-        "Annual": "Annual",
-        "Jan": "January"
-        /*
+        "annual": "Annual",
         "fall": "Fall",
         "winter": "Winter",
         "spring": "Spring",
         "summer": "Summer",
-        */
       },
       years: [],
       options: {
