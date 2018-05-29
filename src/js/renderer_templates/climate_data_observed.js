@@ -184,12 +184,12 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         "winter": "Winter",
         "spring": "Spring",
         "summer": "Summer",
-        
+
       },
       years: [],
       options: {
         year_indx: 0,
-        season: 'Annual',
+        season: 'annual',
         summary: 'county',
       },
     }

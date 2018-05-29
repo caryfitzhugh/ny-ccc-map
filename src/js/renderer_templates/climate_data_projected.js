@@ -222,7 +222,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       years: [],
       options: {
         year_indx: 0,
-        season: 'Annual',
+        season: 'annual',
         summary: 'county',
         scenario: 'high'
       },
