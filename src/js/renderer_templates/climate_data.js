@@ -9,7 +9,7 @@ RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summar
       } else if (summary == 'state') {
         return true; //debugger;
       } else {
-        console.log("matching", ldf.properties, geom_feature.properties);
+        console.error("matching", summary, ldf.properties, geom_feature.properties);
       }
   };
 
@@ -117,7 +117,6 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
         let match = leafletPip.pointInLayer(evt.latlng, active_leaflet_layer, true);
         if (match[0]) {
           return _.cloneDeep(match[0].feature.properties);
-
         } else {
           return null;
         }
@@ -168,15 +167,27 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
               "weight": '1',
               "color": "black",
             };
+            let hidden_style = {
+              "weight": '0',
+              "color": "transparent",
+              'fillColor': "transparent",
+              'opacity': 0,
+              'fillOpacity': 0
+            };
+
             _.each(layers, function (layer) {
               // Hide the ones which aren't active
               if (active_leaflet_layer && active_leaflet_layer._leaflet_id === layer._leaflet_id) {
                 layer.setStyle((feature) => {
-                  return _.merge({}, base_style, {opacity: opacity, fillOpacity: Math.max(0, opacity - 0.1)});
+                  if (feature.properties.location_data) {
+                    return _.merge({}, base_style, {opacity: opacity, fillOpacity: Math.max(0, opacity - 0.1)});
+                  } else {
+                    return _.merge({}, hidden_style, {fillColor: "rgba(0,0,0,0.1)", color: "rgba(0,0,0,0.1)", opacity: opacity, fillOpacity: Math.max(0, opacity - 0.1)});
+                  }
                 });
               } else {
                 layer.setStyle((feature) => {
-                  return _.merge({}, base_style, {opacity: 0, fillOpacity: 0})
+                  return hidden_style;
                 });
               }
             });

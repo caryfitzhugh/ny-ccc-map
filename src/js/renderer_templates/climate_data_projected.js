@@ -19,53 +19,57 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
           <label> {{{name}}}</label>
         </div>
         <div class='col-xs-10'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th style='text-align: center;'
-                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'> {{geojson.name}} {{geojson.geomtype}}
-    </th>
-              </tr>
-              <tr>
-                <th> </th>
-                <th></th>
-                <th class='deltas' style='text-align: center;'
-                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'>
-                      ` + opts.legend + ` </th>
-              </tr>
-              <tr>
-                <th> Season </th>
-                <th> Scenario </th>
-                <th> Baseline (` + opts.legend_units + `)</th>
-                {{#active_layer.parameters.years}}
-                  <th> {{.}}s</th>
-                {{/active_layer.parameters.years}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
-                <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("high" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
-                  <td rowspan='2'>{{u.capitalize(season)}}</td>
-                  <td> High </td>
-                  <td>{{baseline}}</td>
-                  {{#u.sort_by(values, 'year')}}
-                    <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
-                    {{{u.add_sign(delta_high)}}}</td>
-                  {{/sort_by(values, 'year')}}
+          {{#geojson.location_data}}
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th style='text-align: center;'
+                      colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'> {{geojson.name}} {{geojson.geomtype}}
+      </th>
                 </tr>
+                <tr>
+                  <th> </th>
+                  <th></th>
+                  <th class='deltas' style='text-align: center;'
+                      colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'>
+                        ` + opts.legend + ` </th>
+                </tr>
+                <tr>
+                  <th> Season </th>
+                  <th> Scenario </th>
+                  <th> Baseline (` + opts.legend_units + `)</th>
+                  {{#active_layer.parameters.years}}
+                    <th> {{.}}s</th>
+                  {{/active_layer.parameters.years}}
+                </tr>
+              </thead>
+              <tbody>
+                {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
+                  <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("high" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
+                    <td rowspan='2'>{{u.capitalize(season)}}</td>
+                    <td> High </td>
+                    <td>{{baseline}}</td>
+                    {{#u.sort_by(values, 'year')}}
+                      <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
+                      {{{u.add_sign(delta_high)}}}</td>
+                    {{/sort_by(values, 'year')}}
+                  </tr>
 
-                <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("low" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
-                  <td> Low </td>
-                  <td>{{baseline}}</td>
-                  {{#u.sort_by(values, 'year')}}
-                    <td decorator="tooltip: Likely Range: {{range}} "
-                        class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
-                    {{{u.add_sign(delta_low)}}}</td>
-                  {{/sort_by(values, 'year')}}
-                </tr>
-              {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
-            </tbody>
-          </table>
+                  <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("low" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
+                    <td> Low </td>
+                    <td>{{baseline}}</td>
+                    {{#u.sort_by(values, 'year')}}
+                      <td decorator="tooltip: Likely Range: {{range}} "
+                          class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
+                      {{{u.add_sign(delta_low)}}}</td>
+                    {{/sort_by(values, 'year')}}
+                  </tr>
+                {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
+              </tbody>
+            </table>
+          {{else}}
+            <h4> No Climate Data For This Location</h4>
+          {{/geojson.location_data}}
         </div>
     `,
     legend_template: `
@@ -172,21 +176,18 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                                                active_layer.parameters.years[p.year_indx],
                                                p.scenario
                                               );
+        feature.properties.location_data = location_data;
         if (_.isEmpty(location_data)) {
-            console.error("Did not find " + (feature.properties.name || feature.id));
-            console.error("In: ", layer_data, p);
-            layer.setStyle({fillColor: "blue", color: "blue"});
+           // Nothing
         } else {
-            feature.properties.location_data = location_data;
+          let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
 
-            let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
+          let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
+                              value,
+                              active_layer.parameters.color_range,
+                              opts);
 
-            let color = colorize(active_layer.parameters.metrics_ranges[p.season][p.scenario],
-                                value,
-                                active_layer.parameters.color_range,
-                                opts);
-
-            layer.setStyle({fillColor: color, color: color});
+          layer.setStyle({fillColor: color, color: color});
         }
       } catch( e) {
         feature.properties.location_data = null;
@@ -196,8 +197,6 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     "Feature Name:", feature.properties.name,
                     feature.properties.name,
                     "Available Names:", Object.keys(layer_data));
-        let rgb = `transparent`;
-        layer.setStyle({fillColor: rgb, color: rgb});
       }
     },
 

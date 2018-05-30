@@ -15,39 +15,43 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
           <label> {{{name}}}</label>
         </div>
         <div class='col-xs-10'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th style='text-align: center;'
-                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'> {{geojson.name}} {{geojson.geomtype}}
-    </th>
-              </tr>
-              <tr>
-                <th></th>
-                <th class='deltas' style='text-align: center;'
-                    colspan='{{u.object_entries_count(active_layer.parameters.all_seasons)}}'>
-                      ` + opts.legend + ` </th>
-              </tr>
-              <tr>
-                <th> Season </th>
-                {{#active_layer.parameters.years}}
-                  <th> {{.}}s</th>
-                {{/active_layer.parameters.years}}
-              </tr>
-            </thead>
-            <tbody>
-
-              {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
-                <tr class="no-scenario {{(season === geojson.location_data.season ? 'active-season' : '')}}">
-                  <td>{{u.capitalize(season)}}</td>
-                  {{#u.sort_by(values, 'year')}}
-                    <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
-                    {{{data_value}}}</td>
-                  {{/sort_by(values, 'year')}}
+          {{#geojson.location_data}}
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th style='text-align: center;'
+                      colspan='{{u.object_entries_count(active_layer.parameters.all_seasons) + 2}}'> {{geojson.name}} {{geojson.geomtype}}
+      </th>
                 </tr>
-              {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
-            </tbody>
-          </table>
+                <tr>
+                  <th></th>
+                  <th class='deltas' style='text-align: center;'
+                      colspan='{{u.object_entries_count(active_layer.parameters.all_seasons)}}'>
+                        ` + opts.legend + ` </th>
+                </tr>
+                <tr>
+                  <th> Season </th>
+                  {{#active_layer.parameters.years}}
+                    <th> {{.}}s</th>
+                  {{/active_layer.parameters.years}}
+                </tr>
+              </thead>
+              <tbody>
+
+                {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
+                  <tr class="no-scenario {{(season === geojson.location_data.season ? 'active-season' : '')}}">
+                    <td>{{u.capitalize(season)}}</td>
+                    {{#u.sort_by(values, 'year')}}
+                      <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
+                      {{{data_value}}}</td>
+                    {{/sort_by(values, 'year')}}
+                  </tr>
+                {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
+              </tbody>
+            </table>
+          {{else}}
+            <h4> No Climate Data For This Location</h4>
+          {{/geojson.location_data}}
         </div>
     `,
     legend_template: `
@@ -138,30 +142,29 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                                                       p.season,
                                                       active_layer.parameters.years[p.year_indx]
                                                       );
+        feature.properties.location_data = location_data;
         if (_.isEmpty(location_data)) {
-            console.error("Did not find " + (feature.properties.name || feature.id));
-            console.error("In: ", layer_data, p);
+          // Nothing
         } else {
-            feature.properties.location_data = location_data;
+          feature.properties.location_data = location_data;
 
-            let value = location_data.value.data_value;
+          let value = location_data.value.data_value;
 
-            let color = colorize(active_layer.parameters.metrics_ranges[p.season],
-                                 value,
-                                 active_layer.parameters.color_range,
-                                 opts);
+          let color = colorize(active_layer.parameters.metrics_ranges[p.season],
+                                value,
+                                active_layer.parameters.color_range,
+                                opts);
 
-            layer.setStyle({fillColor: color, color: color});
+          layer.setStyle({fillColor: color, color: color});
         }
       } catch( e) {
         feature.properties.location_data = null;
+
         console.error(e);
         console.log('failed to find value for ', p.metric,
                     "Feature Name:", feature.properties.name,
                     feature.properties.name,
                     "Available Names:", Object.keys(layer_data));
-        let rgb = `transparent`;
-        layer.setStyle({color: 'transparent', 'weight': 0, fillColor: rgb, color: rgb});
       }
     },
 
