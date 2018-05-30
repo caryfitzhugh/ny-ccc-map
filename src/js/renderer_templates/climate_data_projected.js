@@ -43,7 +43,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
               </tr>
             </thead>
             <tbody>
-              {{#u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
+              {{#u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
                 <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
                   <td rowspan='2'>{{u.capitalize(season)}}</td>
                   <td> High </td>
@@ -62,7 +62,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     {{{u.add_sign(delta_low)}}}</td>
                   {{/sort_by(values, 'year')}}
                 </tr>
-              {{/u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
+              {{/u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
             </tbody>
           </table>
         </div>

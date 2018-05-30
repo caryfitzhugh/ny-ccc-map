@@ -1,4 +1,20 @@
 var ViewUtils = {
+  json: (o) => {
+    var cache = [];
+    let json = JSON.stringify(o, function(key, value) {
+        if (typeof value === 'object' && value !== null) {
+            if (cache.indexOf(value) !== -1) {
+                // Circular reference found, discard key
+                return;
+            }
+            // Store value in our collection
+            cache.push(value);
+        }
+        return value;
+    });
+    cache = null; // Enable garbage collection
+    return json;
+  },
   uniq_on_prop: (arr_of_hsh, prop) => {
       return _.uniq(arr_of_hsh, (v) => v[prop])
   },

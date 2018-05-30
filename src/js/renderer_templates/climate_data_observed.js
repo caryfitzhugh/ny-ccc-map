@@ -38,7 +38,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
               </tr>
             </thead>
             <tbody>
-              {{#u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
+              {{#u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
                 <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
                   <td>{{u.capitalize(season)}}</td>
                   {{#u.sort_by(values, 'year')}}
@@ -46,7 +46,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                     {{{data_value}}}</td>
                   {{/sort_by(values, 'year')}}
                 </tr>
-              {{/u.sort_by(geojson.location_data.area_data.properties.data, 'season')}}
+              {{/u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
             </tbody>
           </table>
         </div>
@@ -145,13 +145,13 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
             console.error("In: ", layer_data, p);
         } else {
             feature.properties.location_data = location_data;
-
+console.log(location_data);
             let value = location_data.value;
 
             let color = colorize(active_layer.parameters.metrics_ranges[p.season],
-                                value,
-                                active_layer.parameters.color_range,
-                                opts);
+                                 value,
+                                 active_layer.parameters.color_range,
+                                 opts);
 
             layer.setStyle({fillColor: color, color: color});
         }
