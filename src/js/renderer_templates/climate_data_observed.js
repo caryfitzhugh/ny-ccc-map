@@ -23,7 +23,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
     </th>
               </tr>
               <tr>
-                <th> </th>
                 <th></th>
                 <th class='deltas' style='text-align: center;'
                     colspan='{{u.object_entries_count(active_layer.parameters.all_seasons)}}'>
@@ -31,22 +30,22 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
               </tr>
               <tr>
                 <th> Season </th>
-                <th> Baseline (` + opts.legend_units + `)</th>
                 {{#active_layer.parameters.years}}
                   <th> {{.}}s</th>
                 {{/active_layer.parameters.years}}
               </tr>
             </thead>
             <tbody>
-              {{#u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
-                <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}}">
+
+              {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
+                <tr class="no-scenario {{(season === geojson.location_data.season ? 'active-season' : '')}}">
                   <td>{{u.capitalize(season)}}</td>
                   {{#u.sort_by(values, 'year')}}
                     <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
                     {{{data_value}}}</td>
                   {{/sort_by(values, 'year')}}
                 </tr>
-              {{/u.sort_by(geojson.location_data.area_data.properties.location_data, 'season')}}
+              {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
             </tbody>
           </table>
         </div>
@@ -124,7 +123,6 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         if (opts.invert_scale) {
           scale.reverse();
         }
-
         active_layer.parameters.metrics_ranges[season] = scale;
       });
     },
@@ -140,13 +138,13 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                                                       p.season,
                                                       active_layer.parameters.years[p.year_indx]
                                                       );
-        if (_.isEmpty(loction_data)) {
+        if (_.isEmpty(location_data)) {
             console.error("Did not find " + (feature.properties.name || feature.id));
             console.error("In: ", layer_data, p);
         } else {
             feature.properties.location_data = location_data;
-console.log(location_data);
-            let value = location_data.value;
+
+            let value = location_data.value.data_value;
 
             let color = colorize(active_layer.parameters.metrics_ranges[p.season],
                                  value,
@@ -157,7 +155,7 @@ console.log(location_data);
         }
       } catch( e) {
         feature.properties.location_data = null;
-
+        console.error(e);
         console.log('failed to find value for ', p.metric,
                     "Feature Name:", feature.properties.name,
                     feature.properties.name,

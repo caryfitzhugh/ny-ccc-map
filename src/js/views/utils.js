@@ -15,6 +15,9 @@ var ViewUtils = {
     cache = null; // Enable garbage collection
     return json;
   },
+  console: (o) => {
+    window.console.log(o);
+  },
   uniq_on_prop: (arr_of_hsh, prop) => {
       return _.uniq(arr_of_hsh, (v) => v[prop])
   },

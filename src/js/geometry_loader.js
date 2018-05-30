@@ -3,8 +3,10 @@ var GeometryLoader ={
     var paths = {
       "county": CDN("http://api.nescaum-ccsc-dataservices.com/ny.counties.json"),
       "basin": CDN("http://api.nescaum-ccsc-dataservices.com/ny.basins.topojson"),
-      "watershed": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/watershed.json")
+      "watershed": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/watershed.json"),
+      "state": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/state.topojson")
     };
+
     if (GeometryLoader.cache[name]) {
       callback(null, GeometryLoader.cache[name]);
     } else {
@@ -16,7 +18,7 @@ var GeometryLoader ={
             geometries = topojson.feature(geometries, geometries.objects[name]);
           }
           GeometryLoader.cache[name] = geometries;
-          callback(null, GeometryLoader.cache[name]);
+          callback(null, _.cloneDeep(GeometryLoader.cache[name]));
         }
       });
     }

@@ -7,7 +7,7 @@ RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summar
       } else if (summary == 'basin') {
         return ldf.properties.uid === parseInt(geom_feature.id, 10)
       } else if (summary == 'state') {
-        debugger
+        return true; //debugger;
       } else {
         console.log("matching", ldf.properties, geom_feature.properties);
       }
@@ -28,7 +28,7 @@ RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summar
               season: season,
               year: year,
               season_data: data,
-              area_data: geom_feature
+              geometry_data: layer_data_feature.properties
             }
           }
         }
@@ -74,7 +74,7 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
   let load_data_url = (durl) =>  {
     return new Promise( (win, lose) => {
       if (RendererTemplates.ny_climate_data_cache[durl]) {
-        win(RendererTemplates.ny_climate_data_cache[durl])
+        win(_.cloneDeep(RendererTemplates.ny_climate_data_cache[durl]))
       } else  {
         if (!loading[durl]) {
           loading[durl] = true;
@@ -116,7 +116,8 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
         let latlng = evt.latlng;
         let match = leafletPip.pointInLayer(evt.latlng, active_leaflet_layer, true);
         if (match[0]) {
-          return match[0].feature.properties;
+          return _.cloneDeep(match[0].feature.properties);
+
         } else {
           return null;
         }
