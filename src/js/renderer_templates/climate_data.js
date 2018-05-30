@@ -5,7 +5,7 @@ RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summar
       if (summary == 'county') {
          return ldf.properties.name == geom_feature.properties.name;
       } else if (summary == 'basin') {
-        return ldf.properties.uid === parseInt(geom_feature.id, 10)
+        return parseInt(ldf.properties.uid, 10) === parseInt(geom_feature.id, 10)
       } else if (summary == 'state') {
         return true; //debugger;
       } else {
