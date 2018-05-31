@@ -174,7 +174,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
       metrics_ranges: {},
       all_summaries: {
         "county": "County",
-        "state": "State",
+        //"state": "State",
         "basin": "Drainage Basin",
         //"watershed": "HUC8 Watershed",
         //"6km": "6km Bounding Box",
