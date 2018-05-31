@@ -169,8 +169,6 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
             };
             let hidden_style = {
               "weight": '0',
-              "color": "transparent",
-              'fillColor': "transparent",
               'opacity': 0,
               'fillOpacity': 0
             };
