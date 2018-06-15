@@ -4,5 +4,5 @@ grunt
 
 aws s3 sync --profile=nescaum dist/ s3://ny-map-nescaum-ccsc-dataservices/ --acl public-read
 
-aws cloudfront create-invalidation --profile=nescaum --distribution-id EOXGK72MHDM86 --paths "*"
+aws cloudfront create-invalidation --profile=nescaum --distribution-id EOXGK72MHDM86 --paths "/*"
 rm -rf dist/*
