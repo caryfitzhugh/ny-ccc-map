@@ -111,7 +111,10 @@ var available_layers = [
       "folder": "Boundaries",
       "name": "Municipalities",
       "description": "Towns, villages, hamlets, boroughs and other municipalities of New York State.",
-      "source": "NY"
+      "source": "New York State",
+      "source_url": "http://gis.ny.gov/civil-boundaries/",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=927&file=NYS_Civil_Boundaries.shp.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysgis.Cities_Towns.pdf"
     },
     {
       "id": "bridges",
@@ -278,12 +281,12 @@ var available_layers = [
       "id": "ghg_facilities",
       "folder": "Air Emissions",
       "name": "GHG Emissions from Large Facilities",
-      "description": "Greenhouse gas emissions data, extracted from EPA's FLIGHT Tool. The data was reported to EPA by facilities as of 08/16/2015. All emissions data is presented in units of metric tons of carbon dioxide equivalent (CO2e) using GWP's from IPCC's AR4. ",
+      "description": "Data for reporting year 2016 extracted from EPA's Facility Level Information on Greenhouse Gases Tool (FLIGHT).  All emissions data is presented in units of metric tons of carbon dioxide equivalent (CO2e) using GWP's from IPCC's AR4. ",
       "source": "EPA Facility Level Information on GeeenHouse gases Tool (FLIGHT)",
       "source_url": "http:\/\/ghgdata.epa.gov\/ghgp\/main.do",
       "sectors": "Energy",
       "download_url": null,
-      "metadata_url": null,
+      "metadata_url": "http:\/\/ghgdata.epa.gov\/ghgp\/main.do",
     },
     {
       "id": "hospitals",

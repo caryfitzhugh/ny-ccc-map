@@ -44,18 +44,9 @@ RendererTemplates.wms("carbon", {
           "X=<%= x %>&Y=<%= y %>");
   },
   legend_template: `
-    <div class='detail-block show-confidence'>
-      <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + active_layer.parameters.scenario_year+"&format=image/png")}}/>
-    </div>
-
-    <div class='detail-block legend-url-text carbon'>
-      <span class='legend-text'>
-        grams C per m<sup>2</sup>
-      </span>
-    </div>
     <div class='detail-block show-confidence carbon'>
       <label> Year / Scenario: </label>
-      <select value='{{parameters.scenario_years}}'>
+      <select value='{{active_layer.parameters.scenario_year}}'>
         <option value='ny:biomass_a2_2010'>
           2010 - A2 (medium-high emissions)
         </option>
@@ -66,6 +57,14 @@ RendererTemplates.wms("carbon", {
           2050 - B1 (lower emissions)
         </option>
       </select>
+    </div>
+    <div class='detail-block legend-url-text carbon'>
+      <span class='legend-text'>
+        grams C per m<sup>2</sup>
+      </span>
+    </div>
+    <div class='detail-block legend-url-text'>
+      <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + active_layer.parameters.scenario_year+"&format=image/png")}}/>
     </div>
   `,
   info_template: `

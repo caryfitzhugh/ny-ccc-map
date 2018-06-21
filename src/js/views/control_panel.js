@@ -338,7 +338,14 @@ Views.ControlPanel.on({
   },
   "zoom-to-search-result": function (evt) {
     var map = Views.ControlPanel.get('map');
-    map.setView([evt.get().geometry.location.lat,evt.get().geometry.location.lng],15);
+    //map.setView([evt.get().geometry.location.lat,evt.get().geometry.location.lng],15);
+    map.fitBounds([
+     [evt.get().geometry.viewport.southwest.lat,
+      evt.get().geometry.viewport.southwest.lng],
+     [evt.get().geometry.viewport.northeast.lat,
+      evt.get().geometry.viewport.northeast.lng]
+    ]);
+
   },
   "print-map": function (evt) {
     var cp = Views.ControlPanel;

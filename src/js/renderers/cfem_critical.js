@@ -41,8 +41,7 @@ RendererTemplates.wms("cfem_critical", {
   legend_template: `
       <div class='detail-block show-confidence'>
         <img src={{CDN(
-          "https://maps.coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer/WMSServer"+
-          "?request=GetLegendGraphic&LAYER=ny:aadt&format=image/png")}}/>
+          "https://maps.coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0")}}/>
       </div>
   `,
   info_template: `

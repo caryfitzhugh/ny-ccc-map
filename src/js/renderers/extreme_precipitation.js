@@ -3,12 +3,12 @@
 
   let _event_types = {
       "100 Year Event":  {
-        "Future Recurrance" : 153,
+        "Future Recurrence" : 153,
         "Future Avg Percent Increase": 154,
         "Current Magnitude" : 155
       },
       "10 Year Event":  {
-        "Future Recurrance" : 156,
+        "Future Recurrence" : 156,
         "Future Avg Percent Increase": 157,
         "Current Magnitude" : 158
       }
@@ -186,7 +186,7 @@
               {{#if parameters.time === "Future Avg Percent Increase"}}
                 % change in precipitation amount
               {{ else }}
-                {{#if parameters.time === "Future Recurrance"}}
+                {{#if parameters.time === "Future Recurrence"}}
                   Return interval (years)
                 {{/if}}
               {{/if}}
