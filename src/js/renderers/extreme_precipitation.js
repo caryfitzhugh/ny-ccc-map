@@ -125,7 +125,6 @@
         "&layers=visible%3A" + layer_id;
     },
     onrender: (active_layer) => {
-      let p = _.pick(active_layer.parameters, ["event_type","time"]);
       _get_legend_data(active_layer, (err, data) => {
         let layer_id = _event_types[active_layer.parameters.event_type][active_layer.parameters.time];
         let legend = _.find(data.layers, {layerId: layer_id});
