@@ -18,6 +18,46 @@ var CDN = function (url_str) {
       uri.hostname("d2749s27r5h52i.cloudfront.net");
       uri.port(null);
       uri.scheme("https");
+    } else if (hostname.match(/sedac.ciesin.columbia.edu/)) {
+      uri.hostname("d1fki4hbucg4je.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/aps.coast.noaa.gov/)) {
+      uri.hostname("d34d8e4z51f5hr.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/gis.fema.gov/)) {
+      uri.hostname("d2zzyfhnmavvhx.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/gis1.usgs.gov/)) {
+      uri.hostname("d2j0p075yoyqht.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/services.coastalresilience.org/)) {
+      uri.hostname("d1afxrl1v7xde2.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/hazards.fema.gov/)) {
+      uri.hostname("d2ostsj8rmvqnh.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/ciesin.columbia.edu/)) {
+      uri.hostname("dm1qgr5i36k4o.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/rmgsc.cr.usgs.gov/)) {
+      uri.hostname("d2m13662o5wefi.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/coast.noaa.gov/)) {
+      uri.hostname("d20i2i7q9fpq87.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
+    } else if (hostname.match(/repository.nescaum-ccsc-dataservices.com/)) {
+      //Nothing
+    } else if (hostname.match(/.*\.cloudfront.net/)) {
+      //Nothing
     } else {
       console.warn("Hostname not in a CDN", hostname);
     }
