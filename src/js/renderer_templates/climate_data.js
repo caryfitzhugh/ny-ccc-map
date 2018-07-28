@@ -4,8 +4,8 @@ RendererTemplates.ny_match_geometry_and_data = (layer_data, geom_feature, summar
   let is_same_geometry = (ldf) => {
       if (summary == 'county') {
          return ldf.properties.name == geom_feature.properties.name;
-      } else if (summary == 'basin') {
-        return parseInt(ldf.properties.uid, 10) === parseInt(geom_feature.id, 10)
+      } else if (summary == 'watershed') {
+        return parseInt(ldf.properties.uid, 10) === parseInt(geom_feature.properties.huc8, 10)
       } else if (summary == 'state') {
         return true; //debugger;
       } else {

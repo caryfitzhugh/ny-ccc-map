@@ -208,8 +208,8 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       all_summaries: {
         "county": "County",
         //"state": "State",
-        "basin": "Drainage Basin",
-        //"watershed": "HUC8 Watershed",
+        //"basin": "Drainage Basin",
+        "watershed": "HUC8 Watershed",
         //"6km": "6km Bounding Box",
       },
       all_seasons: {

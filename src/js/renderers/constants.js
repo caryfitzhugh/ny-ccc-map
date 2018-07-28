@@ -424,5 +424,5 @@ Renderers.Constants = {
     600: "Water",
     601: "Unknown - pixel count > 20,000",
     602: "Unknown - pixel count <= 20,000",
-  }
+  },
 };
