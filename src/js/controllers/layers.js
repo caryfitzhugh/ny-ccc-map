@@ -13,6 +13,9 @@ Controllers.Layers = {
 
     cp.update("layers.active."+al_index+".parameters");
   },
+  mark_layer_as_unloaded: function(cp, layer_default_id) {
+    cp.set("layers_loading_states."+layer_default_id, false);
+  },
   mark_layer_as_loaded: function (cp, active_layer, success, force_reload) {
     var this_layer = cp.get("layers_loading_states." + active_layer.layer_default_id) || { loaded: 0, errors: 0};
 
@@ -112,6 +115,7 @@ Controllers.Layers = {
   remove_active: function (cp, evt) {
     var new_active_layers = _.cloneDeep(cp.get("layers.active"));
     _.remove(new_active_layers, {"id": evt.context.id});
+    Controllers.Layers.mark_layer_as_unloaded(cp, evt.context.id);
     cp.set("layers.active", Controllers.Layers.sort_active_layers(new_active_layers));
   },
   visible_all_layers: function (cp, evt) {
@@ -175,6 +179,7 @@ Controllers.Layers = {
     if (existing_layer) {
       //   UGH, mutation! CLJS here i come. :(
       _.remove(new_active_layers, existing_layer);
+      Controllers.Layers.mark_layer_as_unloaded(cp, layer_default_id);
     } else {
       var new_layer = Controllers.Layers.new_active_layer(cp.get("map"), _.find(layer_defaults, "id", layer_default_id));
       new_active_layers.unshift(new_layer);
