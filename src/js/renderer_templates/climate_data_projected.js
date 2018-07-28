@@ -178,7 +178,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                                               );
         feature.properties.location_data = location_data;
         if (_.isEmpty(location_data)) {
-           // Nothing
+          layer.setStyle({fillColor: 'rgba(30,30,30,0.2)', color: 'rgba(30,30,30,0.2)'});
         } else {
           let value = p.scenario === 'high' ? location_data.value.delta_high : location_data.value.delta_low;
 

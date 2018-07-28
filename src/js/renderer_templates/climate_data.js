@@ -166,11 +166,12 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
             let base_style = {
               "weight": '1',
               "color": "black",
+              'fillOpacity': 0,
+              'fill': 'red',
             };
             let hidden_style = {
               "weight": '0',
               'opacity': 0,
-              'fillOpacity': 0
             };
 
             _.each(layers, function (layer) {

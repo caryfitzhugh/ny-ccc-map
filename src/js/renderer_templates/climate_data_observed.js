@@ -145,6 +145,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         feature.properties.location_data = location_data;
         if (_.isEmpty(location_data)) {
           // Nothing
+          layer.setStyle({fillColor: 'rgba(30,30,30,0.2)', color: 'rgba(30,30,30,0.2)'});
         } else {
           feature.properties.location_data = location_data;
 
@@ -157,7 +158,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
 
           layer.setStyle({fillColor: color, color: color});
         }
-      } catch( e) {
+      } catch(e) {
         feature.properties.location_data = null;
 
         console.error(e);
