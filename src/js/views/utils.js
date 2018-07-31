@@ -57,6 +57,9 @@ var ViewUtils = {
   capitalize: (str) => {
     return _.capitalize(str);
   },
+  number_of_keys: (hsh) => {
+    return _.keys(hsh).length;
+  },
   to_sorted_keys_from_hash(hsh) {
     var vals = _.reduce(hsh, (memo, v, k) => {
           memo.push([k,v])

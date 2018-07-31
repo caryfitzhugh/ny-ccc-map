@@ -250,6 +250,17 @@ var available_layers = [
       "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/136"
     },
     {
+      "id": "dewberry_sea_level_rise",
+      "folder": "Coastal Zones",
+      "name": "Sea Level Rise (Dewberry)",
+      "description": "NYSERDA has developed data resources for a range of future coastal flooding conditions in order to improve the ability of local and state officials, and others to assess vulnerability and inform resiliency planning. The table below provides estimated sea level rise projections by decade under low, median, and high scenarios and are representative of sea level rise projections found in the 2014 Supplement to the ClimAID Integrated Assessment for Effective Climate Change Adaptation. The Coastal New York Future Floodplain Mapper provides information for seven of these scenarios (12, 18, 24, 36, 48, 60, and 72 inches).",
+      "source": "NYSERDA",
+      "source_url": "http:\/\/services.nyserda.ny.gov\/SLR_Viewer\/About",
+      "sectors": "All",
+      "legend_url": "./img\/dewberry_slr.png",
+      "metadata_url": "http:\/\/appealsserver.cloudapp.net\/arcgis\/rest\/services\/NYSERDA\/NYSERDA_SLR_Service\/MapServer"
+    },
+    {
       "id": "dow_unconsolidated_aquifers",
       "folder": "Water Resources",
       "name": "Aquifers- Unconsolidated",
