@@ -93,7 +93,7 @@ RendererTemplates.geojson_polygons = function (layer_id, opts) {
 
           _.each(layers, function (layer) {
             _.each(layer._layers, function (polygon) {
-              if (layer._leaflet_id == active_leaflet_layer._leaflet_id) {
+              if (active_leaflet_layer && layer._leaflet_id == active_leaflet_layer._leaflet_id) {
                 polygon.setStyle({"fillOpacity": opacity, "opacity": opacity});
                 if (opts.onEachPolygon) {
                   opts.onEachPolygon(active_layer, polygon, opacity);

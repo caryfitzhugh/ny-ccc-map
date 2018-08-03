@@ -67,7 +67,7 @@ RendererTemplates.invasives = function (layer_id, opts) {
       if (color) {
         return color;
       } else {
-        let species_data = data[speci][area];
+        let species_data = data[speci][area == 'watershed' ? 'basin' : area];
         color = d3.scaleQuantile();
         // Set different color ranges
         color = color.range(_color_range);
@@ -99,7 +99,7 @@ RendererTemplates.invasives = function (layer_id, opts) {
         if (!cnt) { console.log("Could not find", feature.properties.huc8) }
         feature.properties.data_count = cnt;
         feature.properties.name = feature.properties.name + " (" + feature.properties.huc8 + ")";//basin_name;
-        active_layer.unmapped_basins = _.without(active_layer.unmapped_basins, _huc8_to_imap[feature.properties.huc8]);
+        //active_layer.unmapped_basins = _.without(active_layer.unmapped_basins, _huc8_to_imap[feature.properties.huc8]);
       } else {
         let cnt = data[p.species]['county'][feature.properties.name];
         feature.properties.data_count = cnt;
@@ -141,13 +141,26 @@ RendererTemplates.invasives = function (layer_id, opts) {
         if (color) {
           style.fillColor = color;
           style.fillOpacity = opacity;
+        } else {
+          style.fillColor = 'transparent';
+          style.weight = 0;
         }
       } else {
         console.log("No color set");
       }
       polygon.setStyle(style);
     },
+    on_layer_create: (active_layer) => {
+      let p = _get_opts(active_layer);
+      let color_fn = _get_colors_for(p.species, p.area);
+      let cd = color_fn.domain();
 
+      var legend = _.reduce(_.range(cd[0], cd[1], (cd[1] - cd[0]) / 5).concat([cd[1]]), function (legend, step) {
+        legend.push({v: step, c: color_fn(step)});
+        return legend;
+      }, []);
+      active_layer.parameters.legend_range = legend;
+    },
     find_geojson_match: (active_layer, match) => {
       let p = _get_opts(active_layer);
       let count = match.feature.properties.data_count;
@@ -216,7 +229,24 @@ RendererTemplates.invasives = function (layer_id, opts) {
           {{/parameters.all_areas}}
         </select>
       </div>
+      <div class='detail-block legend'>
+        <div class='color-legend'>Reported Invasive Species (Total Observations)</div>
 
+        {{#parameters.legend_range}}
+          <div class='color-block' style="width: {{100.0 / parameters.legend_range.length}}%;">
+            <svg width="100" height="100">
+              <rect height="100" width="100" style="fill: {{c}}; opacity:{{(0.7 * parameters.opacity / 100.0) + 0.3}}; "/>
+            </svg>
+            {{#if v}}
+              <label>{{fixed_precision(v, parameters.legend_significant_digits)}}</label>
+            {{/if v}}
+
+            {{#if s}}
+              <label>{{s}} </label>
+            {{/if s}}
+          </div>
+        {{/parameters.legend_range}}
+      </div>
     `
   });
 };
