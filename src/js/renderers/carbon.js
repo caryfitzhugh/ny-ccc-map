@@ -46,7 +46,7 @@ RendererTemplates.wms("carbon", {
   legend_template: `
     <div class='detail-block show-confidence carbon'>
       <label> Year / Scenario: </label>
-      <select value='{{active_layer.parameters.scenario_year}}'>
+      <select value='{{parameters.scenario_year}}'>
         <option value='ny:biomass_a2_2010'>
           2010 - A2 (medium-high emissions)
         </option>
@@ -64,7 +64,7 @@ RendererTemplates.wms("carbon", {
       </span>
     </div>
     <div class='detail-block legend-url-text'>
-      <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + active_layer.parameters.scenario_year+"&format=image/png")}}/>
+      <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=" + parameters.scenario_year+"&format=image/png")}}/>
     </div>
   `,
   info_template: `

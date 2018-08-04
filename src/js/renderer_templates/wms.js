@@ -42,7 +42,7 @@ RendererTemplates.wms = function (layer_id, opts) {
 
       _.each(layers, function (layer) {
         // Hide the ones which aren't active
-        if (active_leaflet_layer._leaflet_id === layer._leaflet_id) {
+        if (active_leaflet_layer && active_leaflet_layer._leaflet_id === layer._leaflet_id) {
           layer.setOpacity(opacity);
         } else {
           layer.setOpacity(0);
