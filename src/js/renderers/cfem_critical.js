@@ -1,7 +1,7 @@
 RendererTemplates.wms("cfem_critical", {
   parameters: {
     opacity: 100,
-    layers: "0,1,2,3,4,5,6,7,8,9",
+    layers: "0,1,2,3,4,5,6",
     //layers: "0,7,8",
     options: {
     }
