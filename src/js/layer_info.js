@@ -426,7 +426,7 @@ var available_layers = [
       "description": "Natural gas interstate and intrastate pipelines in the United States. Based on a variety of sources with varying scales and levels of accuracy and therefore accuracy is directly affected. This layer is not visible if zoomed in beyond 1:200,000 scale.  Collected by EIA from FERC and other external sources.",
       "source": "US Energy Information Administration",
       "source_url": "https://www.eia.gov/",
-      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "sectors": ["Energy"],
       "download_url": "https://www.eia.gov/maps/map_data/NaturalGas_InterIntrastate_Pipelines_US_EIA.zip",
       "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
     },
@@ -493,7 +493,7 @@ var available_layers = [
       "description": "Operable electric generating plants in the Massachusetts by energy source. This includes all plants that are operating, on standby, or short- or long-term out of service with a combined nameplate capacity of 1 MW or more.",
       "source": "US Energy Information Administration",
       "source_url": "https://www.eia.gov/",
-      "sectors": ["Economy","Energy","Local Government","Public Safety/Emergency Response"],
+      "sectors": ["Energy"],
       "download_url": "https://www.eia.gov/maps/map_data/PowerPlants_US_EIA.zip",
       "metadata_url": "https://www.eia.gov/maps/layer_info-m.php",
     },
@@ -1036,6 +1036,17 @@ var available_layers = [
       "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:trout_streams&format=image/png"),
       "download_url": null,
       "metadata_url": null
+    },
+    {
+      "id": "usgs_streamflow",
+      "folder": "Water Resources",
+      "name": "USGS Stream Gages",
+      "description": "This layer depicts the location and current status of US Geological Survey stream gauges across NYS. An active link with the USGS database provides real-time data, updated hourly.  For more information on a specific guage, click on the map icon, which will provide detailed information and a link to the USGS page for that gauge.",
+      "source": "USGS",
+      "source_url": "http:\/\/waterwatch.usgs.gov\/index.php?r=ny&id=ww_current",
+      "sectors": "Water Resources",
+      "download_url": "http:\/\/waterwatch.usgs.gov\/download\/?gt=map&mt=real&st=ny&dt=site&ht=&fmt=csv",
+      "metadata_url": "http:\/\/waterwatch.usgs.gov\/index.php?r=ny&id=ww_current"
     },
 ];
 
