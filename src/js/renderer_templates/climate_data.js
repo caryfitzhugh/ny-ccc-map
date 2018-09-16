@@ -71,7 +71,7 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
 
   let loading = {};
 
-  let load_data_url = (durl, params) =>  {
+  let load_data_url = (durl) =>  {
     return new Promise( (win, lose) => {
       if (RendererTemplates.ny_climate_data_cache[durl]) {
         win(_.cloneDeep(RendererTemplates.ny_climate_data_cache[durl]))
@@ -124,14 +124,13 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
       return null;
     },
     render: function (map, active_layer, pane) {
-      load_data_url(opts.data_url, active_layer.parameters)
+      load_data_url(opts.data_url)
       .then((layer_data) => {
         if (opts.onLoadedData) {
           // You can pre-process the data,
           // You can figure out min/max , buckets, years available, etc.
           opts.onLoadedData(layer_data, active_layer);
         }
-
         Renderers.create_leaflet_layer_async(
           map,
           active_layer,
@@ -158,7 +157,6 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
               });
             })
           }, () => {
-
             var opacity = Renderers.opacity(active_layer);
             var layers = Renderers.get_all_leaflet_layers(map,active_layer);
             var active_leaflet_layer = Renderers.get_leaflet_layer(map, active_layer, get_opts(active_layer))
@@ -172,6 +170,8 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
             let hidden_style = {
               "weight": '0',
               'opacity': 0,
+              'fillOpacity': 0,
+              'fill': 'transparent'
             };
 
             _.each(layers, function (layer) {
