@@ -89,7 +89,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
         {{> map_color_block_legend_template }}
       {{/{metrics: parameters.metrics_ranges[parameters.options.season]}}
     `,
-    data_url: "http://repository.nescaum-ccsc-dataservices.com/acis/ny/observed/?variable_name="+opts.variable_name,
+    data_url: "https://repository.nescaum-ccsc-dataservices.com/acis/ny/observed/?variable_name="+opts.variable_name,
 
     onLoadedData: (layer_data, active_layer) => {
       let baselines = {};
