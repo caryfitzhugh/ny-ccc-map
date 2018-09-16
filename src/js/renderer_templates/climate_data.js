@@ -71,7 +71,7 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
 
   let loading = {};
 
-  let load_data_url = (durl) =>  {
+  let load_data_url = (durl, params) =>  {
     return new Promise( (win, lose) => {
       if (RendererTemplates.ny_climate_data_cache[durl]) {
         win(_.cloneDeep(RendererTemplates.ny_climate_data_cache[durl]))
@@ -124,7 +124,7 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
       return null;
     },
     render: function (map, active_layer, pane) {
-      load_data_url(opts.data_url)
+      load_data_url(opts.data_url, active_layer.parameters)
       .then((layer_data) => {
         if (opts.onLoadedData) {
           // You can pre-process the data,
