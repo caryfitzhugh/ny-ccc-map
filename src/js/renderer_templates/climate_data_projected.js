@@ -115,7 +115,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         {{> map_color_block_legend_template }}
       {{/{metrics: parameters.metrics_ranges[parameters.options.season]}}
     `,
-    data_url: opts.data_url,
+    data_url: "http://repository.nescaum-ccsc-dataservices.com/acis/ny/projected/?variable_name="+opts.variable_name,
 
     onLoadedData: (layer_data, active_layer) => {
       let baselines = {};

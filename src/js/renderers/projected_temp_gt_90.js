@@ -3,7 +3,6 @@ RendererTemplates.ny_projected_climate_data("projected_temp_gt_90", {
   legend: "Projected change in # days above 90&deg;F",
   legend_precision: 1,
   legend_units: " Days ",
-  //data_url: "https://repository.nescaum-ccsc-dataservices.com/data/ma/tempgt90.json",
-  data_url: "https://adirondackatlas.org/api/v1/ny_climatedeltas.php?parameter=maxt_gt_90",
+  variable_name: "maxt_gt_90",
   color_range: colorbrewer.OrRd[6]
 });
