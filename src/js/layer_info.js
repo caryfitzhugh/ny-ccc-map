@@ -1015,6 +1015,17 @@ var available_layers = [
       "metadata_url": "http:\/\/sedac.ciesin.columbia.edu\/data\/set\/superfund-atsdr-hazardous-waste-site-ciesin-mod-v2"
     },
   {
+    "id": "thruway_bridges",
+    "folder": "Transportation",
+    "name": "Thruway Bridges",
+    "description": "Statewide file showing the locations of all Thruway bridges. Includes bridges that the Thruway maintains, but may be owned by other entities.",
+    "source": "New York State Trhuway Authority",
+    "source_url": "http://www.thruway.ny.gov/index.shtml",
+    "sectors": ["Agriculture", "Ecosystems"],
+    "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=438&file=NYSTA_Bridges.gdb.zip",
+    "metadata_url": "http://gis.ny.gov/gisdata/metadata/NYSTA-Bridges.xml",
+  },
+  {
     "id": "tree_atlas",
     "folder": "Ecosystems",
     "name": "USFS Climate Change Atlas - Tree Species",
@@ -1047,6 +1058,30 @@ var available_layers = [
       "sectors": "Water Resources",
       "download_url": "http:\/\/waterwatch.usgs.gov\/download\/?gt=map&mt=real&st=ny&dt=site&ht=&fmt=csv",
       "metadata_url": "http:\/\/waterwatch.usgs.gov\/index.php?r=ny&id=ww_current"
+    },
+    {
+      "id": "wtrcls_line",
+      "folder": "Water Resources",
+      "name": "DEC Water Quality Classifications-Lines",
+      "description": "This NYS DEC data set provides the water quality classifications of New York State's lakes, rivers, streams and ponds, collectively referred to as water bodies. All water bodies in the state are provided a water quality classification based on existing, or expected best usage, of each water body or water body segment. Under New York State's Environmental Conservation Law (ECL), Title 5 of Article 15, certain waters of the state are protected on the basis of their classification. Streams and small water bodies located in the course of a stream that are designated as C (T) or higher (i.e., C (TS), B, or A) are collectively referred to as 'protected streams.'",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1118",
+      "sectors": "Ecosystems,Water Resources",
+      "legend_url": CDN("http:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:wtrcls_line&format=image\/png"),
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1118&file=nysdec_wtrcls.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.wtrcls.xml"
+    },
+    {
+      "id": "wtrcls_poly",
+      "folder": "Water Resources",
+      "name": "DEC Water Quality Classifications-Polygons",
+      "description": "This NYS DEC data set provides the water quality classifications of New York State's lakes, rivers, streams and ponds, collectively referred to as water bodies. All water bodies in the state are provided a water quality classification based on existing, or expected best usage, of each water body or water body segment. Under New York State's Environmental Conservation Law (ECL), Title 5 of Article 15, certain waters of the state are protected on the basis of their classification. Streams and small water bodies located in the course of a stream that are designated as C (T) or higher (i.e., C (TS), B, or A) are collectively referred to as 'protected streams.'",
+      "source": "NYS DEC",
+      "source_url": "http:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1118",
+      "sectors": "Ecosystems,Water Resources",
+      "legend_url": CDN("http:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:wtrcls_poly&format=image\/png"),
+      "download_url": "http:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1118&file=nysdec_wtrcls.zip",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.wtrcls.xml"
     },
 ];
 

@@ -963,6 +963,17 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 1.2em;
 }
 
+
+.thruway_bridgeCluster {
+    color: white;
+    font-weight: bold;
+    line-height: 89px;
+    background: transparent url(../img/icons/thruway_bridgeCluster.png) 0 0 no-repeat scroll;
+    text-align: center;
+    text-indent: 0px;
+    font-size: 1.1em;
+}
+
 .out-of-zoom-alerts {
   position: fixed;
   bottom: 0;
