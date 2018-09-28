@@ -1,4 +1,4 @@
-RendererTemplates.wms("naturalgas_pipelines", {
+RendererTemplates.wms("epa_frs_facilities", {
   parameters: {
     opacity: 60,
 /*    min_zoom: 0,
@@ -8,7 +8,7 @@ RendererTemplates.wms("naturalgas_pipelines", {
 
   wms_opts:(active_layer) => {
     return  {
-      layers: 'multistate:naturalgas_pipelines',
+      layers: 'ny:epa_frs_facilities',
       format: "image/png",
       opacity: 0,
       zIndex: -1,
@@ -21,8 +21,8 @@ RendererTemplates.wms("naturalgas_pipelines", {
     return CDN(GEOSERVER + "/wms" +
               "?SERVICE=WMS&VERSION=1.1.1&"+
               "REQUEST=GetFeatureInfo&"+
-              "LAYERS=multistate:naturalgas_pipelines&"+
-              "QUERY_LAYERS=multistate:naturalgas_pipelines&"+
+              "LAYERS=ny:epa_frs_facilities&"+
+              "QUERY_LAYERS=ny:epa_frs_facilities&"+
               "STYLES=&"+
               "BBOX=<%= bbox %>&"+
               "FEATURE_COUNT=5&"+
@@ -35,7 +35,7 @@ RendererTemplates.wms("naturalgas_pipelines", {
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=multistate:naturalgas_pipelines&format=image/png")}}>
+        <img src={{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:epa_frs_facilities&format=image/png")}}>
       </div>
   `,
   info_template: `
@@ -45,11 +45,15 @@ RendererTemplates.wms("naturalgas_pipelines", {
     <div class='col-xs-10'>
       <table class="table">
         <tr>
-          <th>Operator</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Report Link</th>
         </tr>
         {{#json.features}}
           <tr>
-            <td>{{properties.operator}}</td>
+            <td>{{properties.primary_name}}</td>
+            <td>{{properties.location_address}}, {{properties.city_name}}</td>
+            <td><a href="{{properties.frs_facility_detail_report_url}}" target="_blank">View Report</a></td>
           </tr>
         {{/json.features}}
       </table>
