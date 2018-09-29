@@ -66,9 +66,8 @@ RendererTemplates.ny_climate_data = function (layer_id, opts) {
   // (a_l.parameters.year == 2044)
   //   => {year: 2044, layer: 'future_data',...}
   let get_opts = function (active_layer) {
-    return {options: active_layer.parameters.options};
+    return {id: active_layer.id, options: active_layer.parameters.options};
   };
-
   let loading = {};
 
   let load_data_url = (durl) =>  {

@@ -7,8 +7,12 @@ var GeometryLoader ={
       "state": CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/state.topojson")
     };
 
+    let return_val = () => {
+      callback(null, _.cloneDeep(GeometryLoader.cache[name]));
+    };
+
     if (GeometryLoader.cache[name]) {
-      callback(null, GeometryLoader.cache[name]);
+      return_val();
     } else {
       d3.json(paths[name], function (error, geometries) {
         if (error) {
@@ -18,7 +22,7 @@ var GeometryLoader ={
             geometries = topojson.feature(geometries, geometries.objects[name]);
           }
           GeometryLoader.cache[name] = geometries;
-          callback(null, _.cloneDeep(GeometryLoader.cache[name]));
+          return_val();
         }
       });
     }
