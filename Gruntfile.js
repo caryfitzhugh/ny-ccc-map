@@ -6,62 +6,39 @@ module.exports = function (grunt) {
     inline: {
       options: {
         cssmin: true,
-        tag: '__inline',
         uglify: true,
+        tag: '__inline',
         babel: {
-          //plugins: ["transform-es2015-arrow-functions"]
+          plugins: ["transform-es2015-arrow-functions"],
           presets: [["es2015", {modules: false}]] //[ "env" ]
         }
       },
+      map_viewer: {
+        src: 'src/index.html',
+        dest: 'dist/index.html'
+      }
     },
     copy: {
-      src: {
+      vendor: {
         expand: true,
-        cwd: "src",
+        cwd: "src/vendor",
         src: "**",
-        dest: "dist/",
+        dest: "dist/vendor",
         filter: "isFile"
       },
-      meta_data: {
-        src: "src/js/layer_info.js",
-        dest: "dist/meta_data.json",
-        options: {
-          process: function (js) {
-            // The map_layers are what the var is called
-            var available_layers;
-            // Eval it - leaving MetaData defined
-            try {
-              var Config = {skip_cdn: true};
-
-              eval(js);
-
-              var output = [];
-
-              console.log("Formatting the LayerInfo now... ", available_layers.length , "Layers");
-
-              for (var i = 0; i < available_layers.length; i++ ) {
-                var l = available_layers[i];
-                output.push({
-                   id: l.id,
-                   folder: l.folder,
-                   name: l.name,
-                   description: l.description,
-                   source: l.source,
-                   source_url: l.source_url,
-                   sectors: l.sectors,
-                   legend_url: l.legend_url,
-                   download_url: l.download_url,
-                   metadata_url: l.metadata_url
-                });
-              }
-
-              return JSON.stringify(output, null, 2);
-
-            } catch (e) { console.error(e);
-              throw e;
-            }
-          }
-        }
+      img: {
+        expand: true,
+        cwd: "src/img",
+        src: "**",
+        dest: "dist/img",
+        filter: "isFile"
+      },
+      css: {
+        expand: true,
+        cwd: "src/css",
+        src: "**",
+        dest: "dist/css",
+        filter: "isFile"
       }
     }
 
@@ -71,6 +48,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('default', ['copy:src', 'copy:meta_data']);
+  //grunt.registerTask('default', ['copy:src', 'copy:meta_data']);
+  grunt.registerTask('default', ['inline:map_viewer', 'copy:img', 'copy:css', 'copy:vendor']);
   //inline:map_viewer', "copy:meta_data", "copy:images", "copy:data", "copy:vendor", "copy:vendor_images"]);
 }

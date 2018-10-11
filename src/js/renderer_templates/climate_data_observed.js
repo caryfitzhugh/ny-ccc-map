@@ -1,4 +1,4 @@
-const findDataForNYObservedData = (layer_data, geom_feature, summary, season, year) => {
+var findDataForNYObservedData = (layer_data, geom_feature, summary, season, year) => {
   return RendererTemplates.ny_match_geometry_and_data(layer_data, geom_feature, summary, season, year);
 };
 

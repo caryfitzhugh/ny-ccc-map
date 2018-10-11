@@ -1,5 +1,5 @@
 /*global API_Handler, LayerInfo, _ , L , Views */
-const BASELAYER_PANE = 'baselayers';
+var BASELAYER_PANE = "baselayers";
 
 var BaseLayers = [
   {

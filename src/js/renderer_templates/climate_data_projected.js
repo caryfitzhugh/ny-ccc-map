@@ -1,4 +1,4 @@
-const findDataForNYProjectedData = (layer_data, geom_feature, summary, season, year, scenario) => {
+var findDataForNYProjectedData = (layer_data, geom_feature, summary, season, year, scenario) => {
   let data_value = RendererTemplates.ny_match_geometry_and_data(layer_data, geom_feature, summary, season, year);
   if (!_.isEmpty(data_value)) {
     data_value.scenario = scenario;
@@ -38,7 +38,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                   <th> Season </th>
                   <th> Baseline (` + opts.legend_units + `)</th>
                   <th> Scenario </th>
-                  
+
                   {{#active_layer.parameters.years}}
                     <th> {{.}}s</th>
                   {{/active_layer.parameters.years}}
@@ -50,7 +50,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     <td rowspan='2'>{{u.capitalize(season)}}</td>
                     <td rowspan='2'>{{baseline}}</td>
                     <td> High </td>
-                    
+
                     {{#u.sort_by(values, 'year')}}
                       <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
                       {{{u.add_sign(delta_high)}}}</td>
@@ -58,9 +58,9 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                   </tr>
 
                   <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("low" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
-                    
+
                     <td> Low </td>
-                    
+
                     {{#u.sort_by(values, 'year')}}
                       <td decorator="tooltip: Likely Range: {{range}} "
                           class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>

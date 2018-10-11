@@ -43,13 +43,13 @@ var Renderers = {
   add_layer_error: function (active_layer) {
     Views.ControlPanel.fire("tile-layer-loading-error", active_layer);
   },
-  random: () => {
+  random: function () {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
       return v.toString(16);
     });
   },
-  update_templates: (al, opts) => {
+  update_templates: function (al, opts) {
     if (!al.templates) {
       al.templates = {}
       var legend_key = Renderers.random();
@@ -69,25 +69,25 @@ var Renderers = {
       }
     }
   },
-  is_loading_leaflet_layer: (active_layer, attributes) => {
+  is_loading_leaflet_layer: function (active_layer, attributes) {
     active_layer.loading_layers = active_layer.loading_layers || {};
     return active_layer.loading_layers[stringify(attributes)];
   },
-  loading_leaflet_layer: (active_layer, attributes) => {
+  loading_leaflet_layer: function (active_layer, attributes) {
     active_layer.loading_layers = active_layer.loading_layers || {};
     active_layer.loading_layers[stringify(attributes)] = true;
   },
-  loaded_leaflet_layer: (active_layer, attributes) => {
+  loaded_leaflet_layer: function (active_layer, attributes) {
     active_layer.loading_layers = active_layer.loading_layers || {};
     active_layer.loading_layers[stringify(attributes)] = false;
   },
-  create_leaflet_layer_async: (map, active_layer, attributes, load_layer, completed) => {
+  create_leaflet_layer_async: function (map, active_layer, attributes, load_layer, completed) {
     if (!Renderers.get_leaflet_layer(map, active_layer, attributes) &&
         !Renderers.is_loading_leaflet_layer(active_layer, attributes)) {
       Renderers.loading_leaflet_layer(active_layer, attributes);
 
       load_layer()
-      .then((layer) => {
+      .then(function (layer) {
           layer.addTo(map);
           Renderers.save_leaflet_layer(active_layer, layer._leaflet_id, attributes);
           completed();
@@ -96,7 +96,7 @@ var Renderers = {
       completed();
     }
   },
-  create_leaflet_layer: (map, active_layer, attributes, load_layer) => {
+  create_leaflet_layer: function (map, active_layer, attributes, load_layer) {
     if (!Renderers.get_leaflet_layer(map, active_layer, attributes) &&
         !Renderers.is_loading_leaflet_layer(active_layer, attributes)) {
       Renderers.loading_leaflet_layer(active_layer, attributes);
@@ -105,7 +105,7 @@ var Renderers = {
       Renderers.save_leaflet_layer(active_layer, layer._leaflet_id, attributes);
     }
   },
-  save_leaflet_layer: (active_layer, layer_id, attributes) => {
+  save_leaflet_layer: function (active_layer, layer_id, attributes) {
     active_layer.leaflet_layer_ids.push(
       Object.assign({},
                     {id: stringify(attributes)},
@@ -145,7 +145,7 @@ var Renderers = {
     });
     return leaflet_layers;
   },
-  layer_to_pane_name: (active_layer) => {
+  layer_to_pane_name: function (active_layer) {
     return active_layer.id.replace(/\W/,'.');
   },
   remove: function (map, active_layer) {
@@ -192,7 +192,7 @@ var Renderers = {
         return `<a href='#' onclick='Renderers.zoom_to_bounding_box("${geometry.toBBoxString()}");'>Zoom to feature</a>`;
       }
     },
-    addPlusSign(theNumber)
+    addPlusSign: function (theNumber)
     {
         if(theNumber > 0){
             return "+" + theNumber;
@@ -200,5 +200,5 @@ var Renderers = {
             return theNumber.toString();
         }
     }
-  },
+  }
 };
