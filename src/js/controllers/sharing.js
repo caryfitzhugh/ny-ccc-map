@@ -48,7 +48,6 @@ Controllers.Sharing = {
   },
   save_state: function (data, cb) {
     $.ajax({
-      //url: CDN("http://52.2.5.122/api/v1/savemap.php"),
       url: "https://repository.nescaum-ccsc-dataservices.com/map_states",
       method: "POST",
       contentType: "application/json",
@@ -61,7 +60,6 @@ Controllers.Sharing = {
   load_state: function (token, cp, map) {
     cp.set("sharing_modal_loading", true);
     $.ajax({
-      // url: CDN("http://52.2.5.122/api/v1/getmap.php"),
       url: CDN("https://repository.nescaum-ccsc-dataservices.com/map_states/" + token),
       dataType: "json",
       success: function (resp) {

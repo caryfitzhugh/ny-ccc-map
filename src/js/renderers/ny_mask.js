@@ -1,5 +1,5 @@
 (function() {
-  let _url = CDN("http://repository.nescaum-ccsc-dataservices.com/data/ny/ny_mask.topojson");
+  let _url = CDN("https://repository.nescaum-ccsc-dataservices.com/data/ny/ny_mask.topojson");
   let _cache = {};
   RendererTemplates.geojson_polygons('ny_mask', {
     parameters: {

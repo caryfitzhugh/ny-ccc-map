@@ -5,7 +5,7 @@ RendererTemplates.geojson_points('usgs_streamflow',  {
   },
 
   url: CDN(
-      URI("http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows").query({
+      URI("https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows").query({
     service: "WFS",
     version: "1.0.0",
     request: "GetFeature",
