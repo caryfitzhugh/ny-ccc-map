@@ -21,6 +21,13 @@ var ViewUtils = {
   uniq_on_prop: (arr_of_hsh, prop) => {
       return _.uniq(arr_of_hsh, (v) => v[prop])
   },
+  to_fixed: (val, prec) => {
+    if (prec) {
+       return val.toFixed(prec);
+    } else {
+       return val;
+    }
+  },
   add_sign: (val) => {
     let sign = ' ';
     if (val > 0) {

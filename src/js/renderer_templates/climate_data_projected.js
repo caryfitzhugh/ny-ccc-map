@@ -48,12 +48,12 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                 {{#u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
                   <tr class="{{(season === geojson.location_data.season ? 'active-season' : '')}} {{(("high" == geojson.location_data.scenario) ? 'active-scenario' : '')}}">
                     <td rowspan='2'>{{u.capitalize(season)}}</td>
-                    <td rowspan='2'>{{baseline}}</td>
+                    <td rowspan='2'>{{u.to_fixed(baseline, ${opts.legend_precision})}}</td>
                     <td> High </td>
 
                     {{#u.sort_by(values, 'year')}}
                       <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
-                      {{{u.add_sign(delta_high)}}}</td>
+                      {{{u.add_sign(u.to_fixed(delta_high, ${opts.legend_precision}))}}}</td>
                     {{/sort_by(values, 'year')}}
                   </tr>
 
@@ -64,7 +64,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     {{#u.sort_by(values, 'year')}}
                       <td decorator="tooltip: Likely Range: {{range}} "
                           class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
-                      {{{u.add_sign(delta_low)}}}</td>
+                      {{{u.add_sign(u.to_fixed(delta_low, ${opts.legend_precision}))}}}</td>
                     {{/sort_by(values, 'year')}}
                   </tr>
                 {{/u.sort_by(geojson.location_data.geometry_data.data, 'season')}}
