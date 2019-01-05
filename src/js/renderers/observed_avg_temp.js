@@ -4,5 +4,5 @@ RendererTemplates.ny_observed_climate_data('observed_avg_temp', {
   legend_units: " &deg; F",
   legend_precision: 1,
   variable_name: "avgt",
-  color_range: colorbrewer.OrRd[6]
+  color_range: colorbrewer.OrRd[8]
 });

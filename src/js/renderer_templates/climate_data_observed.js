@@ -42,7 +42,7 @@ RendererTemplates.ny_observed_climate_data = function (layer_id, opts) {
                   <tr class="no-scenario {{(season === geojson.location_data.season ? 'active-season' : '')}}">
                     <td>{{u.capitalize(season)}}</td>
                     {{#u.sort_by(values, 'year')}}
-                      <td decorator="tooltip: Likely Range: {{range}} " class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
+                      <td class='{{(year === geojson.location_data.year ? 'active-year' : '')}}'>
                          {{{u.to_fixed(data_value, ${opts.legend_precision || undefined})}}}</td>
                     {{/sort_by(values, 'year')}}
                   </tr>

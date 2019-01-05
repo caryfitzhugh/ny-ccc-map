@@ -52,7 +52,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     <td> High </td>
 
                     {{#u.sort_by(values, 'year')}}
-                      <td decorator="tooltip: Likely Range: {{range}} " class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
+                      <td class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
                       {{{u.add_sign(u.to_fixed(delta_high, ${opts.legend_precision}))}}}</td>
                     {{/sort_by(values, 'year')}}
                   </tr>
@@ -62,8 +62,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
                     <td> Low </td>
 
                     {{#u.sort_by(values, 'year')}}
-                      <td decorator="tooltip: Likely Range: {{range}} "
-                          class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
+                      <td class='{{((year === geojson.location_data.year) ? 'active-year' : '')}}'>
                       {{{u.add_sign(u.to_fixed(delta_low, ${opts.legend_precision}))}}}</td>
                     {{/sort_by(values, 'year')}}
                   </tr>
