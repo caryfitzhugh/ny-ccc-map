@@ -45,9 +45,11 @@ var CDN = function (url_str) {
       uri.port(null);
       uri.scheme("https");
     } else if (hostname.match(/ciesin.columbia.edu/)) {
-      uri.hostname("dm1qgr5i36k4o.cloudfront.net");
-      uri.port(null);
+      //uri.hostname("dm1qgr5i36k4o.cloudfront.net");
+      //uri.port(null);
+      // Pretty lame but doesn't look lke we can use the CDN for this host anymore.
       uri.scheme("https");
+
     } else if (hostname.match(/rmgsc.cr.usgs.gov/)) {
       uri.hostname("d2m13662o5wefi.cloudfront.net");
       uri.port(null);
