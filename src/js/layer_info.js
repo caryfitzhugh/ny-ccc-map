@@ -60,6 +60,11 @@ var CDN = function (url_str) {
       uri.scheme("https");
     } else if (hostname.match(/repository.nescaum-ccsc-dataservices.com/)) {
       //Nothing
+    } else if (hostname.match(/geoserver.nescaum-ccsc-dataservices.com/)) {
+      // Running it through an HTTPS proxy cloudfront-style
+      uri.hostname("3dfsz5phlpu8l.cloudfront.net");
+      uri.port(null);
+      uri.scheme("https");
     } else if (hostname.match(/.*\.cloudfront.net/)) {
       //Nothing
     } else {
