@@ -151,6 +151,8 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
       }
 
       _.each(active_layer.parameters.all_seasons, (name, season) => {
+        /*
+        // This code is used to give a separate color bar for the high and low scenarios.
         let scale_h = d3.scaleQuantile().domain(data_values[season]['high']).range(color_range).quantiles();
         let scale_l = d3.scaleQuantile().domain(data_values[season]['low']).range(color_range).quantiles();
 
@@ -158,10 +160,21 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
           scale_h.reverse();
           scale_l.reverse();
         }
-
         active_layer.parameters.metrics_ranges[season] = {
           'low': scale_l,
           'high': scale_h
+        };
+        */
+
+        // This code is used to give the high and low scenarios the same color bar buckets
+        let scale = d3.scaleQuantile().domain(data_values[season]['high'] + data_values[season]['low']).range(color_range).quantiles();
+
+        if (opts.invert_scale) {
+          scale.reverse()
+        }
+        active_layer.parameters.metrics_ranges[season] = {
+          'low': scale,
+          'high': scale
         };
       });
     },
