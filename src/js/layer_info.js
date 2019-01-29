@@ -726,6 +726,7 @@ var available_layers = [
   },
   {
     "id": "observed_temp_gt_90",
+    "sort_key": 'Days > 090',
     "folder": "Climate Observations.Temperature",
     "name": "Days > 90 &deg;F (Observed)",
     "sectors": ["All Sectors"],
@@ -736,6 +737,7 @@ var available_layers = [
   },
   {
     "id": "projected_temp_gt_90",
+    "sort_key": 'Days > 090',
     "folder": "Climate Projections.Temperature",
     "name": "Days > 90 &deg;F (Projected)",
     "sectors": ["All Sectors"],
@@ -747,6 +749,7 @@ var available_layers = [
   },
   {
     "id": "observed_temp_gt_95",
+    "sort_key": 'Days > 095',
     "folder": "Climate Observations.Temperature",
     "name": "Days > 95 &deg;F (Observed)",
     "sectors": ["All Sectors"],
@@ -759,6 +762,7 @@ var available_layers = [
   {
     "id": "projected_temp_gt_95",
     "folder": "Climate Projections.Temperature",
+    "sort_key": 'Days > 095',
     "name": "Days > 95 &deg;F (Projected)",
     "sectors": ["All Sectors"],
     "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2095s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
@@ -769,6 +773,7 @@ var available_layers = [
   },
   {
     "id": "observed_temp_gt_100",
+    "sort_key": 'Days > 100',
     "folder": "Climate Observations.Temperature",
     "name": "Days > 100 &deg;F (Observed)",
     "sectors": ["All Sectors"],
@@ -780,6 +785,7 @@ var available_layers = [
   },
   {
     "id": "projected_temp_gt_100",
+    "sort_key": 'Days > 100',
     "folder": "Climate Projections.Temperature",
     "name": "Days > 100 &deg;F (Projected)",
     "sectors": ["All Sectors"],

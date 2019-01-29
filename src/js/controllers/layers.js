@@ -117,7 +117,6 @@ Controllers.Layers = {
   remove_active: function (cp, evt) {
     var new_active_layers = _.cloneDeep(cp.get("layers.active"));
     _.remove(new_active_layers, {"id": evt.context.id});
-    //Controllers.Layers.mark_layer_as_unloaded(cp, evt.context.id);
     cp.set("layers.active", Controllers.Layers.sort_active_layers(new_active_layers));
   },
   visible_all_layers: function (cp, evt) {
@@ -243,7 +242,12 @@ Controllers.Layers = {
       var child = _.find(all_layers, "id", child_id_or_folder);
       var res = "";
       if (child) {
-        res =  "A" + child.name;
+        res =  "A";
+        if (child.sort_key) {
+            res += child.sort_key;
+        } else {
+            res += child.name;
+        }
       } else {
         res = "Z" + child_id_or_folder.folder_name;
       }
