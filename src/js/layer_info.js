@@ -529,7 +529,7 @@ var available_layers = [
     {
     "id": "observed_precip",
     "folder": "Climate Observations.Precipitation",
-    "name": "Total Precipitation (Observed)",
+    "name": "Precipitation (Observed)",
     "sectors": ["All Sectors"],
     "description": "Total precipitation summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
@@ -540,7 +540,7 @@ var available_layers = [
   {
     "id": "projected_precip",
     "folder": "Climate Projections.Precipitation",
-    "name": "Total Precipitation (Projected)",
+    "name": "Precipitation (Projected)",
     "sectors": ["All Sectors"],
     "description": "Projected changes in annual or seasonal total precipitation. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
