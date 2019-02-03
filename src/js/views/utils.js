@@ -42,21 +42,28 @@ var ViewUtils = {
   object_entries_count: (obj) => {
     return Object.keys(obj).length;
   },
-  color_range_label: (metrics_range, colors, index, fixed, signed, inverted) => {
-    let label = "";
-    if (!fixed && fixed !== 0) {
-      fixed = 2;
+  color_range_labels: (metrics_range, colors, precision, signed, inverted) => {
+    if (!precision && precision !== 0) {
+      precision = 2;
     }
-    if (index < metrics_range.length) {
-      label =  metrics_range[index].toFixed(fixed);
-      if (signed) {
-        return ViewUtils.add_sign(label);
-      } else {
-        return label;
+    let labels = [];
+    let val_count = _.min([metrics_range.length, colors.length]);
+
+    for (let i = 0; i < val_count; i ++) {
+      let label =  metrics_range[i];
+      if (label) {
+          label = label.toFixed(precision);
       }
-    } else if (index >= metrics_range.length) {
-      return  "";
+      if (label && signed) {
+        label = ViewUtils.add_sign(label);
+      }
+      labels.push({label: label, color: colors[i]});
     }
+    // Now post-process the list
+    // Blank out the last one
+    labels[labels.length - 1].label = "";
+
+    return labels;
   },
   sort_by: (arry, field) => {
     return _.sortBy(arry, field);

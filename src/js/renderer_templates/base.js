@@ -13,11 +13,10 @@ RendererTemplates.base = function (layer_id, opts, impl) {
     },
     opts,
     impl);
-
   renderer.render = (map, active_layer, pane) => {
     if (opts.onrender) { opts.onrender(active_layer); }
 
-    Renderers.update_templates(active_layer, opts);
+    Renderers.update_templates(active_layer, renderer);
     impl.render(map, active_layer, pane);
   }
   return renderer;

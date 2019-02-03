@@ -45,14 +45,14 @@
 <script id='map_color_block_legend_template' type='text/ractive'/>
   <div class='detail-block legend {{quantiled ? 'quantiled' : ''}}'>
     <div class='color-legend '>{{{legend}}}</div>
-    {{#colors:i}}
+    {{#u.color_range_labels(metrics, colors, precision, signed, inverted)}}
       <div class='color-block' style="width: {{100.0 / colors.length}}%;">
         <svg width="100" height="100">
-          <rect height="100" width="100" style="fill: {{.}}; opacity:{{(0.7 * parameters.opacity / 100.0) + 0.3}}; "/>
+          <rect height="100" width="100" style="fill: {{color}}; opacity:{{(0.7 * parameters.opacity / 100.0) + 0.3}}; "/>
         </svg>
-        <label>{{{u.color_range_label(metrics, colors, i, precision, signed, inverted)}}}</label>
+        <label>{{{label}}}</label>
       </div>
-    {{/colors}}
+    {{/u.color_range_labels(metrics, colors, precision, signed, inverted)}}
   </div>
 </script>
 
@@ -945,6 +945,7 @@
     <script src="./js/renderer_templates/imported_geojson.js?__inline=true"></script>
     <script src="./js/renderer_templates/invasives.js?__inline=true"></script>
     <script src="./js/renderer_templates/wms.js?__inline=true"></script>
+    <script src="./js/renderer_templates/climaid.js?__inline=true"></script>
     <script src="./js/renderer_templates/climate_data.js?__inline=true"></script>
     <script src="./js/renderer_templates/climate_data_projected.js?__inline=true"></script>
     <script src="./js/renderer_templates/climate_data_observed.js?__inline=true"></script>
@@ -976,6 +977,8 @@
     <script src="./js/renderers/bulkstorage.js?__inline=true"></script>
     <script src="./js/renderers/carbon.js?__inline=true"></script>
     <script src="./js/renderers/cfem_critical.js?__inline=true"></script>
+    <script src="./js/renderers/climaid_precip.js?__inline=true"></script>
+    <script src="./js/renderers/climaid_temp.js?__inline=true"></script>
     <script src="./js/renderers/croplands.js?__inline=true"></script>
     <script src="./js/renderers/culverts.js?__inline=true"></script>
     <script src="./js/renderers/dams.js?__inline=true"></script>
