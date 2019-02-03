@@ -261,7 +261,7 @@ RendererTemplates.climaid = function (layer_id, opts) {
       </div>
       <div class='col-xs-10'>
         <div>
-          Projected ` + opts.legend + `: {{u.to_fixed(geojson.climaid_delta, ` + opts.legend_precision + `)}} {{{ ` + opts.legend_units + `}}} <br>
+          ` + opts.legend + `: {{u.to_fixed(geojson.climaid_delta, ` + opts.legend_precision + `)}} ` + opts.legend_units + ` <br>
         </div>
       </div>
     `,

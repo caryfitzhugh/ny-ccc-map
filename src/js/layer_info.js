@@ -214,7 +214,7 @@ var available_layers = [
     },
     {
       "id": "climaid_temp",
-      "folder": "Climate Data.Temperature",
+      "folder": "Other Climate Data",
       "name": "CLIMAID Temperature Change",
       "description": "Future temperature projections developed for and utilized by the New York ClimAID Report. Projected temperature change for the years 2020, 2050, and 2080, compared with the baseline period of 1971-2000, at a 50x50km resolution. Projections are available for two different emissions scenarios, RCP 4.5 (substantial reductions in GHG emissions before 2100) and RCP 8.5 (increasing GHG emissions with time). Users can select results by percentiles. For example, the 75th percentile means that 75 percent of the model results are lower in value (and 25 percent are higher).",
       "source": "CLIMAID",
@@ -225,7 +225,7 @@ var available_layers = [
     },
     {
       "id": "climaid_precip",
-      "folder": "Climate Data.Precipitation",
+      "folder": "Other Climate Data",
       "name": "CLIMAID Precipitation Change",
       "description": "Future precipitation projections developed for and utilized by the New York ClimAID Report. Projected precipitation change for the years 2020, 2050, and 2080, compared with the baseline period of 1971-2000. Projections are available for two different emissions scenarios, RCP 4.5 (substantial reductions in GHG emissions before 2100) and RCP 8.5 (increasing GHG emissions with time). Users can select results by percentiles. For example, the 75th percentile means that 75 percent of the model results are lower in value (and 25 percent are higher).",
       "source": "CLIMAID",
