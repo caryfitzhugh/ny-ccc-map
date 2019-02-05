@@ -22,11 +22,12 @@ var ViewUtils = {
       return _.uniq(arr_of_hsh, (v) => v[prop])
   },
   to_fixed: (val, prec) => {
+    var result = val;
     if (prec) {
-       return val.toFixed(prec);
-    } else {
-       return val;
+       result = val.toFixed(prec);
     }
+    // console.log(val, result, prec)
+    return result;
   },
   add_sign: (val) => {
     let sign = ' ';
