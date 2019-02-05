@@ -9,7 +9,7 @@ module.exports = function (grunt) {
         uglify: true,
         tag: '__inline',
         babel: {
-          plugins: ["transform-es2015-arrow-functions"],
+          plugins: ["transform-es2015-arrow-functions", "babel-plugin-transform-es2015-template-literals"],
           presets: [["es2015", {modules: false}]] //[ "env" ]
         }
       },
