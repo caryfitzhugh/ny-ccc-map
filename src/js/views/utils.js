@@ -63,6 +63,13 @@ var ViewUtils = {
     // Blank out the last one
     labels[labels.length - 1].label = "";
 
+    // If any labels are the same as the previous one, clear those out too.
+    for (let i = 1; i < labels.length; i++) {
+      if (labels[i].label === labels[i-1].label) {
+        labels[i].label = ""
+      }
+    }
+
     return labels;
   },
   sort_by: (arry, field) => {
