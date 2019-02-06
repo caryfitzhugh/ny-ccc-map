@@ -167,7 +167,8 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         */
 
         // This code is used to give the high and low scenarios the same color bar buckets
-        let scale = d3.scaleQuantile().domain(data_values[season]['high'] + data_values[season]['low']).range(color_range).quantiles();
+        let all_values = [].concat(data_values[season]['high'].concat(data_values[season]['low']));
+        let scale = d3.scaleQuantile().domain(all_values).range(color_range).quantiles();
 
         if (opts.invert_scale) {
           scale.reverse()
@@ -178,6 +179,7 @@ RendererTemplates.ny_projected_climate_data = function (layer_id, opts) {
         };
       });
     },
+
     onEachGeometry: (layer_data, active_layer, feature, layer) => {
       let p = active_layer.parameters.options;
 

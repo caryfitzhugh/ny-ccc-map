@@ -58,7 +58,7 @@ var ViewUtils = {
       if (label && signed) {
         label = ViewUtils.add_sign(label);
       }
-      labels.push({label: label, color: colors[i]});
+      labels.push({label: label, value: label, color: colors[i]});
     }
     // Now post-process the list
     // Blank out the last one
@@ -66,7 +66,7 @@ var ViewUtils = {
 
     // If any labels are the same as the previous one, clear those out too.
     for (let i = 1; i < labels.length; i++) {
-      if (labels[i].label === labels[i-1].label) {
+      if (labels[i].value === labels[i-1].value) {
         labels[i].label = ""
       }
     }
