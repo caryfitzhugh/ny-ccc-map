@@ -980,7 +980,7 @@ var available_layers = [
       "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1097",
       "sectors": ["Public Health"],
       "legend_url": CDN("http:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:remediation_sites&format=image/png"),
-      "download_url": "ftp:\/\/ftp.dec.state.ny.us\/der\/FOIL\/RemedialGIS.zip",
+      "download_url": "http:\/\/www.dec.ny.gov\/derdata\/remedsiteborders.zip",
       "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.remedsite_borders_export.html"
     },
     {
