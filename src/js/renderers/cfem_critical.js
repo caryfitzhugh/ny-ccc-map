@@ -1,14 +1,13 @@
 RendererTemplates.wms("cfem_critical", {
   parameters: {
     opacity: 100,
-    layers: "0,1,2,3,4,5,6",
+    layers: "9", //21", //0,1,2,3,4,5,6",
     //layers: "0,7,8",
     options: {
     }
   },
 
-  url: CDN("https://maps.coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer/WMSServer"),
-
+  url: CDN("https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer"),
   wms_opts:(active_layer) => {
     return  {
       layers: active_layer.parameters.layers,
@@ -22,7 +21,7 @@ RendererTemplates.wms("cfem_critical", {
   },
   get_feature_info_xml_url: function (active_layer) {
     return CDN(
-      "https://maps.coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer/WMSServer"+
+      "https://coast.noaa.gov:443/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer"+
           "?SERVICE=WMS&VERSION=1.1.1&"+
           "REQUEST=GetFeatureInfo&"+
           "LAYERS="+active_layer.parameters.layers+"&"+
@@ -32,16 +31,13 @@ RendererTemplates.wms("cfem_critical", {
           "FEATURE_COUNT=1000&"+
           "HEIGHT=<%= height %>&"+
           "WIDTH=<%= width %>&"+
-          //"FORMAT=application%2Fjson&"+
-          //"INFO_FORMAT=application%2Fjson&"+
           "SRS=EPSG%3A4326&"+
           "CRS=EPSG%3A4326&"+
           "X=<%= x %>&Y=<%= y %>");
   },
   legend_template: `
       <div class='detail-block show-confidence'>
-        <img src={{CDN(
-          "https://maps.coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0")}}/>
+        <img src={{CDN("https://coast.noaa.gov:443/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0")}}/>
       </div>
   `,
   info_template: `
@@ -52,15 +48,13 @@ RendererTemplates.wms("cfem_critical", {
       <div class='col-xs-10'>
         <table class="table">
           <tr>
-						<th>Type</th>
-						<th>Name</th>
-            <th>Address</th>
+						<th>Hazard Number</th>
+						<th>Description</th>
           </tr>
-          {{#u.uniq_on_prop(xml_output, "Name")}}
+          {{#u.uniq_on_prop(xml_output, "OBJECTID")}}
             <tr>
-              <td>{{FCode}}</td>
-              <td>{{Name}}</td>
-              <td>{{Address}} {{City}} {{State}}</td>
+              <td>{{HAZ_NUM}}</td>
+              <td>{{{DESCRPTN}}}</td>
             </tr>
           {{/u.uniq_on_prop(xml_output, "Name")}}
         </table>
