@@ -88,7 +88,7 @@ var Renderers = {
 
       load_layer()
       .then(function (layer_results) {
-          let = layer = null;
+          let layer = null;
           // In the case whe it's not an array
           if (Array.isArray(layer_results)) {
             layer = layer_results[0];
