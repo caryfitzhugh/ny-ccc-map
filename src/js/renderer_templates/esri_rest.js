@@ -9,14 +9,16 @@ RendererTemplates.esri_rest = function (layer_id, opts) {
 
   var renderer = RendererTemplates.base(layer_id, opts, {
     render: function (map, active_layer, pane) {
-      Renderers.create_leaflet_layer(
+      Renderers.create_leaflet_layer_async(
         map,
         active_layer,
         get_esri_opts(active_layer),
         () => {
           return new Promise((win, lose) => {
-            var layer = new L.TileLayer.EsriRest(opts.url,
-              _.merge({ pane: pane,
+            //var layer = new L.TileLayer.EsriRest(opts.url,
+            var layer = new L.esri.TiledMapLayer(
+              _.merge({ url: opts.url,
+                        pane: pane,
                         minZoom: opts.parameters.min_zoom || 0,
                         maxZoom: opts.parameters.max_zoom || 18},
                       get_esri_opts(active_layer)));

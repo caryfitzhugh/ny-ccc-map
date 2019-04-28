@@ -1,4 +1,14 @@
-RendererTemplates.wms("cfem_critical", {
+RendererTemplates.esri_tiled_map("cfem_critical", {
+  parameters: {
+    opacity: false,
+  },
+  url: CDN("https://coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CriticalFacilities/MapServer"),
+  esri_opts: {
+    layers: '0',
+    transparent: true
+  }
+});
+/*
   parameters: {
     opacity: 100,
     layers: "9", //21", //0,1,2,3,4,5,6",
@@ -62,3 +72,4 @@ RendererTemplates.wms("cfem_critical", {
     </div>
   `
 });
+*/
