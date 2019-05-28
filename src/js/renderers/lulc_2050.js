@@ -39,9 +39,9 @@
       legend_data: _legend_data,
     },
     esri_opts: {
-      url: CDN("http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_toolkit/MapServer"),
+      url: CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer"),
       // No longer defaults to image, but JSON
-      layers: [208],
+      layers: [219],
       f:"image",
       clickable: false,
       attribution: 'NYS DEC'

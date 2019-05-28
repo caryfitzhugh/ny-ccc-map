@@ -6,7 +6,7 @@
       callback(null, _legend_data);
     } else {
       $.ajax({
-        url: CDN("http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_species_maptree/MapServer/legend"),
+        url: CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer/legend"),
         data: {f: "pjson"},
         dataType: "jsonp",
         success: function (data) {
@@ -24,49 +24,49 @@
 
   let _species_groups = {
     "All":  {
-      "Future" : 17,
-      "Current": 27,
-      "Change" : 37
+      "Future" : 244,
+      "Current": 254,
+      "Change" : 264
     },
     "Animals": {
-      "Future" : 18,
-      "Current": 28,
-      "Change" : 38
+      "Future" : 245,
+      "Current": 255,
+      "Change" : 265
     },
     "Plants": {
-      "Future" : 19,
-      "Current": 29,
-      "Change" : 39
+      "Future" : 246,
+      "Current": 256,
+      "Change" : 266
     },
     "Invertebrates": {
-      "Future" : 20,
-      "Current": 30,
-      "Change" : 40
+      "Future" : 248,
+      "Current": 258,
+      "Change" : 268
     },
     "Vertebrates": {
-      "Future" : 21,
-      "Current": 31,
-      "Change" : 41
+      "Future" : 247,
+      "Current": 257,
+      "Change" : 267
     },
     "Birds": {
-      "Future" : 22,
-      "Current": 32,
-      "Change" : 42
+      "Future" : 249,
+      "Current": 259,
+      "Change" : 269
     },
     "Aerial Insects": {
-      "Future" : 23,
-      "Current": 33,
-      "Change" : 43
+      "Future" : 250,
+      "Current": 260,
+      "Change" : 270
     },
     "Federally Listed": {
-      "Future" : 24,
-      "Current": 34,
-      "Change" : 44
+      "Future" : 251,
+      "Current": 261,
+      "Change" : 271
     },
     "NY State Listed": {
-      "Future" : 25,
-      "Current": 35,
-      "Change" : 45
+      "Future" : 252,
+      "Current": 262,
+      "Change" : 272
     }
   };
 
@@ -78,7 +78,7 @@
   RendererTemplates.esri('rare_plants_and_animals', {
     esri_opts: function (active_layer) {
       return {
-        url: CDN("http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_species_maptree/MapServer"),
+        url: CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer"),
         layers: [_get_layer_id(active_layer)],
         f:"image",
         format: "png32",
