@@ -87,7 +87,14 @@ var Renderers = {
       Renderers.loading_leaflet_layer(active_layer, attributes);
 
       load_layer()
-      .then(function (layer) {
+      .then(function (layer_results) {
+          let layer = null;
+          // In the case whe it's not an array
+          if (Array.isArray(layer_results)) {
+            layer = layer_results[0];
+          } else {
+            layer = layer_results;
+          }
           layer.addTo(map);
           Renderers.save_leaflet_layer(active_layer, layer._leaflet_id, attributes);
           completed();

@@ -56,7 +56,7 @@
       var layer_array= [34+risenum+yearnum,67+risenum+yearnum,100+risenum+yearnum];
 
       return {
-          url: CDN("http://services.nyserda.ny.gov/arcgis/rest/services/NYSERDA_SLR_Viewer/MapServer"),
+          url: CDN("https://services.nyserda.ny.gov/arcgis/rest/services/NYSERDA_SLR_Viewer/MapServer"),
           // No longer defaults to image, but JSON
           layers: layer_array,
           f:"image",
