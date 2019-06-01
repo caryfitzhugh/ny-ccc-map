@@ -372,7 +372,7 @@ var available_layers = [
     },
     {
       "id": "gap_lc",
-      "folder": "",
+      "folder": "Land Cover",
       "name": "GAP Land Cover Dataset",
       "description": "GAP Land Cover 3 National Vegetation Classification-Formation Land Use for the contiguous United States. For more information about the National Vegetation Classification Standard please visit this link: http://usnvc.org/data-standard/",
       "source": "USGS",
