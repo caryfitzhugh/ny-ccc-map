@@ -282,6 +282,11 @@ Controllers.Layers = {
           force_expanded = add_layer;
         }
 
+        // Hide things with blank folders
+        if (layer.folder === '') {
+          add_layer = false;
+        }
+
         if (add_layer && current_sectors.length > 0) {
           add_layer = _.any(layer.sectors, (layer_sector) => {
             return _.any(current_sectors, (current_sector) => {

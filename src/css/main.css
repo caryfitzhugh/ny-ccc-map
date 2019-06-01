@@ -624,6 +624,10 @@ input[type="radio"], input[type="checkbox"] {
   width: 100%;
   height: 25px;
 }
+.active-layer .detail-block.legend .color-block.square svg ,
+.active-layer .detail-block.legend .color-block.square svg rect {
+  width: 25px;
+}
 
 .detail-block.legend-url-text.spa_surface_water ,
 .detail-block.legend-url-text.spa_ground_water {

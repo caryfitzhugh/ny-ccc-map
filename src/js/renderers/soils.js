@@ -123,8 +123,6 @@
         {{#json.results}}
           <tr>
             <td>
-              {{u.console(active_layer.parameters.legend_data)}}
-              {{u.console(attributes)}}
               {{#active_layer.parameters.legend_data}}
                 {{#if attributes['code_desc'] == label}}
                     <img src="data:{{contentType}};base64,{{imageData}}" class='cube'/>
