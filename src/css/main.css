@@ -1218,6 +1218,7 @@ th.deltas {
 }
 
 @media print {
+  @page { size: landscape; }
   .hide-printing {
     display: none;
   }
@@ -1273,11 +1274,21 @@ th.deltas {
     height: 100%;
     display: block;
   }
+  /*
   #content, #map { height: 50%; }
+  */
+
   #map.tray-open { margin-left: 0; }
   body {
     height: 200%;
     overflow: auto;
+  }
+  .leaflet-pane, .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-container, .leaflet-pane > svg, .leaflet-pane > canvas, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
   }
 }
 
