@@ -332,6 +332,7 @@ var available_layers = [
       "source": "'Natural Resource Navigator / NY Climate Adaptation",
       "source_url": "http://maps.naturalresourcenavigator.org/",
       "sectors": ["Water Resources"],
+      "metadata_url": "https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer"
     },
     {
       "id": "fema_historic",

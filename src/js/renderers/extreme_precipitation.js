@@ -1,16 +1,16 @@
 (function () {
-  let _root_url = "http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_toolkit/MapServer";
+  let _root_url = "https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer";
 
   let _event_types = {
       "100 Year Event":  {
-        "Future Recurrence" : 153,
-        "Future Avg Percent Increase": 154,
-        "Current Magnitude" : 155
+        "Future Recurrence" : 164,
+        "Future Avg Percent Increase": 165,
+        "Current Magnitude" : 166
       },
       "10 Year Event":  {
-        "Future Recurrence" : 156,
-        "Future Avg Percent Increase": 157,
-        "Current Magnitude" : 158
+        "Future Recurrence" : 167,
+        "Future Avg Percent Increase": 168,
+        "Current Magnitude" : 169
       }
     };
 
