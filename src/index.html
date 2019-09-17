@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html lang='en-us'>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -86,7 +86,8 @@
             <p> This mapper allows you to import and view your own map layer in the browser.  </p>
             <p><i> Supported formats are .zip (Zipped Shapefiles), .kml, .geojson, .json, .gpx </i></p>
             <div class='input-upload'>
-              <input id='layer_import_file_input' type='file' value='{{layer_import.import_file}}'
+              <input aria-label="Import file filename"
+                     id='layer_import_file_input' type='file' value='{{layer_import.import_file}}'
                   accept=".zip, .kml, .geojson, .json, .gpx"/>
               {{#if layer_import.import_file}}
                 {{#if layer_import.import_file_processing}}
@@ -490,7 +491,7 @@
             <label> Source URL </label>
           </div>
           <span class='col-xs-8'>
-            <a href="{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source_url}}" target="_blank">
+            <a aria-label="Source URL" href="{{get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source_url}}" target="_blank">
               {{u.shorten_url(get_layer_defaults(layers.defaults, layer_controls.current_layer_info).source_url, 40)}}
             </a>
           </span>
@@ -670,7 +671,7 @@
   <div class='contents'>
     <div class='search-header col-md-12'>
       <div class='row'>
-        <input id="layers_search_input" placeholder="Search for layers..." value="{{layers.search_string}}">
+        <input aria-label="Filter string for layers list" id="layers_search_input" placeholder="Search for layers..." value="{{layers.search_string}}">
         {{#if layers.search_string.length > 0 }}
           <a>
             <span class='fa fa-times-circle-o show-cursor' on-tap="clear-layers-search-query"></span>
