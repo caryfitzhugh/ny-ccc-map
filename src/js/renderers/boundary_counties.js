@@ -44,21 +44,14 @@ RendererTemplates.wms("boundary_counties", {
           <tr>
             <th>Name</th>
             <th>FIPS code</th>
-            <th>GNIS code</th>
-            <th></th>
-            <th></th>
           </tr>
           {{#json.features}}
             <tr>
               <td>{{properties.name}}</td>
               <td>{{properties.fips}}</td>
-              <td>{{properties.gnis}}</td>
-              <td></td>
-              <td></td>
             </tr>
           {{/json.features}}
         </table>
       </div>
-  {{/if}}
   `
 });
