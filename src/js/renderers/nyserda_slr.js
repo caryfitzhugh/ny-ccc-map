@@ -32,7 +32,7 @@
         }
 
       },
-    url: CDN("http://ciesin.columbia.edu/geoserver/wms"),
+    url: CDN("http://ciesin.columbia.edu/geoserver/nyserda/wms"),
     wms_opts: (active_layer) => {
         var rise = active_layer.parameters.rise;
         var year = active_layer.parameters.year;
