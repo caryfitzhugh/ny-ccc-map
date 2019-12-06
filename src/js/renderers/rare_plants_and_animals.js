@@ -24,49 +24,49 @@
 
   let _species_groups = {
     "All":  {
-      "Future" : 244,
-      "Current": 254,
-      "Change" : 264
+      "Future" : 18,
+      "Current": 28,
+      "Change" : 38
     },
     "Animals": {
-      "Future" : 245,
-      "Current": 255,
-      "Change" : 265
+      "Future" : 19,
+      "Current": 29,
+      "Change" : 39
     },
     "Plants": {
-      "Future" : 246,
-      "Current": 256,
-      "Change" : 266
+      "Future" : 20,
+      "Current": 30,
+      "Change" : 40
     },
     "Invertebrates": {
-      "Future" : 248,
-      "Current": 258,
-      "Change" : 268
+      "Future" : 22,
+      "Current": 32,
+      "Change" : 42
     },
     "Vertebrates": {
-      "Future" : 247,
-      "Current": 257,
-      "Change" : 267
+      "Future" : 21,
+      "Current": 31,
+      "Change" : 41
     },
     "Birds": {
-      "Future" : 249,
-      "Current": 259,
-      "Change" : 269
+      "Future" : 23,
+      "Current": 33,
+      "Change" : 43
     },
     "Aerial Insects": {
-      "Future" : 250,
-      "Current": 260,
-      "Change" : 270
+      "Future" : 24,
+      "Current": 34,
+      "Change" : 44
     },
     "Federally Listed": {
-      "Future" : 251,
-      "Current": 261,
-      "Change" : 271
+      "Future" : 25,
+      "Current": 35,
+      "Change" : 45
     },
     "NY State Listed": {
-      "Future" : 252,
-      "Current": 262,
-      "Change" : 272
+      "Future" : 26,
+      "Current": 36,
+      "Change" : 46
     }
   };
 
@@ -78,7 +78,7 @@
   RendererTemplates.esri('rare_plants_and_animals', {
     esri_opts: function (active_layer) {
       return {
-        url: CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer"),
+        url: CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator_Species/MapServer"),
         layers: [_get_layer_id(active_layer)],
         f:"image",
         format: "png32",
@@ -116,7 +116,7 @@
         }
     },
     get_feature_info_url: function (active_layer, map) {
-      return CDN("http://services.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_species_maptree/MapServer/identify") +
+      return CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator_Species/MapServer/identify") +
         "?f=json" +
         "&tolerance=5" +
         "&returnGeometry=true" +
@@ -170,12 +170,10 @@
         </div>
         {{#if parameters.legend_data}}
           <div class='detail-block show-confidence plants-and-animals esri-legend'>
-            {{#parameters.legend_data.legend}}
-              <div class='detail-block legend-block' style="width: {{98 / parameters.legend_data.legend.length}}%;">
-                <img src="data:{{contentType}};base64,{{imageData}}">
+              <div class='detail-block legend-block' >
+                <img src="img/legends/rare_species.jpg">
                 <span> {{label}} &nbsp; </span>
               </div>
-            {{/parameters.legend_data.legend}}
           </div>
           <div class='detail-block legend-url-text {{layer_default_id}} {{legend_classname}}'>
             <span class='legend-text'>

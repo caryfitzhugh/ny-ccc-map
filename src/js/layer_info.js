@@ -1008,17 +1008,6 @@ var available_layers = [
       "metadata_url": "https:\/\/data.ny.gov\/Energy-Environment\/Combined-Sewer-Overflows-CSOs-Map\/i8hd-rmbi"
     },
     {
-      "id": "spdes",
-      "folder": "Water Resources",
-      "name": "Waste Treatment Plants",
-      "description": "The State Pollutant Discharge Elimination System (SPDES) permit program in the Department's Division of Water regulates municipal and industrial wastewater treatment facilities that discharge directly into navigable waters. ",
-      "source": "NYS DEC",
-      "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
-      "sectors": ["Water Resources","Public Health"],
-      "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1010&file=spdes.zip",
-      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.spdes.xml"
-    },
-    {
       "id": "sovi",
       "folder": "Public Health",
       "name": "Social Vulnerability Index for U.S. Coastal States",
@@ -1084,7 +1073,7 @@ var available_layers = [
     "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=438&file=NYSTA_Bridges.gdb.zip",
     "metadata_url": "http://gis.ny.gov/gisdata/metadata/NYSTA-Bridges.xml",
   },
-  {
+/*  {
     "id": "tree_atlas",
     "folder": "Ecosystems",
     "name": "USFS Climate Change Atlas - Tree Species",
@@ -1094,7 +1083,7 @@ var available_layers = [
     "sectors": ["Agriculture", "Ecosystems"],
     "download_url": null,
     "metadata_url": null,
-  },
+  },*/
   {
       "id": "trout_streams",
       "folder": "Ecosystems",
