@@ -23,7 +23,7 @@
 
   RendererTemplates.wms('nyserda_slr', {
     parameters: {
-        opacity: 70,
+        opacity: 100,
         rise: _rises[0],
         year: _years[0],
         options:{
@@ -47,7 +47,7 @@
         };
     },
     'legend_template': `
-        <div class='detail-block show-confidence'>
+      <div class='detail-block show-confidence'>
           <label decorator='tooltip:Use slider to select sea level (inches above mean higher high water)'> Sea Level: </label>
           <select value='{{parameters.rise}}'>
             {{#parameters.options.rises}}
@@ -62,6 +62,10 @@
               <option value={{.}}>{{.}} year</option>
             {{/parameters.options.years}}
           </select>
+        </div>
+        <div class='detail-block'>
+          <label>Legend</label>
+          <img src="./img/legends/nyserda_slr.jpg"/>
         </div>
     `
   });
