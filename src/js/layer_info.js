@@ -97,7 +97,7 @@ var available_layers = [
       "source_url": "http:\/\/www.dec.ny.gov",
       "sectors": ["Public Health"],
       "download_url": "https:\/\/gis.ny.gov\/gisdata\/fileserver\/?DSID=1159&file=AirMonStations.zip",
-      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.AirMon.shp.xml",
+      "metadata_url": "http:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.AirMon.xml",
     },
     {
       "id": "anthromes",
@@ -118,8 +118,8 @@ var available_layers = [
       "source": "New York State Department of Environmental Conservation",
       "source_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=79",
       "sectors": ["Public Health"],
-      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=79&file=armories.zip",
-      "metadata_url": "http://gis.ny.gov/gisdata/metadata/dmna.NYS_ARMORIES.html",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=79&file=NYARNG_Armories.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=79",
     },
     {
       "id": "boundary_climate_divisions",
@@ -138,7 +138,7 @@ var available_layers = [
       "description": "TIGER 2013 Simplified County Boundaries, designed for 1:500k or smaller.  The cartographic boundary files are simplified representations of selected geographic areas from the Census Bureau’s MAF/TIGER geographic database.   These boundary files are specifically designed for small scale thematic mapping. ",
       "source": "US Census Bureau",
       "source_url": "https://www.census.gov/en.html",
-      "metadata_url": "https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html",
+      "metadata_url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2013.html",
       "download_url": "http://www2.census.gov/geo/tiger/GENZ2013/cb_2013_us_county_500k.zip",
       "parameters": {
         "opacity": 100
@@ -151,8 +151,8 @@ var available_layers = [
       "description": "Sub-basin (8-digit HUC) boundaries derived from the National Hydrography Dataset (NHD).",
       "source": "USGS",
       "source_url": "http:\/\/nhd.usgs.gov/",
-      "metadata_url": "ftp:\/\/nhdftp.usgs.gov\/DataSets\/Staged\/States/FileGDB\/MediumResolution\/",
-      "download_url": "ftp:\/\/nhdftp.usgs.gov\/DataSets\/Staged\/States/FileGDB\/MediumResolution\/NHDM_NY_931v220.zip"
+      "metadata_url": "https://www.usgs.gov/core-science-systems/ngp/national-hydrography/access-national-hydrography-products",
+      "download_url": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:huc8&maxFeatures=50&outputFormat=SHAPE-ZIP"
     },
     {
       "id": "boundary_municipal",
@@ -196,10 +196,10 @@ var available_layers = [
       "name": "Biomass Carbon Stock",
       "description": "Current (2010) and projected future (2050) biomass carbon stock (grams of carbon per square meter) for two different emissions scenarios: IPCC A2 (medium-high emissions) and IPCC B1 (lower emissions). Biomass carbon includes carbon stored in above- and below-ground live plant components (such as leaf, branch, stem and root) as well as in standing and down dead woody debris, and fine litter.",
       "source": "landcarbon.org",
-      "source_url": "http:\/\/landcarbon.org\/categories\/biomass-c\/download\/",
+      "source_url": "https://www.usgs.gov/mission-areas/land-resources/science/landcarbon",
       "sectors": ["Ecosystems"],
       "download_url": null,
-      "metadata_url": null,
+      "metadata_url": "https://www.usgs.gov/mission-areas/land-resources/science/landcarbon",
     },
     {
       "id": "cfem_critical",
@@ -289,7 +289,7 @@ var available_layers = [
       "source_url": "http:\/\/services.nyserda.ny.gov\/SLR_Viewer\/About",
       "sectors": ["All Sectors"],
       "legend_url": "./img\/dewberry_slr.png",
-      "metadata_url": "http:\/\/appealsserver.cloudapp.net\/arcgis\/rest\/services\/NYSERDA\/NYSERDA_SLR_Service\/MapServer"
+      "metadata_url": "https://services.nyserda.ny.gov/SLR_Viewer/About"
     },
     {
       "id": "dow_unconsolidated_aquifers",
@@ -321,8 +321,8 @@ var available_layers = [
       "source": "United States Environmental Protection Agency",
       "source_url": "https://www.epa.gov/",
       "sectors": ["Public Health"],
-      "download_url": "https://www.epa.gov/enviro/geospatial-data-download-service",
-      "metadata_url": "http:\/\/profiles.health.ny.gov\/hospital"
+      "download_url": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:epa_frs_facilities&maxFeatures=5000&outputFormat=SHAPE-ZIP",
+      "metadata_url": "https://www.epa.gov/frs"
     },
     {
       "id": "extreme_precipitation",
@@ -343,7 +343,7 @@ var available_layers = [
       "source_url": "https:\/\/catalog.data.gov\/dataset\/fema-historical-disaster-declarations-shp",
       "sectors": ["All Sectors"],
       "legend_url": CDN("http://52.2.5.122:8080/geoserver/wms?request=GetLegendGraphic&LAYER=nyccsc:fema_historic&format=image/png"),
-      "download_url": "http:\/\/gis.fema.gov\/kmz\/HistoricDeclarations.zip",
+      "download_url": "https://gis.fema.gov/kmz/HistoricDeclarations.zip",
       "metadata_url": "https:\/\/www.fema.gov\/openfema-dataset-disaster-declarations-summaries-v1",
       "parameters": {
         "opacity": 70,
@@ -355,10 +355,10 @@ var available_layers = [
       "name": "Flood Exposure",
       "description": "This map service was created to support the National Oceanic and Atmospheric Administration (NOAA) Office for Coastal Management’s (OCM) Coastal Flood Exposure Mapper. The purpose of the online mapping tool is to provide coastal managers, planners, and stakeholders a preliminary look at exposures to coastal flooding hazards. The Mapper is a screening-level tool that uses nationally consistent data sets and analyses. Data and maps provided can be used at several scales to help communities initiate resilience planning efforts. Currently the extent of this map service and the Coastal Flood Exposure Mapper is limited to U.S. coastal counties along the Gulf of Mexico and Atlantic Ocean. The purpose of this dataset is to provide boundaries and information for the county selection function within the mapping application. The dataset should be used only as a screening-level tool for management decisions. As with all remotely sensed data, all features should be verified with a site visit. The dataset is provided as is, without warranty to its performance, merchantable state, or fitness for any particular purpose. The entire risk associated with the results and performance of this dataset is assumed by the user. This dataset should be used strictly as a planning reference and not for navigation, permitting, or other legal purposes. For more information, visit the Coastal Flood Exposure Mapper (https://coast.noaa.gov/floodexposure). Send questions or comments to the NOAA Office for Coastal Management (coastal.info@noaa.gov). ",
       "source": "NOAA",
-      "source_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer",
+      "source_url": "https://coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer",
       "sectors": ["All Sectors"],
       "legend_url": CDN("https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer/WmsServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1"),
-      "metadata_url": "https://coast.noaa.gov/arcgis/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"
+      "metadata_url": "https://coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"
     },
     {
       "id": "freight_stations",
@@ -377,10 +377,10 @@ var available_layers = [
       "name": "GAP Land Cover Dataset",
       "description": "GAP Land Cover 3 National Vegetation Classification-Formation Land Use for the contiguous United States. For more information about the National Vegetation Classification Standard please visit this link: http://usnvc.org/data-standard/",
       "source": "USGS",
-      "source_url": "https://catalog.data.gov/dataset/u-s-geological-survey-gap-analysis-program-land-cover-data-v2-2",
+      "source_url": "https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/land-cover",
       "sectors": ["Agriculture","Ecosystems"],
       "download_url": null,
-      "metadata_url": "https://gis1.usgs.gov/arcgis/rest/services/gap/GAP_Land_Cover_NVC_Class_Landuse/MapServer",
+      "metadata_url": "https://www.usgs.gov/core-science-systems/science-analytics-and-synthesis/gap/science/land-cover-data-overview?qt-science_center_objects=0#qt-science_center_objects",
     },
     {
       "id": "ghg_facilities",
@@ -447,7 +447,7 @@ var available_layers = [
       "sectors": ["Ecosystems"],
       "legend_url": null,
       "download_url": null,
-      "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/209"
+      "metadata_url": "http:\/\/services2.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/209"
     },
     {
       "id": "lulc_2050",
@@ -459,7 +459,7 @@ var available_layers = [
       "sectors": ["Ecosystems"],
       "legend_url": null,
       "download_url": null,
-      "metadata_url": "http:\/\/services.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/208"
+      "metadata_url": "http:\/\/services2.coastalresilience.org\/arcgis\/rest\/services\/New_York\/NY_CLIMAD_toolkit\/MapServer/208"
     },
     {
       "id": "national_flood_hazard",
@@ -491,7 +491,7 @@ var available_layers = [
       "source": "USGS",
       "source_url": "http:\/\/www.mrlc.gov",
       "sectors": ["Agriculture","Ecosystems","Buildings", "Transportation"],
-      "download_url": "https://www.mrlc.gov/nlcd11_data.php",
+      "download_url": "https://www.mrlc.gov/data?f%5B0%5D=region%3Aconus",
       "metadata_url": "https://www.mrlc.gov/index.php"
     },
     {
@@ -504,7 +504,7 @@ var available_layers = [
       "sectors": ["All Sectors"],
       "legend_url": null,
       "download_url": null,
-      "metadata_url": "https:\/\/coast.noaa.gov\/digitalcoast\/tools\/slr",
+      "metadata_url": "https://coast.noaa.gov/digitalcoast/tools/slr.html",
     },
     {
       "id": "ny_mask",
@@ -890,10 +890,10 @@ var available_layers = [
       "name": "Potential Environmental Justice Areas",
       "description": "As established in DEC Commissioner Policy 29 on Environmental Justice and Permitting (CP-29), Potential EJ Areas are 2000 U.S. Census block groups of 250 to 500 households each that, in the 2000 Census, had populations that met or exceeded at least one of the following statistical thresholds: 1) At least 51.1% of the population in an urban area reported themselves to be members of minority groups; or 2) At least 33.8% of the population in a rural area reported themselves to be members of minority groups; or 3) At least 23.59% of the population in an urban or rural area had household incomes below the federal poverty level.",
       "source": "NYS DEC",
-      "source_url": "http:\/\/www.dec.ny.gov\/public\/899.html",
+      "source_url": "https://www.dec.ny.gov/public/911.html",
       "sectors": ["Public Health"],
-      "download_url": "http:\/\/www.dec.ny.gov\/maps\/pejalink.kmz",
-      "metadata_url": "http:\/\/www.dec.ny.gov\/public\/899.html",
+      "download_url": "http://www.dec.ny.gov/maps/pejalink.kmz",
+      "metadata_url": "https://www.dec.ny.gov/public/911.html",
     },
     /*
     {
@@ -1048,7 +1048,7 @@ var available_layers = [
       "source": "Spatiality Blog",
       "source_url": "http:\/\/spatialityblog.com\/2010\/07\/08\/mta-gis-data-update\/#datalinks",
       "sectors": ["Transportation"],
-      "download_url": "https:\/\/wfs.gc.cuny.edu\/SRomalewski\/MTA_GISdata\/June2010_update\/nyctsubwayroutes_100627.zip"
+      "download_url": "http://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:subway_lines&maxFeatures=50&outputFormat=SHAPE-ZIP"
     },
     {
       "id": "superfund",
