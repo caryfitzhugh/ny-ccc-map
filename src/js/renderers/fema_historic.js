@@ -47,6 +47,7 @@
     },
 
     get_feature_info_url: function (active_layer, map) {
+      console.log(active_layer)
       var fhl = active_layer.parameters.fema_historic_layer;
       return CDN(_root_url + "/identify") +
         "?f=json" +

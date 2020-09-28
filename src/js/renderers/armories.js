@@ -26,7 +26,7 @@ RendererTemplates.geojson_points('armories',  {
               popupAnchor: [0, -25],
               opacity: 0
           }),
-          title: feature.properties.name
+          title: feature.properties.site_name+' ARMORY'
       });
   },
 
@@ -34,7 +34,7 @@ RendererTemplates.geojson_points('armories',  {
     link_url = "<a href='http://www.dec.ny.gov/armories/stationStatus.php?stationNo="+ feature.properties.dec_uid + "' target='_blank_'>More info</a><br><a href='http://www.dec.ny.gov/armories/stationStatus.php?stationNo="+ feature.properties.dec_uid + "' target='_blank_'><img src='http://www.dec.ny.gov/armories/stationUSAQIGraph.php?stationno="+ feature.properties.dec_uid + "' width='100%'></a><br>"
 
     return `
-      <strong>${feature.properties.armory} ARMORY</strong>
+      <strong>${feature.properties.site_name} ARMORY</strong>
       <br>` +
       Renderers.utils.zoom_to_location_link(feature.geometry);
   },
