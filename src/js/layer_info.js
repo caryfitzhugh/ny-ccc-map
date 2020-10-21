@@ -1021,7 +1021,7 @@ var available_layers = [
       "source": "U.S. Center for Disease Control",
       "source_url": "https://www.atsdr.cdc.gov/placeandhealth/svi/index.html",
       "sectors": ["Water Resources", "Coastal Zones"],
-      "download_url": "https://svi.cdc.gov/Documents/Data/2016_SVI_Data/States/NewYork.zip",
+      "download_url": "https://svi.cdc.gov/Documents/Data/2018_SVI_Data/States/NewYork.zip",
       "metadata_url": "https://www.atsdr.cdc.gov/placeandhealth/svi/index.html"
     },
     {
