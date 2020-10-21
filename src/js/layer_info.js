@@ -1016,13 +1016,13 @@ var available_layers = [
     {
       "id": "sovi",
       "folder": "Public Health",
-      "name": "Social Vulnerability Index for U.S. Coastal States",
-      "description": "The Social Vulnerability Index (SoVI) 2006-10 measures the social vulnerability of U.S. counties to environmental hazards. The index is a comparative metric that facilitates the examination of the differences in social vulnerability among counties. SoVI is a valuable tool for policy makers and practitioners. It graphically illustrates the geographic variation in social vulnerability. It shows where there is uneven capacity for preparedness and response and where resources might be used most effectively to r",
-      "source": "NOAA Office For Coastal Management",
-      "source_url": "https:\/\/catalog.data.gov\/dataset\/social-vulnerability-index-sovi-for-the-u-s-coastal-states-based-on-the-2010-census-tracts",
+      "name": "CDC Social Vulnerability Index-2018",
+      "description": "Social vulnerability refers to the potential negative effects on communities caused by external stresses on human health. Such stresses include natural or human-caused disasters, or disease outbreaks. Reducing social vulnerability can decrease both human suffering and economic loss.<br>CDC Social Vulnerability Index (CDC SVI) uses 15 U.S. census variables to help local officials identify communities that may need support before, during, or after disasters.",
+      "source": "U.S. Center for Disease Control",
+      "source_url": "https://www.atsdr.cdc.gov/placeandhealth/svi/index.html",
       "sectors": ["Water Resources", "Coastal Zones"],
-      "download_url": null,
-      "metadata_url": "https:\/\/catalog.data.gov\/dataset\/social-vulnerability-index-sovi-for-the-u-s-coastal-states-based-on-the-2010-census-tracts"
+      "download_url": "https://svi.cdc.gov/Documents/Data/2016_SVI_Data/States/NewYork.zip",
+      "metadata_url": "https://www.atsdr.cdc.gov/placeandhealth/svi/index.html"
     },
     {
       "id": "soils",
