@@ -15,7 +15,7 @@ RendererTemplates.esri("flood_exposure", {
     return {
             url: CDN("https://coast.noaa.gov/arcgis/rest/services/FloodExposureMapper/CFEM_CoastalFloodHazardComposite/MapServer"),
             // No longer defaults to image, but JSON
-            layers: [1],
+            layers: [21],
             f:"image",
             clickable: false,
             attribution: 'NOAA'}

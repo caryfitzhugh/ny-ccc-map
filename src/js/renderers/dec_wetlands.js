@@ -1,6 +1,6 @@
 (function() {
-  let _layer_number = 138
-  let _root_url = CDN("https://services2.coastalresilience.org/arcgis/rest/services/New_York/NY_CLIMAD_toolkit/MapServer/");
+  let _layer_number = 144
+  let _root_url = CDN("https://services2.coastalresilience.org/arcgis/rest/services/Natural_Resource_Navigator/Natural_Resource_Navigator/MapServer/");
   let _cache = null;
   let _get_legend_data = function (active_layer, callback) {
       // callback(error, geojson_data?)

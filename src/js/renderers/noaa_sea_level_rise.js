@@ -23,7 +23,7 @@
       var view = active_layer.parameters.display_layer;
 
       return {
-        url: CDN("https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/"+view+"_"+rise+"ft/MapServer"),
+        url: CDN("https://www.coast.noaa.gov/arcgis/rest/services/dc_slr/"+view+"_"+rise+"ft/MapServer/tile"),
         // No longer defaults to image, but JSON
         f:"image",
         opacity: 0,
