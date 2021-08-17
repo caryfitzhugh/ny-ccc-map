@@ -144,5 +144,14 @@ var ViewUtils = {
     } else {
       return url;
     }
+  },
+  layer_defaults: function (layer_id) {
+    var match = null;
+    _.each(available_layers, function (l) {
+      if (l.id == layer_id) {
+        match = l;
+      }
+    });
+    return match;
   }
 };

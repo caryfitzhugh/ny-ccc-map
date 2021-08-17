@@ -6,7 +6,7 @@
   <title>NY CCSC Map Viewer</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="./img/favicon.ico">
+  <!--  <link rel="icon" href="./img/favicon.ico"> -->
   <link rel="stylesheet" href="./vendor/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css" media="all">
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
@@ -76,10 +76,10 @@
 
 <script id='layer_import_modal_template' type="text/ractive">
   <div class='modal-wrapper {{layer_import.show_modal ? "open" : "closed"}} '>
-    <div class='modal-bg' on-tap="close-layer-import-modal"></div>
+    <div class='modal-bg' on-click="close-layer-import-modal"></div>
     <div class='modal-content layer-import-modal'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="close-layer-import-modal"></span>
+        <span class='show-cursor fa fa-close' on-click="close-layer-import-modal"></span>
         <div class='row'>
           <div class='col-xs-12'>
             <h2> Layer Import </h2>
@@ -107,10 +107,10 @@
 
 <script id='wizard_standalone_template' type="text/ractive">
   <div class='modal-wrapper {{wizard.standalone ? "open" : "closed"}} '>
-    <div class='modal-bg' on-tap="close-standalone-wizard"></div>
+    <div class='modal-bg' on-click="close-standalone-wizard"></div>
     <div class='modal-content wizard-modal'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="close-standalone-wizard"></span>
+        <span class='show-cursor fa fa-close' on-click="close-standalone-wizard"></span>
         {{#wizard.standalone.templates.wizard }}
           {{> . }}
         {{/wizard.standalone.templates.wizard }}
@@ -121,14 +121,14 @@
 
 <script id='wizard_template' type="text/ractive">
   <div class='modal-wrapper {{wizard.open ? "open" : "closed"}}'>
-    <div class='modal-bg' on-tap="close-wizard"></div>
+    <div class='modal-bg' on-click="close-wizard"></div>
     <div class='modal-content wizard-modal'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="close-wizard"></span>
-        <span class='fa fa-arrow-right noselect' on-tap="next-wizard"></span>
-        <span class='fa fa-arrow-left noselect' on-tap="prev-wizard"></span>
+        <span class='show-cursor fa fa-close' on-click="close-wizard"></span>
+        <span class='fa fa-arrow-right noselect' on-click="next-wizard"></span>
+        <span class='fa fa-arrow-left noselect' on-click="prev-wizard"></span>
         {{#if "welcome" != wizard.steps[wizard.current_step]}}
-          <span class='btn btn-sm btn-primary back-to-start show-cursor' on-tap="show-wizard">Back To Start</span>
+          <span class='btn btn-sm btn-primary back-to-start show-cursor' on-click="show-wizard">Back To Start</span>
         {{/if "welcome" != wizard.steps[wizard.current_step]}}
 
         {{#if "welcome" === wizard.steps[wizard.current_step]}}
@@ -141,14 +141,14 @@
           <h2>Using the viewer</h2>
           <p>Before getting started, scroll through this Map Guide to get familiar with the layout and functions of the interface. Most layers contain multiple data sources that can be explored with map controls. Many layers can be clicked upon in the map to provide more specific local information or data values. You can also share your map digitally or create pdf maps with legends.</p>
           <ul>
-            <li> <a class='show-cursor' on-tap='wizard-sidebar-intro'> Learn about the sidebar </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-base-layers'> Moving the map and base layers </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-adding-things'> Adding things to the map </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-find-more-info'> Finding out more about a layer </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-order-layers'> Ordering layers </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-using-legends-tab'> Using Legends Tab </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-printing'> Printing the Map </a> </li>
-            <li> <a class='show-cursor' on-tap='wizard-advanced-layer-controls'> Advanced Layer Controls </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-sidebar-intro'> Learn about the sidebar </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-base-layers'> Moving the map and base layers </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-adding-things'> Adding things to the map </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-find-more-info'> Finding out more about a layer </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-order-layers'> Ordering layers </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-using-legends-tab'> Using Legends Tab </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-printing'> Printing the Map </a> </li>
+            <li> <a class='show-cursor' on-click='wizard-advanced-layer-controls'> Advanced Layer Controls </a> </li>
           </ul>
         {{/if "welcome" === wizard.steps[wizard.current_step]}}
         {{#if "sidebar_intro" === wizard.steps[wizard.current_step]}}
@@ -322,10 +322,10 @@
 
 <script id='map_details_modal_template' type="text/ractive">
   <div class='modal-wrapper {{(map_details.location && map_details.feature_info_requests.length > 0) ? "open" : "closed"}}' >
-    <div class='modal-bg' on-tap="hide-feature-info-modal"></div>
+    <div class='modal-bg' on-click="hide-feature-info-modal"></div>
     <div class='modal-content feature-info-modal'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="hide-feature-info-modal"></span>
+        <span class='show-cursor fa fa-close' on-click="hide-feature-info-modal"></span>
         <div class='row'>
           <div class='col-xs-12'>
             <h2>
@@ -339,7 +339,7 @@
             {{#map_details.feature_info_responses[response_id]}}
               {{#error}}
                 <div class='col-xs-2'>
-                  <label> {{{name}}} </label>
+                  <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
                 </div>
                 <div class='col-xs-10'>
                   <span class='error'> Error Loading </span>
@@ -355,7 +355,7 @@
               {{/error}}
             {{else}}
               <div class='col-xs-2'>
-                <label> {{{name}}} </label>
+                  <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
               </div>
               <div class='col-xs-10'>
                 <span> loading ...
@@ -372,7 +372,7 @@
 
 <script id='sharing_modal_template' type="text/ractive">
   <div class='modal-wrapper {{sharing_modal_loading ? "open" : "closed"}}'>
-    <div class='modal-bg' on-tap="hide-sharing-modal"></div>
+    <div class='modal-bg' on-click="hide-sharing-modal"></div>
     <div class='modal-content sharing-loading-modal'>
       <div class='container-fluid'>
         <div class='row'>
@@ -388,10 +388,10 @@
   </div>
 
   <div class='modal-wrapper {{sharing_modal.open ? "open" : "closed"}}'>
-    <div class='modal-bg' on-tap="hide-sharing-modal"></div>
+    <div class='modal-bg' on-click="hide-sharing-modal"></div>
     <div class='modal-content'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="hide-sharing-modal"></span>
+        <span class='show-cursor fa fa-close' on-click="hide-sharing-modal"></span>
         <div class='row'>
           <div class='col-xs-12'>
             <h2>
@@ -438,10 +438,10 @@
 
 <script id='layer_info_modal_template' type="text/ractive">
   <div class='modal-wrapper {{layer_controls.current_layer_info ? "open" : "closed"}}'>
-    <div class='modal-bg' on-tap="hide-layer-info-modal"></div>
+    <div class='modal-bg' on-click="hide-layer-info-modal"></div>
     <div class='modal-content layer-info-modal'>
       <div class='container-fluid'>
-        <span class='show-cursor fa fa-close' on-tap="hide-layer-info-modal"></span>
+        <span class='show-cursor fa fa-close' on-click="hide-layer-info-modal"></span>
         <div class='row'>
           <div class='col-xs-12'>
             <h2>
@@ -529,12 +529,12 @@
 <script id="zoom_controls_template" type="text/ractive">
   <div class='zoom-controls noselect'>
     <a class='noselect {{map_state.zoom > map_state.zoom_max ? "disable" : ""}}  >'
-       decorator="tooltip:Zoom in" on-tap="map-zoom-in"> <span class='fa fa-plus'></span> </a>
+       decorator="tooltip:Zoom in" on-click="map-zoom-in"> <span class='fa fa-plus'></span> </a>
     {{#if has_geolocation }}
-      <a class='noselect' decorator="tooltip:Zoom to your location" on-tap='map-zoom-me'> <span class='fa fa-crosshairs'></span></a>
+      <a class='noselect' decorator="tooltip:Zoom to your location" on-click='map-zoom-me'> <span class='fa fa-crosshairs'></span></a>
     {{/if}}
-    <a class='noselect' decorator="tooltip:Zoom to original view" on-tap='map-zoom-home'> <span class='fa fa-home'></span></a>
-    <a class='noselect {{map_state.zoom < 1 ? "disable" : ""}}' decorator="tooltip:Zoom out" on-tap="map-zoom-out"> <span class='fa fa-minus'></span> </a>
+    <a class='noselect' decorator="tooltip:Zoom to original view" on-click='map-zoom-home'> <span class='fa fa-home'></span></a>
+    <a class='noselect {{map_state.zoom < 1 ? "disable" : ""}}' decorator="tooltip:Zoom out" on-click="map-zoom-out"> <span class='fa fa-minus'></span> </a>
   </div>
 </script>
 
@@ -542,11 +542,11 @@
   <div class='layer-controls noselect'>
     <div class='tabs container-fluid'>
       <div class='row'>
-        <a on-tap="show-layers-control" class="layers-tab col-xs-3 {{layer_controls.active_tab === 'layers' ? 'active': '' }}">
+        <a on-click="show-layers-control" class="layers-tab col-xs-3 {{layer_controls.active_tab === 'layers' ? 'active': '' }}">
           <span class='fa fa-check-square-o'></span>
           Layers
         </a>
-        <a on-tap="show-details-control" class="legend-map-controls-tab col-xs-6 {{layer_controls.active_tab === 'details' ? 'active': ''}}">
+        <a on-click="show-details-control" class="legend-map-controls-tab col-xs-6 {{layer_controls.active_tab === 'details' ? 'active': ''}}">
           <span class='fa fa-sliders'></span>
           Controls &amp; Legends
           {{#if layers.active.length > 0 }}
@@ -559,7 +559,7 @@
             </span>
           {{/wizard.adding_layers_popup}}
         </a>
-        <a on-tap='show-search-control' class="locations-tab col-xs-3 {{layer_controls.active_tab === 'search' ? 'active': ''}} " >
+        <a on-click='show-search-control' class="locations-tab col-xs-3 {{layer_controls.active_tab === 'search' ? 'active': ''}} " >
           <span class='fa fa-search'></span>
           Quick Zoom
         </a>
@@ -586,7 +586,7 @@
     <input id="search_input" placeholder="Type a search" value="{{layer_controls.search_string}}">
     {{#if layer_controls.search_string.length > 0 }}
       <a>
-        <span class='fa fa-times-circle-o show-cursor' on-tap="clear-search-query"></span>
+        <span class='fa fa-times-circle-o show-cursor' on-click="clear-search-query"></span>
       </a>
     {{/if}}
   </div>
@@ -594,7 +594,7 @@
   <div class='search-results'>
     {{#layer_controls.search_results.results}}
       <div class='result show-cursor'
-            on-tap="zoom-to-search-result">
+            on-click="zoom-to-search-result">
         <a class='' decorator="tooltip:Focus map on {{formatted_address}}">
           <span class='fa fa-circle-o'></span>
         </a>
@@ -615,7 +615,7 @@
 </script>
 
 <script id="layer_controls_layer_group_template" type="text/ractive">
-      <div class='show-cursor' on-tap="toggle-layer-active" >
+      <div class='show-cursor' on-click="toggle-layer-active" >
         {{#if is_active}}
           <span class='fa fa-check-square-o'></span>
         {{else}}
@@ -627,7 +627,7 @@
 <script id="layer_controls_layer_group_tree_template" type="text/ractive">
   <li>
     {{#if folder_name}}
-      <label on-tap="toggle-layer-group-collapse">
+      <label on-click="toggle-layer-group-collapse">
         {{#if is_expanded}}
           <span class='fa fa-caret-down'></span>
         {{else}}
@@ -644,7 +644,7 @@
           {{#if this.folder_name}}
             {{> layer_controls_layer_group_tree_template}}
           {{else}}
-            <li class='layer show-cursor' on-tap="toggle-layer-active">
+            <li class='layer show-cursor' on-click="toggle-layer-active">
               {{#is_active_layer(layers.active, this)}}
                 {{#if (layer_load_state(layers_loading_states, this) === "success")}}
                   <span class='fa fa-check-square-o'></span>
@@ -655,7 +655,7 @@
                 <span class='fa fa-square-o'></span>
               {{/if}}
               <a class='info {{layer_load_state(layers_loading_states, this)}}'
-                 on-tap='show-layer-info'>
+                 on-click='show-layer-info'>
                 <span class='fa fa-info'> </span>
               </a>
               <span>{{{get_layer_defaults(layers.defaults, this).name}}}</span>
@@ -674,7 +674,7 @@
         <input aria-label="Filter string for layers list" id="layers_search_input" placeholder="Search for layers..." value="{{layers.search_string}}">
         {{#if layers.search_string.length > 0 }}
           <a>
-            <span class='fa fa-times-circle-o show-cursor' on-tap="clear-layers-search-query"></span>
+            <span class='fa fa-times-circle-o show-cursor' on-click="clear-layers-search-query"></span>
           </a>
         {{/if}}
       </div>
@@ -740,18 +740,18 @@
   {{#if layers.active.length > 0 }}
     <div class='bulk'>
       {{#if !all_active_collapsed(layers.active)}}
-        <a on-tap='collapse-all-layers' class='show-cursor'> Collapse All</a>
+        <a on-click='collapse-all-layers' class='show-cursor'> Collapse All</a>
       {{else}}
-        <a on-tap='expand-all-layers' class='show-cursor'> Expand All</a>
+        <a on-click='expand-all-layers' class='show-cursor'> Expand All</a>
       {{/if}}
 
       {{#if !all_active_hidden(layers.active)}}
-        <a on-tap='hide-all-layers' class='show-cursor'> Hide All</a>
+        <a on-click='hide-all-layers' class='show-cursor'> Hide All</a>
       {{else}}
-        <a on-tap='visible-all-layers' class='show-cursor'> Show All</a>
+        <a on-click='visible-all-layers' class='show-cursor'> Show All</a>
       {{/if}}
 
-      <a on-tap='deactivate-all-layers' class='show-cursor'> Remove All</a>
+      <a on-click='deactivate-all-layers' class='show-cursor'> Remove All</a>
     </div>
   {{else}}
     <div class='active-layers-empty'>
@@ -774,12 +774,12 @@
         </div>
       {{/if "" !== layer_load_state(layers_loading_states, layer_default_id)}}
 
-      <label class='name' on-tap="toggle-active-collapsed">
+      <label class='name' on-click="toggle-active-collapsed">
         <span class='show-cursor'>
           {{#if is_collapsed}}
             <span decorator="tooltip:Expand Legend" class='fa fa-caret-right'></span>
             {{#if layer_load_state(layers_loading_states, layer_default_id) !== "success"}}
-              <a decorator="tooltip:Show layer metadata" on-tap="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
+              <a decorator="tooltip:Show layer metadata" on-click="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
                 <span class='show-cursor fa fa-info'></span>
               </a>
             {{/if}}
@@ -796,31 +796,31 @@
       {{#if !is_collapsed}}
         <div class='active-details'>
           <div class='control-bar'>
-            <a decorator="tooltip:Remove layer" on-tap="remove-active">
+            <a decorator="tooltip:Remove layer" on-click="remove-active">
               <span class='show-cursor fa fa-trash-o' > </span>
             </a>
             {{#if !parameters.no_sorting}}
-              <a decorator="tooltip:Move to top" on-tap='move-active-to-top'>
+              <a decorator="tooltip:Move to top" on-click='move-active-to-top'>
                 <span class='show-cursor fa fa-angle-double-up'> </span>
               </a>
             {{/if}}
             {{#if is_hidden}}
-              <a decorator="tooltip:Make layer visible"  on-tap='make-active-visible'>
+              <a decorator="tooltip:Make layer visible"  on-click='make-active-visible'>
                 <span class='show-cursor fa fa-eye-slash' ></span>
               </a>
             {{else}}
-              <a decorator="tooltip:Make layer hidden"  on-tap='make-active-hidden'>
+              <a decorator="tooltip:Make layer hidden"  on-click='make-active-hidden'>
                 <span class='show-cursor fa fa-eye'></span>
               </a>
             {{/if}}
 
             {{#if able_to_copy(this) }}
-              <a decorator="tooltip:Clone this layer" on-tap="clone-active-layer">
+              <a decorator="tooltip:Clone this layer" on-click="clone-active-layer">
                 <span class='show-cursor fa fa-clone'></span>
               </a>
             {{/if}}
 
-            <a decorator="tooltip:Show layer metadata" on-tap="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
+            <a decorator="tooltip:Show layer metadata" on-click="show-active-layer-info" class='info {{layer_load_state(layers_loading_states, layer_default_id)}}'>
               <span class='show-cursor fa fa-info'></span>
             </a>
 
@@ -831,7 +831,7 @@
             {{/if layer_has_click_info(this)}}
 
             {{#if layer_has_standalone_wizard(this)}}
-              <a decorator="tooltip:This layer has detailed instructions. Click to view" on-tap="show-standalone-wizard">
+              <a decorator="tooltip:This layer has detailed instructions. Click to view" on-click="show-standalone-wizard">
                 <span class='fa fa-question'> </span>
               </a>
             {{/if layer_has_standalone_wizard(this)}}
@@ -847,21 +847,21 @@
 <script id="map_controls_template" type="text/ractive">
 <div class='map-controls'>
   <div class='map-control print-control btn-group'>
-    <span class='btn btn-md btn-default' on-tap="show-wizard">
+    <span class='btn btn-md btn-default' on-click="show-wizard">
       <span class='fa fa-question'></span>
     </span>
     <span class='btn btn-md btn-default add-layer'
-          on-tap="open-layer-import-modal">
+          on-click="open-layer-import-modal">
       <span class='fa fa-map-o'></span>
       <span class='fa fa-plus-circle'></span>
     </span>
     <span class='btn btn-md btn-default'
-          on-tap="print-map">
+          on-click="print-map">
       <span class='fa fa-print'></span>
     </span>
 
     <span class='btn btn-md btn-default'
-          on-tap="open-sharing-modal">
+          on-click="open-sharing-modal">
       <span class='fa fa-share-alt'></span>
     </span>
 
@@ -869,15 +869,15 @@
 
   <div class='map-control'>
     <span class='btn btn-md btn-default {{map_controls.base_layer_control_open ? "active" : ""}}'
-          on-tap="toggle-base-layer-control"
+          on-click="toggle-base-layer-control"
       > Base Map </span>
     {{#map_controls.base_layer_control_open }}
       <div class='control-details base-layers'>
         {{#each base_layers}}
-          <a class="base-layer show-cursor {{map_controls.active_base_layer === name ? 'active' : ''}}" on-tap="activate-base-layer">{{{name}}}</a>
+          <a class="base-layer show-cursor {{map_controls.active_base_layer === name ? 'active' : ''}}" on-click="activate-base-layer">{{{name}}}</a>
         {{/each}}
       </div>
-      <div class='map-control-bg' on-tap='toggle-base-layer-control'></div>
+      <div class='map-control-bg' on-click='toggle-base-layer-control'></div>
     {{/map_controls.base_layer_control_open }}
   </div>
   {{>zoom_controls_template}}
@@ -915,10 +915,12 @@
     <script src="./vendor/uri.js"></script>
     <script src="./vendor/colorbrewer.js"></script>
 
-    <script src='./vendor/ractive/ractive@0.8.14'></script>
+    <script src='./vendor/ractive/ractive-1.3.14/ractive.js'></script
     <script src="./vendor/ractive/Ractive-decorators-sortable.min.js"></script>
+    <!--
     <script src="./vendor/ractive/ractive-events-tap.umd.min.js"></script>
     <script src='./vendor/ractive/ractive-tooltip.min.js'></script>
+    -->
     <script src="./vendor/leaflet-pip.js"></script>
     <script src="./vendor/topojson.js"></script>
     <script src='./vendor/path-data-polyfill.js'></script>

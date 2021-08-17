@@ -157,7 +157,6 @@ Views.ControlPanel = new Ractive({
     },
   },
   decorators: {
-      tooltip:  RactiveTooltip
   },
 });
 
