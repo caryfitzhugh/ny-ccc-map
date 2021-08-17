@@ -41,7 +41,7 @@ RendererTemplates.wms("aadt", {
   info_template: `
     <div class='row'>
       <div class='col-xs-2'>
-        <label> {{name}} </label>
+        <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
       </div>
       <div class='col-xs-10'>
         <table class="table">

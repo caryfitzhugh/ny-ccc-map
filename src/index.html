@@ -6,7 +6,7 @@
   <title>NY CCSC Map Viewer</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="./img/favicon.ico">
+  <!--  <link rel="icon" href="./img/favicon.ico"> -->
   <link rel="stylesheet" href="./vendor/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css" media="all">
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
@@ -339,7 +339,7 @@
             {{#map_details.feature_info_responses[response_id]}}
               {{#error}}
                 <div class='col-xs-2'>
-                  <label> {{{name}}} </label>
+                  <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
                 </div>
                 <div class='col-xs-10'>
                   <span class='error'> Error Loading </span>
@@ -355,7 +355,7 @@
               {{/error}}
             {{else}}
               <div class='col-xs-2'>
-                <label> {{{name}}} </label>
+                  <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
               </div>
               <div class='col-xs-10'>
                 <span> loading ...
@@ -915,10 +915,12 @@
     <script src="./vendor/uri.js"></script>
     <script src="./vendor/colorbrewer.js"></script>
 
-    <script src='./vendor/ractive/ractive@0.8.14'></script>
+    <script src='./vendor/ractive/ractive-1.3.14/ractive.js'></script
     <script src="./vendor/ractive/Ractive-decorators-sortable.min.js"></script>
+    <!--
     <script src="./vendor/ractive/ractive-events-tap.umd.min.js"></script>
     <script src='./vendor/ractive/ractive-tooltip.min.js'></script>
+    -->
     <script src="./vendor/leaflet-pip.js"></script>
     <script src="./vendor/topojson.js"></script>
     <script src='./vendor/path-data-polyfill.js'></script>

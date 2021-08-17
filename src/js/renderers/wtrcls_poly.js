@@ -34,12 +34,12 @@ RendererTemplates.wms("wtrcls_poly", {
   legend_template: `
       <div class='detail-block'>
         <label>Legend</label>
-        <img src="{{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:wtrcls_poly&format=image/png")}}"/> Suitable Trout Waters 
+        <img src="{{CDN(GEOSERVER + "/wms?request=GetLegendGraphic&LAYER=ny:wtrcls_poly&format=image/png")}}"/> Suitable Trout Waters
       </div>
   `,
   info_template: `
     <div class='col-xs-2'>
-      <label> {{name}} </label>
+      <label> {{u.layer_defaults(active_layer.layer_default_id).name}} </label>
     </div>
     <div class='col-xs-10'>
       <table class="table">
