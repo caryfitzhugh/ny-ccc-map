@@ -768,7 +768,7 @@
     <div {{parameters.no_sorting ? "" : "as-sortable"}} class='active-layer'>
       {{#if "" === layer_load_state(layers_loading_states, layer_default_id)}}
         <div class='disable-active-layer-overlay'>
-          <label> Loading {{{name}}}...
+          <label> Loading {{{u.layer_defaults(layer_default_id).name}}}...
             <span class='fa fa-spinner fa-spin-custom'></span>
           </label>
         </div>
@@ -789,7 +789,7 @@
           {{#if !parameters.no_sorting}}
             <span decorator="tooltip:Drag to reorder layer" class='drag-handle fa fa-hand-stop-o'></span>
           {{/if !parameters.no_sorting}}
-          {{{name}}}
+          {{{u.layer_defaults(layer_default_id).name}}}
         </span>
       </label>
 
