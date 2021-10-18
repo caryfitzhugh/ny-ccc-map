@@ -284,6 +284,17 @@ var available_layers = [
       "metadata_url": ""
     },
     {
+      "id": "coastal_wetlands",
+      "folder": "Water Resources",
+      "name": "Coastal Wetlands",
+      "description": " This dataset represents the extent and approximate location of coastal wetlands in the northeastern United States. The data presented were exclusively derived from the National Wetlands Inventory (NWI). The classification system used by the NWI was assessed by wetland specialists and classes were selected to specifically represent coastal wetlands. Coastal wetlands were defined as vegetated wetlands in saline or brackish waters that were not permanently flooded, or not in open water. The NWI classes that applied to this definition included estuarine intertidal emergent, estuarine intertidal scrub-shrub, estuarine intertidal forested, and estuarine intertidal unconsolidated shore with organic soil types that were irregularly flooded.",
+      "source": "'National Wetlands Inventory",
+      "source_url": "http://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32",
+      "sectors": ["Ecosystems","Water Resources"],
+      "download_url": null,
+      "metadata_url": "http://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32"
+    },
+    {
       "id": "dewberry_sea_level_rise",
       "folder": "Coastal Zones",
       "name": "Sea Level Rise (Dewberry)",
@@ -328,16 +339,16 @@ var available_layers = [
       "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:epa_frs_facilities&maxFeatures=5000&outputFormat=SHAPE-ZIP",
       "metadata_url": "https://www.epa.gov/frs"
     },
-    {
-      "id": "extreme_precipitation",
-      "folder": "Climate Projections.Precipitation",
-      "name": "Extreme Precipitation",
-      "description": "Natural Heritage Program: Predicted Future and Current Extreme Precipitation Events.  1) Average predicted future return frequency (in years) of a storm event with a precipitation magnitude matching that of a current 10 or 100-year event. 2)Average predicted percent increase in future precipitation amount for 10 and 100-year storm events (1 day duration). 3) Current magnitude of a 10 and 100-year precipitation event (1 day duration) in inches. (Raw data in thousandths of an inch.)",
-      "source": "'Natural Resource Navigator / NY Climate Adaptation",
-      "source_url": "https://maps.naturalresourcenavigator.org/",
-      "sectors": ["Water Resources"],
-      "metadata_url": ""
-    },
+    // {
+    //   "id": "extreme_precipitation",
+    //   "folder": "Climate Projections.Precipitation",
+    //   "name": "Extreme Precipitation",
+    //   "description": "Natural Heritage Program: Predicted Future and Current Extreme Precipitation Events.  1) Average predicted future return frequency (in years) of a storm event with a precipitation magnitude matching that of a current 10 or 100-year event. 2)Average predicted percent increase in future precipitation amount for 10 and 100-year storm events (1 day duration). 3) Current magnitude of a 10 and 100-year precipitation event (1 day duration) in inches. (Raw data in thousandths of an inch.)",
+    //   "source": "'Natural Resource Navigator / NY Climate Adaptation",
+    //   "source_url": "https://maps.naturalresourcenavigator.org/",
+    //   "sectors": ["Water Resources"],
+    //   "metadata_url": ""
+    // },
     {
       "id": "fema_historic",
       "folder": "Water Resources",
