@@ -86,14 +86,6 @@
         "&layers=visible%3A" + layer_id;
     },
     legend_template: `
-        <div class='detail-block show-confidence'>
-          <label> Soils Type: </label>
-          <select value='{{parameters.soils_name}}'>
-          {{#parameters.options.soils_options:name}}
-            <option value='{{name}}'> {{name}} </option>
-          {{/parameters.options.soils_options:name}}
-          </select>
-        </div>
         <div class='detail-block sovi'>
           {{#parameters.legend_data}}
             {{#if parameters.options.eco_desc[label]}}
