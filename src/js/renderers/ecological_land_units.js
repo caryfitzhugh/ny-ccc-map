@@ -34,10 +34,10 @@
       }
     };
 
-  RendererTemplates.esri("soils", {
+  RendererTemplates.esri("ecological_land_units", {
     parameters: {
       opacity: 70,
-      soils_name: 'Surficial Lithology',
+      soils_name: 'Ecosystems',
       legend_data: [],
       options: {
         soils_options: _soil_layers,
@@ -87,7 +87,7 @@
     },
     legend_template: `
         <div class='detail-block show-confidence'>
-          <label> Soils Type: </label>
+          <label> Layer: </label>
           <select value='{{parameters.soils_name}}'>
           {{#parameters.options.soils_options:name}}
             <option value='{{name}}'> {{name}} </option>

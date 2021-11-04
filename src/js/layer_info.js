@@ -85,7 +85,7 @@ var available_layers = [
       "source": "NYS DOT",
       "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1282",
       "sectors": ["Transportation"],
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=1282&file=NYSDOT_TDV_AADT.zip",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1282&file=NYSDOT_TDV_AADT.zip",
       "metadata_url": null,
     },
     {
@@ -252,7 +252,7 @@ var available_layers = [
       "id": "culverts",
       "folder": "Transportation",
       "name": "Large Culverts",
-      "description": "Esri File Geodatabase includes all culverts with a span of between 5 and 20 feet on the state highway system. Attributed with Culvert Identification Number (CIN), feature carried, feature crossed and select inspection information from NYSDOT's Bridge Data Information System (BDIS). Details on the attributes are provided in the NYSDOT's Bridge Inventory ",
+      "description": "Point layer of all New York State bridge that carry or cross a public road including general inventory attributes. Bridge ID Number (BIN) attribute used to identify each bridge. ",
       "source": "NYS DOT",
       "source_url": "https://gis.ny.gov/gisdata/inventories/details.cfm?DSID=1255",
       "sectors": ["Transportation"],
@@ -272,27 +272,27 @@ var available_layers = [
       "download_url": "https://www.dec.ny.gov/maps/nysdamslink.kmz",
       "metadata_url": "https://gis.ny.gov/gisdata/metadata/nysdec.dams_KML.xml"
     },
-    // {
-    //   "id": "dec_wetlands",
-    //   "folder": "Water Resources",
-    //   "name": "Wetland Habitat Types",
-    //   "description": "Wetland habitat types extracted from the NETWHC macrogroups. The full report on the classification is available here: https://www.naturalresourcenavigator.org/wp-content/uploads/2017/03/NRN-Data-Documentation.pdf",
-    //   "source": "'Natural Resource Navigator / NY Climate Adaptation",
-    //   "source_url": "https://maps.naturalresourcenavigator.org",
-    //   "sectors": ["Ecosystems","Water Resources"],
-    //   "download_url": null,
-    //   "metadata_url": ""
-    // },
+    {
+      "id": "dec_wetlands",
+      "folder": "Water Resources",
+      "name": "Wetland Habitat Types",
+      "description": "Wetland habitat types extracted from the NETWHC macrogroups. The full report on the classification is available here: https://www.naturalresourcenavigator.org/wp-content/uploads/2017/03/NRN-Data-Documentation.pdf",
+      "source": "'Natural Resource Navigator / NY Climate Adaptation",
+      "source_url": "https://maps.naturalresourcenavigator.org",
+      "sectors": ["Ecosystems","Water Resources"],
+      "download_url": null,
+      "metadata_url": ""
+    },
     {
       "id": "coastal_wetlands",
       "folder": "Water Resources",
       "name": "Coastal Wetlands",
       "description": " This dataset represents the extent and approximate location of coastal wetlands in the northeastern United States. The data presented were exclusively derived from the National Wetlands Inventory (NWI). The classification system used by the NWI was assessed by wetland specialists and classes were selected to specifically represent coastal wetlands. Coastal wetlands were defined as vegetated wetlands in saline or brackish waters that were not permanently flooded, or not in open water. The NWI classes that applied to this definition included estuarine intertidal emergent, estuarine intertidal scrub-shrub, estuarine intertidal forested, and estuarine intertidal unconsolidated shore with organic soil types that were irregularly flooded.",
       "source": "'National Wetlands Inventory",
-      "source_url": "https://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32",
+      "source_url": "http://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32",
       "sectors": ["Ecosystems","Water Resources"],
       "download_url": null,
-      "metadata_url": "https://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32"
+      "metadata_url": "http://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/32"
     },
     {
       "id": "dewberry_sea_level_rise",
@@ -321,7 +321,7 @@ var available_layers = [
       "id": "electric_powerlines",
       "folder": "Energy/Communications",
       "name": "Electric Transmission Lines",
-      "description": "This feature class/shapefile represents electric power transmission lines. Transmission Lines are the system of structures, wires, insulators and associated hardware that carry electric energy from one point to another in an electric power system. Lines are operated at relatively high voltages varying from 69 kV up to 765 kV, and are capable of transmitting large quantities of electricity over long distances. Underground transmission lines are included where sources were available. The following updates have been made since the previous release: 6,457 features added.",
+      "description": "Natural gas interstate and intrastate pipelines in the United States. Based on a variety of sources with varying scales and levels of accuracy and therefore accuracy is directly affected. This layer is not visible if zoomed in beyond 1:200,000 scale.  Collected by EIA from FERC and other external sources.",
       "source": "Homeland Infrastructure Foundation-Level Data (HIFELD)",
       "source_url": "https://hifld-geoplatform.opendata.arcgis.com/",
       "sectors": ["Energy"],
@@ -570,44 +570,44 @@ var available_layers = [
     "folder": "Climate Observations.Precipitation",
     "name": "Precipitation (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Total precipitation summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Total precipitation summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_precip",
     "folder": "Climate Projections.Precipitation",
     "name": "Precipitation (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in annual or seasonal total precipitation. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in annual or seasonal total precipitation. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='pcpn'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_precip",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_precip_gt_1",
     "folder": "Climate Observations.Precipitation",
     "name": "Extreme Precipitation > 1\" (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with precipitation greater than one inch summarized by area (county,basin) and decade over the period 1980-2010. Observational data: Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with precipitation greater than one inch summarized by area (county,basin) and decade over the period 1980-2009. Observational data: Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_precip_gt_1",
     "folder": "Climate Projections.Precipitation",
     "name": "Extreme Precipitation > 1\" (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='pcpn_gt_1'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_precip_gt_1",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_precip_gt_2",
@@ -616,152 +616,152 @@ var available_layers = [
     "sectors": ["All Sectors"],
     "description": "Days with precipitation greater than two inches summmarized by area (state,county,basin) and decade over the period 1960-2005. Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_precip_gt_2",
     "folder": "Climate Projections.Precipitation",
     "name": "Extreme Precipitation > 2\" (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='pcpn_gt_2'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_precip_gt_2",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_precip_gt_3",
     "folder": "Climate Observations.Precipitation",
     "name": "Extreme Precipitation > 3\" (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with precipitation greater than three inches summarized by area (county,basin) and decade over the period 1980-2010. Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with precipitation greater than three inches summarized by area (county,basin) and decade over the period 1980-2009. Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_precip_gt_3",
     "folder": "Climate Projections.Precipitation",
     "name": "Extreme Precipitation > 3\" (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with precipitation above or below threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). Fractional days occur as a result of the averaging process.  Since extremes do not occur in every year or in all locations within a county, state or basin, when computing an average over time or over an area, the inclusion of these zeroes can result in fractional days or even counts of days that are less than one. The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='pcpn_gt_3'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_precip_gt_3",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_avg_temp",
     "folder": "Climate Observations.Temperature",
     "name": "Average Temperatures (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Average temperature summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Average temperature summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_avg_temp",
     "folder": "Climate Projections.Temperature",
     "name": "Average Temperatures (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in annual or seasonal average temperature. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in annual or seasonal average temperature. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='avgt'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_avg_temp",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_max_temp",
     "folder": "Climate Observations.Temperature",
     "name": "Maximum Temperatures - Average (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Average maximum temperature summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Average maximum temperature summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_max_temp",
     "folder": "Climate Projections.Temperature",
     "name": "Maximum Temperatures - Average (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in annual or seasonal average maximum temperature. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in annual or seasonal average maximum temperature. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='maxt'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_max_temp",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_min_temp",
     "folder": "Climate Observations.Temperature",
     "name": "Minimum Temperatures - Average (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Average minimum temperature summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Average minimum temperature summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_min_temp",
     "folder": "Climate Projections.Temperature",
     "name": "Minimum Temperatures - Average (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in annual or seasonal average minimum temperature. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in annual or seasonal average minimum temperature. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='mint'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_min_temp",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_temp_lt_0",
     "folder": "Climate Observations.Temperature",
     "name": "Days < 0 &deg;F (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with minimum temperatures below 0&deg;F summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with minimum temperatures below 0&deg;F summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_temp_lt_0",
     "folder": "Climate Projections.Temperature",
     "name": "Days < 0 &deg;F (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with temperature below threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with temperature below threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='mint_lt_0'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_temp_lt_0",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_temp_lt_32",
     "folder": "Climate Observations.Temperature",
     "name": "Days < 32 &deg;F (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with minimum temperatures below 32&deg;F summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with minimum temperatures below 32&deg;F summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_temp_lt_32",
     "folder": "Climate Projections.Temperature",
     "name": "Days < 32 &deg;F (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with temperature below threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with temperature below threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='min_lt_32'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_temp_lt_32",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_temp_gt_90",
@@ -769,10 +769,10 @@ var available_layers = [
     "folder": "Climate Observations.Temperature",
     "name": "Days > 90 &deg;F (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with maximum temperatures above 90&deg;F summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with maximum temperatures above 90&deg;F summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "source_url": "http://loca.ucsd.edu/",
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_temp_gt_90",
@@ -780,11 +780,11 @@ var available_layers = [
     "folder": "Climate Projections.Temperature",
     "name": "Days > 90 &deg;F (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='maxt_gt_90'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_temp_gt_90.zip",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_temp_gt_95",
@@ -792,11 +792,11 @@ var available_layers = [
     "folder": "Climate Observations.Temperature",
     "name": "Days > 95 &deg;F (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with maximum temperatures above 95&deg;F summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with maximum temperatures above 95&deg;F summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_temp_gt_95",
@@ -804,11 +804,11 @@ var available_layers = [
     "sort_key": 'Days > 095',
     "name": "Days > 95 &deg;F (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2095s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2095s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='maxt_gt_95'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_temp_gt_95",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_temp_gt_100",
@@ -816,11 +816,11 @@ var available_layers = [
     "folder": "Climate Observations.Temperature",
     "name": "Days > 100 &deg;F (Observed)",
     "sectors": ["All Sectors"],
-    "description": "Days with maximum temperatures above 100&deg;F summarized by area (county,basin) and decade over the period 1980-2010. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
+    "description": "Days with maximum temperatures above 100&deg;F summarized by area (county,basin) and decade over the period 1980-2009. Observational data: A spatially comprehensive, meteoroLogical data set for Mexico, the U.S., and Southern CAnada (Livneh et al., 2015)",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/temperature.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_temp_gt_100",
@@ -828,21 +828,21 @@ var available_layers = [
     "folder": "Climate Projections.Temperature",
     "name": "Days > 100 &deg;F (Projected)",
     "sectors": ["All Sectors"],
-    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1971-2000 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (20100s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": "Projected changes in the number of days per season or annually with temperature above threshold values. Changes are relative to the 1980-2009 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (20100s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='maxt_gt_100'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_temp_gt_100",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_heating_degree_days",
     "folder": "Climate Observations.Degree Days",
     "name": "Heating Degree Days (Observed)",
     "sectors": ["All Sectors"],
-    "description": " Average heating degree-days summarized by area (county,basin) and decade over the period 1980-2010. <br>Definition:  Heating degree-days are based on the assumption that when the outside temperature is above 65°F, we don't need heating to be comfortable. Heating degree days are the difference between the daily temperature mean and 65°F.  For example, if the mean temperature mean is 25°F, we subtract the mean from 65 and the result is 40 heating degree-days for that day. (Definition adapted from National Weather Service)<br>   Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
+    "description": " Average heating degree-days summarized by area (county,basin) and decade over the period 1980-2009. <br>Definition:  Heating degree-days are based on the assumption that when the outside temperature is above 65°F, we don't need heating to be comfortable. Heating degree days are the difference between the daily temperature mean and 65°F.  For example, if the mean temperature mean is 25°F, we subtract the mean from 65 and the result is 40 heating degree-days for that day. (Definition adapted from National Weather Service)<br>   Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "source_url": "http://loca.ucsd.edu/",
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_heating_degree_days",
@@ -851,20 +851,20 @@ var available_layers = [
     "sectors": ["All Sectors"],
     "description": " Projected changes in annual or seasonal mean heating degree-days.  Heating degree-days are based on the assumption that when the outside temperature is above 65°F, we don't need heating to be comfortable. Heating degree days are the difference between the daily temperature mean and 65°F.  For example, if the mean temperature mean is 25°F, we subtract the mean from 65 and the result is 40 heating degree-days for that day. (Definition adapted from National Weather Service)<br>  Projected changes are relative to the 1981-2010 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='hdd'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_heating_degree_days",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_cooling_degree_days",
     "folder": "Climate Observations.Degree Days",
     "name": "Cooling Degree Days (Observed)",
     "sectors": ["All Sectors"],
-    "description": " Average cooling degree-days summarized by area (county,basin) and decade over the period 1980-2010. <br>Definition: Cooling degree days are based on the assumption that when the outside temperature is below 65°F, we don't need cooling (air-conditioning) to be comfortable. Cooling degree-days are the difference between the daily temperature mean and 65°F.  For example, if the temperature mean is 85°F, we subtract 65 from the mean and the result is 20 cooling degree-days for that day. (Definition adapted from National Weather Service) <br>  Observational data: A spatially comprehensive, meteorological data set for Mexico, the U.S., and southern Canada (Livneh et al., 2015).",
+    "description": " Average cooling degree-days summarized by area (county,basin) and decade over the period 1980-2009. <br>Definition: Cooling degree days are based on the assumption that when the outside temperature is below 65°F, we don't need cooling (air-conditioning) to be comfortable. Cooling degree-days are the difference between the daily temperature mean and 65°F.  For example, if the temperature mean is 85°F, we subtract 65 from the mean and the result is 20 cooling degree-days for that day. (Definition adapted from National Weather Service) <br>  Observational data: A spatially comprehensive, meteorological data set for Mexico, the U.S., and southern Canada (Livneh et al., 2015).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/degree_days.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_cooling_degree_days",
@@ -873,20 +873,20 @@ var available_layers = [
     "sectors": ["All Sectors"],
     "description": " Projected changes in annual or seasonal mean cooling degree-days.  Cooling degree days are based on the assumption that when the outside temperature is below 65°F, we don't need cooling (air-conditioning) to be comfortable. Cooling degree-days are the difference between the daily temperature mean and 65°F.  For example, if the temperature mean is 85°F, we subtract 65 from the mean and the result is 20 cooling degree-days for that day. (Definition adapted from National Weather Service) <br> Projected changes are relative to the 1981-2010 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='cdd'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_cooling_degree_days",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "observed_growing_degree_days",
     "folder": "Climate Observations.Degree Days",
     "name": "Growing Degree Days (Observed)",
     "sectors": ["All Sectors"],
-    "description": " Average growing degree-days summarized by area (county,basin) and decade over the period 1980-2010. <br>Definition: A growing degree day (GDD) is an index used to express crop maturity. The index is computed by subtracting a base temperature of 50°F from the average of the maximum and minimum temperatures for the day. Minimum temperatures less than 50°F are set to 50, and maximum temperatures greater than 86°F are set to 86. These substitutions indicate that no appreciable growth is detected with temperatures lower than 50° or greater than 86°. (Adapted from National Weather Service) <br>  Observational data: A spatially comprehensive, meteorological data set for Mexico, the U.S., and southern Canada (Livneh et al., 2015).",
+    "description": " Average growing degree-days summarized by area (county,basin) and decade over the period 1980-2009. <br>Definition: A growing degree day (GDD) is an index used to express crop maturity. The index is computed by subtracting a base temperature of 50°F from the average of the maximum and minimum temperatures for the day. Minimum temperatures less than 50°F are set to 50, and maximum temperatures greater than 86°F are set to 86. These substitutions indicate that no appreciable growth is detected with temperatures lower than 50° or greater than 86°. (Adapted from National Weather Service) <br>  Observational data: A spatially comprehensive, meteorological data set for Mexico, the U.S., and southern Canada (Livneh et al., 2015).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     //"download_url": "https://repository.nescaum-ccsc-dataservices.com/data/ma/degree_days.json",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
   {
     "id": "projected_growing_degree_days",
@@ -895,9 +895,9 @@ var available_layers = [
     "sectors": ["All Sectors"],
     "description": " Projected changes in annual or seasonal mean growing degree-days.  A growing degree day (GDD) is an index used to express crop maturity. The index is computed by subtracting a base temperature of 50°F from the average of the maximum and minimum temperatures for the day. Minimum temperatures less than 50°F are set to 50, and maximum temperatures greater than 86°F are set to 86. These substitutions indicate that no appreciable growth is detected with temperatures lower than 50° or greater than 86°. (Definition adapted from National Weather Service) <br>  Projected changes are relative to the 1981-2010 mean, calculated for four periods 2020-2049 (2030s), 2040-2069 (2050s), 2060-2089 (2070s), 2080-2099 (2090s). The projections are derived from statistically downscaled (LOCA method) CMIP5 daily data. Data Source: Statistically downscaled CMIP5 daily Climate Observations using Localized Constructed Analogs (LOCA; Pierce et al., 2014).",
     "source": "University of California San Diego as provided by the Northeast Regional Climate Center Applied Climate Information System (ACIS) at Cornell University (rcc-acis.org)",
-    "source_url": "https://loca.ucsd.edu/",
+    "source_url": "http://loca.ucsd.edu/",
     "download_url": "https://geoserver.nescaum-ccsc-dataservices.com/geoserver/ny/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=ny:climate_data_projected_download&CQL_FILTER=var_name='gdd'&maxFeatures=1000&outputFormat=SHAPE-ZIP&format_options=filename:projected_growing_degree_days",
-    "metadata_url": "https://loca.ucsd.edu/"
+    "metadata_url": "http://loca.ucsd.edu/"
   },
     {
       "id": "public_environmental_justice_areas",
@@ -931,7 +931,7 @@ var available_layers = [
       "source_url": "https:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1232",
       "sectors": ["Ecosystems","Water Resources"],
       "legend_url": CDN("https:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:primary_aquifers&format=image\/png"),
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=1232&file=primaryaquifers.zip",
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1232&file=primaryaquifers.zip",
       "metadata_url": "https:\/\/gis.ny.gov\/gisdata\/metadata\/nysdec.primary.aquifers.shp.xml",
     },
     {
@@ -965,19 +965,19 @@ var available_layers = [
       "source": "NYS DOT",
       "source_url": "https:\/\/www.dot.ny.gov\/index",
       "sectors": ["Transportation"],
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=904&file=NYSDOTRailroad_May2013.zip",
-      "metadata_url": "https://gis.ny.gov/gisdata/inventories/details.cfm?DSID=904"
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=904&file=NYSDOTRailroad_May2013.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=904"
     },
-    // {
-    //   "id": "rare_plants_and_animals",
-    //   "folder": "Ecosystems",
-    //   "name": "Rare Plants and Animals",
-    //   "description": "NHP Predicted Future/Current/Delta Species Richness - Species richness of rare species (# species) within each 30m grid cell within NY State for rare species tracked by the NY Natural Heritage Program. Data represent total species or broken down by taxonomic or regulatory groups, based on predicted suitable habitat occurring under current or future climatic and landuse conditions using EDM models developed by NYNHP. Changes in species richness represent the difference between future and current predicted richness. These data represent predicted species richness assuming species precense within predicted suitable habitat. These data do not represent actual species richness based on known occurances.",
-    //   "source": "'Natural Resource Navigator / NY Climate Adaptation",
-    //   "source_url": "https://maps.naturalresourcenavigator.org/",
-    //   "metadata_url": "",
-    //   "sectors": ["Ecosystems"],
-    // },
+    {
+      "id": "rare_plants_and_animals",
+      "folder": "Ecosystems",
+      "name": "Rare Plants and Animals",
+      "description": "NHP Predicted Future/Current/Delta Species Richness - Species richness of rare species (# species) within each 30m grid cell within NY State for rare species tracked by the NY Natural Heritage Program. Data represent total species or broken down by taxonomic or regulatory groups, based on predicted suitable habitat occurring under current or future climatic and landuse conditions using EDM models developed by NYNHP. Changes in species richness represent the difference between future and current predicted richness. These data represent predicted species richness assuming species precense within predicted suitable habitat. These data do not represent actual species richness based on known occurances.",
+      "source": "'Natural Resource Navigator / NY Climate Adaptation",
+      "source_url": "https://maps.naturalresourcenavigator.org/",
+      "metadata_url": "",
+      "sectors": ["Ecosystems"],
+    },
     {
       "id": "regulated_wells",
       "folder": "Energy/Communications",
@@ -1035,14 +1035,15 @@ var available_layers = [
       "metadata_url": "https://www.atsdr.cdc.gov/placeandhealth/svi/index.html"
     },
     {
-      "id": "soils",
+      "id": "ecological_land_units",
       "folder": "Ecosystems",
-      "name": "Surficial Geology",
-      "description": "The Earth's bedrock is overlain in many places by a loosely compacted and mostly unconsolidated blanket of sediments in which soils commonly are developed. These sediments generally were eroded from underlying rock, and then were transported and deposited. In places, they exceed 1000 ft (330 m) in thickness. Where the sediment blanket is absent, bedrock is either exposed or has been weathered to produce a residual soil. For the conterminous United States, a map by Soller and Reheis (2004, scale 1:5,000,000; https://pubs.usgs.gov/of/2003/of03-275/) shows these sediments and the weathered, residual material; for ease of discussion, these are referred to as surficial materials. That map was produced as a PDF file, from an Adobe Illustrator-formatted version of the provisional GIS database. The provisional GIS files were further processed without modifying the content of the published map.",
-      "source_url": "https://pubs.usgs.gov/ds/425/",
+      "name": "Ecological Land Units",
+      "description": "This layer contains the terrestrial ecosystems in the conterminous United States developed during a United States Geological Survey’s (USGS) global ecosystems mapping effort. Terrestrial ecosystem distribution mapping used a geospatial mapping methodology based on a deductive, biophysical stratification approach to delineate ecosystems by their major structural elements (Sayre and others, 2009). First major ecosystem structural components were modeled (bioclimates, land surface forms, surficial lithology and topographic moisture position) and spatially combined to produce a new set of biophysical settings, termed ecosystem structural footprints, to characterize the abiotic (physical) potential of the environment. Aggregation of the unique structural footprints into the terrestrial ecosystems classification developed by NatureServe was the final step (Comer and others, 2003). Additional information and access to this data is available at https://rmgsc.cr.usgs.gov/ecosystems/.",
+      "source": "USGS Geosciences and Environmental Change Science Center",
+      "source_url": "https://www.usgs.gov/centers/gecsc/science/global-ecosystems?qt-science_center_objects=0#qt-science_center_objects",
       "sectors": ["Agriculture","Ecosystems"],
       "download_url": null,
-      "metadata_url": "https://pubs.usgs.gov/ds/425/",
+      "metadata_url": "https://rmgsc.cr.usgs.gov/arcgis/rest/services/contUS/MapServer/",
     },
     {
       "id": "spdes",
@@ -1052,8 +1053,8 @@ var available_layers = [
       "source": "NYS DEC",
       "source_url": "https:\/\/gis.ny.gov\/gisdata\/inventories\/details.cfm?DSID=1010",
       "sectors": ["Water Resources","Public Health"],
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=1010&file=spdes.zip",
-      "metadata_url": "https://gis.ny.gov/gisdata/metadata/nysdec.spdes.xml"
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1010&file=spdes.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.spdes.xml"
     },
     {
       "id": "subway_lines",
@@ -1131,8 +1132,8 @@ var available_layers = [
       "source_url": "https:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1118",
       "sectors": "Ecosystems,Water Resources",
       "legend_url": CDN("https:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:wtrcls_line&format=image\/png"),
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=1118&file=nysdec_wtrcls.zip",
-      "metadata_url": "https://gis.ny.gov/gisdata/metadata/nysdec.wtrcls.xml"
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1118&file=nysdec_wtrcls.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.wtrcls.xml"
     },
     {
       "id": "wtrcls_poly",
@@ -1143,8 +1144,8 @@ var available_layers = [
       "source_url": "https:\/\/gis.ny.gov/gisdata\/inventories\/details.cfm?DSID=1118",
       "sectors": "Ecosystems,Water Resources",
       "legend_url": CDN("https:\/\/52.2.5.122:8080\/geoserver\/wms?request=GetLegendGraphic&LAYER=nyccsc:wtrcls_poly&format=image\/png"),
-      "download_url": "https://gis.ny.gov/gisdata/fileserver/?DSID=1118&file=nysdec_wtrcls.zip",
-      "metadata_url": "https://gis.ny.gov/gisdata/metadata/nysdec.wtrcls.xml"
+      "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=1118&file=nysdec_wtrcls.zip",
+      "metadata_url": "http://gis.ny.gov/gisdata/metadata/nysdec.wtrcls.xml"
     },
 ];
 
