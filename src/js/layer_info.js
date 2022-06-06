@@ -967,6 +967,7 @@ var available_layers = [
       "download_url": "http://gis.ny.gov/gisdata/fileserver/?DSID=904&file=NYSDOTRailroad_May2013.zip",
       "metadata_url": "http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=904"
     },
+    /*
     {
       "id": "rare_plants_and_animals",
       "folder": "Ecosystems",
@@ -977,6 +978,7 @@ var available_layers = [
       "metadata_url": "",
       "sectors": ["Ecosystems"],
     },
+    */
     {
       "id": "regulated_wells",
       "folder": "Energy/Communications",
