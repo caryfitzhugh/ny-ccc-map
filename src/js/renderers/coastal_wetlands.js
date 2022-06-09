@@ -1,6 +1,6 @@
 (function() {
   let _layer_number = 32
-  let _root_url = CDN("http://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/");
+  let _root_url = CDN("https://50.19.218.171/arcgis1/rest/services/MarineLifeAndHabitat/MapServer/");
   let _cache = null;
   let _get_legend_data = function (active_layer, callback) {
       // callback(error, geojson_data?)
